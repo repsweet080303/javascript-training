@@ -1,0 +1,19 @@
+{
+    "name": "JavaScript-example",
+    "version": "1.0.0",
+    "source": "index.html",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "parcel --no-cache",
+        "build": "parcel build",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Px Viet",
+    "license": "ISC",
+    "devDependencies": {
+        "@parcel/transformer-sass": "^2.8.1",
+        "parcel": "^2.8.1",
+        "sass": "^1.56.2"
+    }
+}
