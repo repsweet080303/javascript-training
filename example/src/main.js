@@ -14,6 +14,7 @@ const myFriend = {
   age: 23,
   character: "Kind",
   body: "Tiny",
+  "space#speakers": "SP",
 };
 
 console.log(myFriend);
@@ -21,5 +22,12 @@ console.log(myFriend);
 const otherFriend = myFriend;
 otherFriend.name = "Ha";
 otherFriend.age = 22;
-
+otherFriend["space#speakers"] = "MID";
+otherFriend.work = "Design";
 console.log(otherFriend);
+
+const anotherFriend = otherFriend;
+anotherFriend.name = "Cham";
+delete anotherFriend["space#speakers"];
+console.log(anotherFriend);
+
