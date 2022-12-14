@@ -1,23 +1,25 @@
-const cars = ["Ferrari", "Lamborghini", "Porsche"];
+function Girl(name, tall, heavy, gender) {
+  this.name = name;
+  this.tall = tall;
+  this.heavy = heavy;
+  this.gender = "female";
+}
 
-const addCard = (car) => {
-  cars.push(car);
+const myGirl = new Girl("Linh", 154, 47);
+
+console.log(myGirl);
+
+const myFriend = {
+  name: "Xuho",
+  age: 23,
+  character: "Kind",
+  body: "Tiny",
 };
 
-const removeCard = (car) => {
-  if (cars.indexOf(car) !== -1) {
-    cars.splice(cars.indexOf(car), 1);
-  } else {
-    console.log("not found the car");
-  }
-};
+console.log(myFriend);
 
-console.log(cars);
+const otherFriend = myFriend;
+otherFriend.name = "Ha";
+otherFriend.age = 22;
 
-addCard("Mercedes");
-console.log(cars);
-
-removeCard("Lamborghini");
-console.log(cars);
-removeCard("Lamborghini");
-removeCard("Lamborghini");
+console.log(otherFriend);
