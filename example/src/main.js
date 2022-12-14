@@ -1,17 +1,23 @@
-function dataInfomation(name = "Hong", age = "23") {
-  if (name === undefined) {
-    console.log("Please input name parameter");
+const cars = ["Ferrari", "Lamborghini", "Porsche"];
+
+const addCard = (car) => {
+  cars.push(car);
+};
+
+const removeCard = (car) => {
+  if (cars.indexOf(car) !== -1) {
+    cars.splice(cars.indexOf(car), 1);
+  } else {
+    console.log("not found the car");
   }
+};
 
-  if (age === undefined) {
-    console.log("Please input age parameter");
-  }
+console.log(cars);
 
-  let data = `Your name: ${name} 
-Your age: ${age}`;
+addCard("Mercedes");
+console.log(cars);
 
-  return data;
-}
-
-console.log(dataInfomation("Viet", 17));
-
+removeCard("Lamborghini");
+console.log(cars);
+removeCard("Lamborghini");
+removeCard("Lamborghini");
