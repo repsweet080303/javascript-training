@@ -1,9 +1,17 @@
-const myList = ["Ferrari", "Lamborghini", "Porsche"];
+function dataInfomation(name = "Hong", age = "23") {
+  if (name === undefined) {
+    console.log("Please input name parameter");
+  }
 
-for (const value of myList) {
-  console.log(value);
+  if (age === undefined) {
+    console.log("Please input age parameter");
+  }
+
+  let data = `Your name: ${name} 
+Your age: ${age}`;
+
+  return data;
 }
 
-for (const value in myList) {
-  console.log(value);
-}
+console.log(dataInfomation("Viet", 17));
+
