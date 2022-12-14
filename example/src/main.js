@@ -1,6 +1,5 @@
-const myList = ["Hoa", "Long", "Thinh"];
-let i = 0;
-do {
-  console.log(`This is ${myList[i]}`);
-  i++;
-} while (i < myList.length);
+const myList = ["Ferrari", "Lamborghini", "Porsche"];
+
+for (var i = 0; i < myList.length; i++) {
+  console.log("car " + (1 + i) + " is " + myList[i]);
+}
