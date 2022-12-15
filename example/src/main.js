@@ -1,30 +1,27 @@
-class Car {
-  constructor(name, color) {
-    this.name = name;
-    this.color = color;
-  }
-
-  desc() {
-    console.log(`My car is ${this.name} and color ${this.color}`);
+class Animal {
+  behavior() {
+    return "Run an catch other animal";
   }
 }
 
-const myCar = new Car("Sirious", "silver and blue");
-myCar.desc();
+class lion extends Animal {
+  behavior() {
+    return super.behavior() + " or not it will die";
+  }
+}
 
-function Moto(name, color) {
-  this.name = name;
+const tiger = new lion();
+
+console.log(tiger.behavior());
+
+function Human(foot, color, tall) {
+  this.foot = foot;
   this.color = color;
-  this.desc = function () {
-    return `My moto is ${this.name} and color ${this.color}`;
+  this.tall = tall;
+  this.run = function () {
+    return "Running...";
   };
 }
 
-const myMoto = new Moto("Dream", "brown");
-console.log(myMoto.desc());
-
-class Author {
-  static article = "Magazing";
-}
-
-console.log(Author.article);
+const myFriend = new Human(2, "brown", 174);
+console.log(myFriend.run());
