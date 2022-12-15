@@ -1,17 +1,30 @@
-const myMotobike = {
-  name: "Sirious",
-  color: "Silver and blue",
-  heavy: 105,
-  description: function (param) {
-    for (var i = 0; i < param.length; i++) {
-      console.log(
-        `My motobike name ${this.name} and it have color ${this.color}, ${param[i]}`
-      );
-    }
-  },
-};
+class Car {
+  constructor(name, color) {
+    this.name = name;
+    this.color = color;
+  }
 
-myMotobike.description([
-  "I love this moto so much",
-  "This i my present of my mom",
-]);
+  desc() {
+    console.log(`My car is ${this.name} and color ${this.color}`);
+  }
+}
+
+const myCar = new Car("Sirious", "silver and blue");
+myCar.desc();
+
+function Moto(name, color) {
+  this.name = name;
+  this.color = color;
+  this.desc = function () {
+    return `My moto is ${this.name} and color ${this.color}`;
+  };
+}
+
+const myMoto = new Moto("Dream", "brown");
+console.log(myMoto.desc());
+
+class Author {
+  static article = "Magazing";
+}
+
+console.log(Author.article);
