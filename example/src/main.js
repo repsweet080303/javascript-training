@@ -1,14 +1,5 @@
-function championWolrdCup(callback, team) {
-  if (typeof callback === "function") {
-    callback();
-  } else {
-    console.log("Please provide a callback");
-  }
-  console.log(`${team} winner WorldCup 2022`);
-}
-
-function teamWorldCup() {
-  console.log("Congratulations !");
-}
-
-championWolrdCup(teamWorldCup, "Argentina");
+console.log(1);
+console.log(2);
+setTimeout(() => console.log(4), 3000);
+setTimeout(() => console.log(3), 2000);
+console.log(5);
