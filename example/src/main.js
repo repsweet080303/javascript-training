@@ -1,27 +1,14 @@
-class Animal {
-  behavior() {
-    return "Run an catch other animal";
+function championWolrdCup(callback, team) {
+  if (typeof callback === "function") {
+    callback();
+  } else {
+    console.log("Please provide a callback");
   }
+  console.log(`${team} winner WorldCup 2022`);
 }
 
-class lion extends Animal {
-  behavior() {
-    return super.behavior() + " or not it will die";
-  }
+function teamWorldCup() {
+  console.log("Congratulations !");
 }
 
-const tiger = new lion();
-
-console.log(tiger.behavior());
-
-function Human(foot, color, tall) {
-  this.foot = foot;
-  this.color = color;
-  this.tall = tall;
-  this.run = function () {
-    return "Running...";
-  };
-}
-
-const myFriend = new Human(2, "brown", 174);
-console.log(myFriend.run());
+championWolrdCup(teamWorldCup, "Argentina");
