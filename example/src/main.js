@@ -10,4 +10,6 @@ async function fecthData() {
   }
 }
 
-fecthData();
+fecthData().then(function (data) {
+  console.log(data.login);
+});
