@@ -1,58 +1,51 @@
-const promise = new Promise(function (resolve, reject) {
-  resolve();
-});
-
-promise
-  .then(function () {
-    return 1;
-  })
-  .then(function (data) {
-    console.log(data);
-    return ++data;
-  })
-  .then(function (data) {
-    setTimeout(function () {
-      console.log(data);
-      return data++;
-    }, 3000);
-  })
-  .then(function (data) {
-    console.log(data);
-  })
-  .catch(function () {
-    console.log("failure");
-  })
-  .finally(function () {
-    console.log("done");
-  });
-
-function waiting(milisec) {
-  return new Promise(function (resolve) {
-    setTimeout(resolve, milisec);
-  });
+function one() {
+  console.log("one");
+}
+function two() {
+  setTimeout(() => console.log("two"), 0);
+}
+function three() {
+  console.log("three");
 }
 
-waiting(2000)
-  .then(function () {
-    console.log("done");
-    return new Promise((resolve, reject) => {
-      setTimeout(reject("Kabku"), 2000);
-    });
-  })
-  .then(function () {
-    console.log("donne");
-  })
-  .catch(function (err) {
-    console.log(err);
-  });
+// one();
+// two();
+// three();
 
-const myArray = [1, 2, 3, 4, 5];
+function first() {
+  console.log(1)
+}
 
-myArray.forEach(function (item) {
-  setTimeout(function () {
-    for (let i = 0; i <= 77; i++) {
-      console.log(i);
-    }
-  }, 5000);
-  console.log(item);
+function second() {
+  setTimeout(() => {
+    console.log(2)
+  }, 0)
+}
+
+function third() {
+  console.log(3)
+}
+
+first()
+second()
+third()
+
+const promise = new  Promise((resolve, reject) => {
+  setTimeout(() => {
+    console.log("foo");
+  }, 3000);
 });
+
+console.log("bar");
+
+for (let i = 1; i <= 3; i++) {
+  setTimeout(function () {
+    console.log(i + " times");
+  }, i * 1000);
+}
+
+for (var i = 1; i <= 3; i++) {
+  setTimeout(function () {
+    console.log(i + " second(s) elapsed");
+  }, i * 1000);
+}
