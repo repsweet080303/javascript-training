@@ -1,51 +1,73 @@
-function one() {
-  console.log("one");
-}
-function two() {
-  setTimeout(() => console.log("two"), 0);
-}
-function three() {
-  console.log("three");
+function handOut(callback) {
+  console.log("handOut");
+  callback();
 }
 
-// one();
-// two();
-// three();
-
-function first() {
-  console.log(1)
-}
-
-function second() {
+function handIn(cb) {
   setTimeout(() => {
-    console.log(2)
-  }, 0)
+    console.log("handIn");
+    cb();
+  }, 2000);
 }
 
-function third() {
-  console.log(3)
+function handOn(callback) {
+  console.log("handOn");
 }
 
-first()
-second()
-third()
+handOut(handOn);
+handIn(handOn);
+handOn(handOut);
 
-const promise = new  Promise((resolve, reject) => {
-  setTimeout(() => {
-    console.log("foo");
-  }, 3000);
+const promise = new Promise((resolve, reject) => {
+  resolve("Value of promise");
 });
 
-console.log("bar");
+promise
+  .then((value) => {
+    console.log(value);
+    return value + "is chain";
+  })
+  .then((value) => {
+    console.log(value);
+  });
 
-for (let i = 1; i <= 3; i++) {
-  setTimeout(function () {
-    console.log(i + " times");
-  }, i * 1000);
+function getData(response) {
+  return new Promise((resolve, reject) => {
+    if (response) {
+      resolve([
+        {
+          name: "Hung",
+          age: 22,
+        },
+        {
+          name: "Loan",
+          age: 21,
+        },
+        {
+          name: "Doan",
+          age: 23,
+        },
+      ]);
+    } else reject("Failed to resolve");
+  });
 }
 
-for (var i = 1; i <= 3; i++) {
-  setTimeout(function () {
-    console.log(i + " second(s) elapsed");
-  }, i * 1000);
-}
+getData(0)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+fetch("https://api.github.com/users/octocat")
+  .then((response) => {
+    console.log(response);
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
