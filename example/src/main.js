@@ -1,15 +1,26 @@
-async function getName(name) {
-  // if (name === "Inosuke") {
-  //   setTimeout(() => console.log(name), 2000);
-  // }
-  return name;
-}
-
-const testSpeed = async () => {
-  const characterOne = await getName("Nezuko");
-  const characterTwo = await setTimeout(() => console.log("Inosuke"), 2000);
-  const characterThree = await getName("Zenitsu");
-  return [characterOne, characterTwo, characterThree];
+const myObject = {
+  name: "Zenitsu",
+  skill: "Flash storm",
+  color: "Yellow",
 };
 
-testSpeed().then((res) => console.log(res));
+for (let [key, value] of Object.entries(myObject)) {
+  console.log(`${key}: ${value}`);
+}
+
+const yourObject = {
+  ...myObject,
+  name: "Tanjiro",
+  skill: "Dragon fire",
+  other: "Kind",
+};
+
+function display({ name, skill, color, other }) {
+  console.log(name);
+  console.log(skill);
+  console.log(color);
+  console.log(other);
+}
+
+display(myObject);
+display(yourObject);
