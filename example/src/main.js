@@ -24,3 +24,22 @@ function display({ name, skill, color, other }) {
 
 display(myObject);
 display(yourObject);
+
+const stt = [23, 2, 3, 4];
+const sst2 = {
+  0: [234],
+};
+
+sst2[0] = 234;
+
+function a() {
+  const i = 1;
+  return () => {
+    console.log(i);
+  };
+}
+
+const x = a();
+x();
+
+
