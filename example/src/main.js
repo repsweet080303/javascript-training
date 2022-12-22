@@ -1,37 +1,27 @@
-// define variables
-const demoId = document.getElementById("demo");
-const demoClass = document.getElementsByClassName("demo");
-const demoTag = document.getElementsByTagName("article");
-const demoSelector = document.querySelector("#demo-query");
-const demoSelectorAll = document.querySelectorAll(".demo-query-all");
+const h1 = document.getElementsByTagName("h1")[0];
+const p = document.getElementsByTagName("p")[0];
+const ul = document.getElementsByTagName("ul")[0];
+const tiger = ul.children[1];
 
-// styles for getElementById
-demoId.style.border = "2px solid green";
-demoId.style.backgroundColor = "#737373";
-demoId.style.color = "#FFF";
+ul.style.listStyle = "none";
 
-// styles for getElementsByClassName
-for (let i = 0; i < demoClass.length; i++) {
-  demoClass[i].style.backgroundColor = "#737373";
-  demoClass[i].style.color = "#FFF";
-  demoClass[i].style.border = "2px solid red";
+for (let i = 0; i < ul.children.length; i++) {
+  ul.children[i].style.backgroundColor = "#737373";
 }
 
-// styles for getElementsByTagName
-for (let i = 0; i < demoTag.length; i++) {
-  demoTag[i].style.backgroundColor = "#737373";
-  demoTag[i].style.color = "#FFF";
-  demoTag[i].style.border = "2px solid yellow";
+for (const item of ul.children) {
+  item.style.color = "#fff";
 }
 
-// styles for querySelector
-demoSelector.style.border = "2px solid orange";
-demoSelector.style.backgroundColor = "#737373";
-demoSelector.style.color = "#FFF";
+ul.firstElementChild.style.backgroundColor = "yellow";
+ul.firstElementChild.style.color = "#737373";
 
-// styles for querySelectorAll
-demoSelectorAll.forEach((item) => {
-  item.style.border = "2px solid blue";
-  item.style.backgroundColor = "#737373";
-  item.style.color = "#FFF";
-});
+p.style.color = "red";
+
+for (const iterator of p.children) {
+  iterator.style.color = "green";
+}
+
+tiger.previousElementSibling.style.backgroundColor = "coral";
+tiger.previousElementSibling.style.color = "#fff";
+tiger.nextElementSibling.style.backgroundColor = "green";
