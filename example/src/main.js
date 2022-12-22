@@ -1,54 +1,32 @@
-function createCounter() {
-  let counter = 0;
+let myArray = ["Sam", "Loan"];
 
-  function increaseCounter() {
-    return ++counter;
-  }
+const [name, subname] = myArray;
 
-  return increaseCounter;
-}
+console.log(name, subname);
 
-const counter = createCounter();
+myArray = ["Sam", "Smitt"];
 
-console.log(counter());
-console.log(counter());
+console.log(myArray);
+console.log(name, subname);
 
-// ==========================================
+const [firstName, lastName] = "Johnny Dang".split(" ");
+console.log(firstName, lastName);
 
-function debug(namespace) {
-  function logger(message) {
-    console.log(`${namespace} ${message}`);
-  }
+const myObject = {
+  name: {
+    firstName: "Tanjiro",
+    lastName: "Komado",
+  },
+  skill: "Yellow storm",
+  desc: "Little boy unlucky in training",
+};
 
-  return logger;
-}
+let {
+  name: { firstName: firstNameCharacter, lastName: lastNameCharacter },
+  skill: skillCharacter,
+  desc: describeSkill,
+} = myObject;
 
-const loggerInfo = debug("Info");
-
-loggerInfo("Starting login");
-loggerInfo("Accuracy account");
-loggerInfo("Completed accuracy account");
-
-const loggerError = debug("Error");
-
-loggerError("Starting login");
-loggerError("Accuracy account failed");
-loggerError("Log out");
-
-function createCar() {
-  let cars = [];
-
-  return {
-    getCar(car) {
-      cars.push(car);
-    },
-    showCar() {
-      console.log(cars);
-    },
-  };
-}
-const myCar = createCar();
-myCar.showCar();
-myCar.getCar("BMW");
-myCar.getCar("Mercedes");
-myCar.showCar();
+console.log(`name: ${firstNameCharacter} ${lastNameCharacter}
+skill: ${skillCharacter}
+desc: ${describeSkill}`);
