@@ -2,3 +2,27 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  max-width: 600px;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+.active {
+  border: 2px solid blue;
+}
+
+.warning {
+  border: 2px solid red;
+}
+
+.hidden {
+  display: none;
+}
+
+div {
+  border: 2px dashed lightgray;
+  padding: 15px;
+  margin: 5px;
+}

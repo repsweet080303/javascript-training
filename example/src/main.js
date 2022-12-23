@@ -1,13 +1,11 @@
-const img = document.querySelector("img");
-const title = document.querySelector("title");
+const div = document.querySelector("div");
+const listDiv = document.querySelectorAll("div");
 
-console.log(title);
-title.innerText = "Learn the DOM";
+div.className = "warning";
+div.classList.add("hidden");
+div.classList.toggle("hidden");
+listDiv[1].classList.add("hidden");
+listDiv[1].classList.replace("hidden", "active");
+listDiv[1].setAttribute("style", "color: #737373; font-weight: bold");
 
-console.log(img);
-console.log(img.hasAttribute("src"));
-console.log(img.getAttribute("src"));
-
-img.removeAttribute("src");
-img.setAttribute("src", "/kokurikozaka003.36ec5b0a.jpg");
-img.setAttribute("alt", "ghibli");
+console.log(div);
