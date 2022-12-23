@@ -1,27 +1,25 @@
-const h1 = document.getElementsByTagName("h1")[0];
-const p = document.getElementsByTagName("p")[0];
-const ul = document.getElementsByTagName("ul")[0];
-const tiger = ul.children[1];
+const heading = document.querySelector("#heading");
+// const orderList = document.getElementsByTagName("ul");
+const listOrder = document.querySelector("ul");
+const paragraph = document.createElement("p");
+const newTodo = document.createElement("li");
+const modifiedTodo = document.createElement("li");
 
-ul.style.listStyle = "none";
+heading.style.textTransform = "uppercase";
 
-for (let i = 0; i < ul.children.length; i++) {
-  ul.children[i].style.backgroundColor = "#737373";
-}
+newTodo.innerText = "Read DOM manipulation";
+modifiedTodo.innerText = "Eat diet";
 
-for (const item of ul.children) {
-  item.style.color = "#fff";
-}
+// listOrder.forEach((item) => (item.style.listStyle = "none"));
+listOrder.style.listStyle = "none";
+listOrder.style.padding = "0 10px";
 
-ul.firstElementChild.style.backgroundColor = "yellow";
-ul.firstElementChild.style.color = "#737373";
+listOrder.appendChild(newTodo);
+listOrder.insertBefore(newTodo, listOrder.lastElementChild);
+listOrder.replaceChild(modifiedTodo, listOrder.children[2]);
+listOrder.children[2].remove();
+paragraph.innerText = "This is text include by inner text";
+console.log(paragraph);
 
-p.style.color = "red";
-
-for (const iterator of p.children) {
-  iterator.style.color = "green";
-}
-
-tiger.previousElementSibling.style.backgroundColor = "coral";
-tiger.previousElementSibling.style.color = "#fff";
-tiger.nextElementSibling.style.backgroundColor = "green";
+const text = document.createComment("This is comment");
+console.log(text);
