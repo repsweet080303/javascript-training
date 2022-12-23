@@ -1,11 +1,20 @@
-const div = document.querySelector("div");
-const listDiv = document.querySelectorAll("div");
+const button = document.querySelector("button");
+const btnImg = document.getElementById("img-river");
+const image = document.querySelector("img");
+const paragraph = document.querySelector("p");
 
-div.className = "warning";
-div.classList.add("hidden");
-div.classList.toggle("hidden");
-listDiv[1].classList.add("hidden");
-listDiv[1].classList.replace("hidden", "active");
-listDiv[1].setAttribute("style", "color: #737373; font-weight: bold");
+function changeText() {
+  paragraph.innerText = "Text was changed";
+  paragraph.style.color = "#737373";
+}
 
-console.log(div);
+function alert() {
+  alert("Please try event listeners, it best");
+}
+
+button.onclick = function () {
+  button.style.color = "red";
+  changeText();
+};
+
+btnImg.addEventListener("click", () => (image.style.display = "block"));
