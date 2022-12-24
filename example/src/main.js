@@ -1,20 +1,27 @@
-const button = document.querySelector("button");
-const btnImg = document.getElementById("img-river");
-const image = document.querySelector("img");
-const paragraph = document.querySelector("p");
+document.addEventListener("keydown", (e) => {
+  const element = document.querySelector("p");
 
-function changeText() {
-  paragraph.innerText = "Text was changed";
-  paragraph.style.color = "#737373";
-}
+  let a = "KeyA";
+  let s = "KeyS";
+  let d = "KeyD";
+  let w = "KeyW";
 
-function alert() {
-  alert("Please try event listeners, it best");
-}
+  switch (e.code) {
+    case a:
+      element.textContent = "Left";
+      break;
+    case s:
+      element.textContent = "Down";
+      break;
+    case d:
+      element.textContent = "Right";
+      break;
+    case w:
+      element.textContent = "Up";
+      break;
+  }
+});
 
-button.onclick = function () {
-  button.style.color = "red";
-  changeText();
-};
+const section = document.querySelector("section");
 
-btnImg.addEventListener("click", () => (image.style.display = "block"));
+section.addEventListener("click", (e) => console.log(e.target));
