@@ -1,23 +1,70 @@
-const body = document.querySelector("body");
-const list = document.querySelector("ul");
-const items = list.querySelectorAll("li");
-const nickName = list.querySelector("#nickname");
-const favorites = list.querySelector("#favorites");
-const hometown = list.querySelector("#hometown");
+var books = [
+  {
+    title: "The Design of EveryDay Things",
+    author: "Don Norman",
+    alreadyRead: false,
+  },
+  {
+    title: "The Most Human Human",
+    author: "Brian Christian",
+    alreadyRead: true,
+  },
+];
 
-body.style.fontFamily = "'Courier New', Courier, monospace";
+const paragraph = document.createElement("p");
 
-nickName.textContent = "Px Viet";
-favorites.textContent = "Music";
-hometown.textContent = "DaNang";
+// books.forEach((book) => {
+//   const paragraphDescripton = document.createTextNode(
+//     ` Book ${book.title} by ${book.author}
+//      `
+//   );
+//   paragraph.appendChild(paragraphDescripton);
+//   document.body.appendChild(paragraph);
+//   console.log(paragraph.textContent);
+// });
 
-items.forEach((item) => {
-  item.className = "listitem";
-  item.style.color = "red";
-});
+// for (let i = 0; i < books.length; i++) {
+//   const paragraphDescription = document.createTextNode(
+//     `Book ${books[i].title} by ${books[i].author}
+//     `
+//   );
+//   console.log(paragraphDescription);
+//   paragraph.appendChild(paragraphDescription);
+//   console.log(paragraph.textContent);
+//   document.body.appendChild(paragraph);
+// }
 
-const image = document.createElement("img");
-image.src = "http://gotocon.com/dl/jaoo_aus2008/photos/speakers/Pamela_Fox.jpg";
-console.log(image);
+// ====================Bonus====================
 
-document.body.appendChild(image);
+var books = [
+  {
+    title: "The Design of EveryDay Things",
+    img: "http://ecx.images-amazon.com/images/I/41j2ODGkJDL._AA115_.jpg",
+    author: "Don Norman",
+    alreadyRead: false,
+  },
+  {
+    title: "The Most Human Human",
+    img: "http://ecx.images-amazon.com/images/I/41Z56GwEv9L._AA115_.jpg",
+    author: "Brian Christian",
+    alreadyRead: true,
+  },
+];
+
+var bookList = document.createElement("ul");
+
+for (let i = 0; i < books.length; i++) {
+  let bookItem = document.createElement("li");
+  let bookImg = document.createElement("img");
+  bookImg.src = books[i].img;
+  bookItem.appendChild(bookImg);
+  const paragraphDescription = document.createTextNode(
+    `Book ${books[i].title} by ${books[i].author}`
+  );
+  bookItem.appendChild(paragraphDescription);
+  if (books[i].alreadyRead) {
+    bookItem.style.color = "grey";
+  }
+  bookList.appendChild(bookItem);
+}
+document.body.appendChild(bookList);
