@@ -1,27 +1,23 @@
-document.addEventListener("keydown", (e) => {
-  const element = document.querySelector("p");
+const body = document.querySelector("body");
+const list = document.querySelector("ul");
+const items = list.querySelectorAll("li");
+const nickName = list.querySelector("#nickname");
+const favorites = list.querySelector("#favorites");
+const hometown = list.querySelector("#hometown");
 
-  let a = "KeyA";
-  let s = "KeyS";
-  let d = "KeyD";
-  let w = "KeyW";
+body.style.fontFamily = "'Courier New', Courier, monospace";
 
-  switch (e.code) {
-    case a:
-      element.textContent = "Left";
-      break;
-    case s:
-      element.textContent = "Down";
-      break;
-    case d:
-      element.textContent = "Right";
-      break;
-    case w:
-      element.textContent = "Up";
-      break;
-  }
+nickName.textContent = "Px Viet";
+favorites.textContent = "Music";
+hometown.textContent = "DaNang";
+
+items.forEach((item) => {
+  item.className = "listitem";
+  item.style.color = "red";
 });
 
-const section = document.querySelector("section");
+const image = document.createElement("img");
+image.src = "http://gotocon.com/dl/jaoo_aus2008/photos/speakers/Pamela_Fox.jpg";
+console.log(image);
 
-section.addEventListener("click", (e) => console.log(e.target));
+document.body.appendChild(image);
