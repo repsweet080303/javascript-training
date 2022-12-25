@@ -1,16 +1,12 @@
-const form = document.getElementById("form1");
+const paragraph = document.createElement("p");
+const btn = document.createElement("button");
 
-function getFormvalue() {
-  event.preventDefault();
-  for (let i = 0; i < form.length; i++) {
-    if (form.elements[i].value !== "Submit") {
-      console.log(form.elements[i].value);
-    }
-  }
- 
-}
+paragraph.innerText = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est deserunt dolorum soluta reiciendis. Totam modi quisquam asperiores vitae, voluptate veniam qui sed sit quod sapiente, quia porro cumque, dolorum a?`;
+btn.innerText = "Change bg";
 
-const paragraph = document.getElementById("paragraph");
-function getValue() {
-  console.log(paragraph.innerText);
-}
+document.body.appendChild(paragraph);
+document.body.appendChild(btn);
+
+btn.addEventListener("click", () => {
+  paragraph.style.backgroundColor = "#737373";
+});
