@@ -1,7 +1,16 @@
-const text = document.getElementById("text");
+const form = document.getElementById("form1");
 
-function js_style() {
-  text.style.fontFamily = "Segoe UI";
-  text.style.color = "#737373";
-  text.style.fontSize = "18px";
+function getFormvalue() {
+  event.preventDefault();
+  for (let i = 0; i < form.length; i++) {
+    if (form.elements[i].value !== "Submit") {
+      console.log(form.elements[i].value);
+    }
+  }
+ 
+}
+
+const paragraph = document.getElementById("paragraph");
+function getValue() {
+  console.log(paragraph.innerText);
 }
