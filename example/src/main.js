@@ -1,11 +1,8 @@
-let list = document.getElementById("mySelect");
+const myForm = document.getElementById("MyForm");
+const radius = document.getElementById("radius");
 
-function getOptions() {
-  let textLength = `List have ${list.length} options:`;
-  let options = "";
-  for (let i = 0; i < list.length; i++) {
-    options += `\n ${i + 1}: ${list.options[i].value}`;
-  }
-  console.log(`${textLength}
-  ${options}`);
-}
+myForm.addEventListener("submit", () => {
+  event.preventDefault();
+  let volume = document.getElementById("volume");
+  volume.value = ((4 / 3) * (Math.PI * radius.value ** 3)).toFixed(2);
+});
