@@ -1,7 +1,6 @@
-function insert_Row() {
-  let table = document.getElementById("sampleTable").insertRow(2);
-  let cellOne = table.insertCell(0);
-  let cellTwo = table.insertCell(1);
-  cellOne.innerHTML = "New Cell1";
-  cellTwo.innerHTML = "New Cell2";
+let list = document.getElementById("colorSelect");
+
+function removecolor() {
+  var select = list.options.selectedIndex;
+  list.remove(select);
 }
