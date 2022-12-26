@@ -4,18 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/style.scss" />
-    <title>Learning to the DOM</title>
+    <link rel="stylesheet" href="src/styles/style.scss" />
+    <title>Pomodoro Timer - zsoltnagy.eu</title>
   </head>
   <body>
-    <p>Input radius value and get the volume of a sphere.</p>
-    <form action="" method="post" id="MyForm">
-      <label for="radius">Radius</label
-      ><input type="text" name="radius" id="radius" required />
-      <label for="volume">Volume</label
-      ><input type="text" name="volume" id="volume" />
-      <input type="submit" value="Calculate" id="submit" />
+    <table>
+      <thead>
+        <tr>
+          <th>Task name</th>
+          <th>Status (done / planned)</th>
+          <th>Controls</th>
+        </tr>
+      </thead>
+      <tbody class="js-task-table-body"></tbody>
+    </table>
+    <form class="js-add-task" action="javascript:void(0)">
+      <input
+        type="text"
+        name="task-name"
+        class="js-task-name"
+        placeholder="Task Name"
+      />
+      <select name="pomodoro-count" class="js-pomodoro-count">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <input type="submit" />
     </form>
-    <script src="src/main.js"></script>
+    <script src="src/javaScript/pomodoro.js"></script>
   </body>
 </html>
