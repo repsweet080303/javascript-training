@@ -1,0 +1,31 @@
+const body = document.querySelector("body");
+const blockForm = document.createElement("div");
+const blockItem = document.createElement("div");
+const headText = document.createElement("h1");
+const formSignUp = document.createElement("form");
+const messengerInvalid = document.createElement("p");
+const labelItem = document.createElement("label");
+const inputItem = document.createElement("input");
+const messengerValid = document.createElement("p");
+
+formSignUp.className = "form-sign-up";
+blockForm.className = "form-block";
+headText.innerText = "Sign Up Page";
+messengerInvalid.innerText = "Invalid";
+messengerInvalid.className = "mess-email";
+messengerInvalid.setAttribute("id", "error-msg");
+blockItem.className = "input-item";
+labelItem.setAttribute("for", "email");
+labelItem.innerText = "Email :";
+inputItem.setAttribute("type", "email");
+inputItem.setAttribute("id", "email");
+inputItem.setAttribute("placeholder", "username@somewhere.sth");
+messengerValid.innerText = "Valid";
+
+body.appendChild(blockForm);
+blockForm.appendChild(formSignUp);
+blockItem.appendChild(messengerInvalid);
+blockItem.appendChild(labelItem);
+blockItem.appendChild(inputItem);
+formSignUp.appendChild(headText);
+formSignUp.appendChild(blockItem);
