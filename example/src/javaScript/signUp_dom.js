@@ -1,8 +1,8 @@
 const body = document.querySelector("body");
-body.innerHTML = `<div class="form-block">
-      <form id="signUp">
+body.innerHTML = `<main class="main-block">
+      <form class="sign-up">
         <h1>Sign Up Page</h1>
-        <div class="form-value">
+        <div class="form-value form-email">
           <p class="email-msg" id="error-msg"></p>
           <label for="email">Email:</label>
           <input
@@ -11,17 +11,17 @@ body.innerHTML = `<div class="form-block">
             placeholder="username@somewhere.sth"
           />
         </div>
-        <div class="form-value">
+        <div class="form-value form-user">
           <p class="user-msg" id="error-msg"></p>
           <label for="user">Username:</label>
           <input type="text" id="user" placeholder="user name" />
         </div>
-        <div class="form-value">
+        <div class="form-value form-password">
           <p class="password-msg" id="error-msg"></p>
           <label for="password">Password:</label>
           <input type="password" id="password-input" placeholder="password" />
         </div>
-        <div class="form-value">
+        <div class="form-value form-confirm">
           <p class="confirm-msg" id="error-msg"></p>
           <label for="confirm">Confirm :</label>
           <input
@@ -36,18 +36,17 @@ body.innerHTML = `<div class="form-block">
           <button type="reset">Reset</button>
         </div>
 
-        <p class="form__info"></p>
+        <p class="sign-up__info"></p>
         <a href="#">Back to index page</a>
       </form>
-    </div>`;
+    </main>`;
 
-const formSignUp = document.getElementById("signUp");
+const formSignUp = document.querySelector(".sign-up");
 const email = document.getElementById("email-input");
 const username = document.getElementById("user");
 const password = document.getElementById("password-input");
 const confirmPassword = document.getElementById("confirm-password-input");
 
-//validate Email
 const emailValidate = (input) => {
   const messEmail = document.querySelector(".email-msg");
   const validRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -123,7 +122,7 @@ const confirmPassValidate = (password, confirmPassword) => {
 const validate = (event) => {
   event.preventDefault();
 
-  const formInfo = document.querySelector(".form__info");
+  const formInfo = document.querySelector(".sign-up__info");
   const emailValidation = emailValidate(email);
   const usernameValidation = usernameValidate(username);
   const passwordValidation = passwordValidate(password);
@@ -136,13 +135,12 @@ const validate = (event) => {
     emailValidation === true &&
     usernameValidation === true &&
     passwordValidation === true &&
-    confirmPassword === true
+    passwordConfirmValidation === true
   ) {
-    console.log("first");
     formInfo.innerText = `Email: ${email.value}
     Username: ${username.value}
     Password: ${password.value}
-    Confirm: ${passwordConfirm.value}`;
+    Confirm: ${confirmPassword.value}`;
 
     formInfo.style.color = "#53aa53";
   } else {
@@ -151,6 +149,9 @@ const validate = (event) => {
   }
 };
 
-console.log(formSignUp);
+const reset = () => {
+  window.location.reload();
+};
 
 formSignUp.addEventListener("submit", validate);
+formSignUp.addEventListener("reset", reset);
