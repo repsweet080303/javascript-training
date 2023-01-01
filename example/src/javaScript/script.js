@@ -2,8 +2,12 @@ class Model {
   constructor() {
     this.todos = [
       { id: 1, text: "Do exercise DOM manipulation", completed: false },
-      { id: 2, text: "Do exercise todolist MVC", completed: false },
+      { id: 2, text: "Do exercise todolist MVC", completed: true },
     ];
+  }
+
+  bindTodoListChanged(callback) {
+    this.onTodoListChanged = callback;
   }
 
   addTodo(todoText) {
@@ -13,6 +17,8 @@ class Model {
       completed: false,
     };
     this.todos.push(todo);
+
+    this.onTodoListChanged(this.todos);
   }
 
   editTodo(id, textUpdate) {
@@ -21,10 +27,13 @@ class Model {
         ? { id: todo.id, text: textUpdate, completed: todo.completed }
         : todo
     );
+
+    this.onTodoListChanged(this.todos);
   }
 
   deleteTodo(id) {
     this.todos = this.todos.filter((todo) => todo.id !== id);
+    this.onTodoListChanged(this.todos);
   }
 
   toggleTodo(id) {
@@ -33,53 +42,39 @@ class Model {
         ? { id: todo.id, text: todo.text, completed: !todo.completed }
         : todo
     );
-  }
-
-  bindTodoListChange(callback) {
-    this.onTodoListChanged = callback;
+    this.onTodoListChanged(this.todos);
   }
 }
 
 class View {
   constructor() {
     // the root element
-    this.app = this.getElement("#root");
-    console.log(this);
+    this.app = this.getTodoElement("#root");
 
     // The title of the app
-    this.title = this.createElement("h1");
+    this.title = this.createTodoElement("h1");
     this.title.textContent = "Todo App";
 
-    // The form, with a [type="text"] input, and a submit button
-    this.form = this.createElement("form");
+    // The form, with a [type="text"] input
+    this.form = this.createTodoElement("form");
 
-    this.input = this.createElement("input");
+    this.input = this.createTodoElement("input");
     this.input.type = "text";
     this.input.placeholder = "Add todo";
     this.input.name = "todo";
 
-    this.submitButton = this.createElement("button");
+    // Submit button
+    this.submitButton = this.createTodoElement("button");
     this.submitButton.textContent = "Add";
 
     // The visual representation of the todo list
-    this.todoList = this.createElement("ul", "todo-list");
+    this.todoList = this.createTodoElement("ul", "todo-list");
 
-    // The visual representation of the todo list
+    // Form append element
     this.form.append(this.input, this.submitButton);
 
     // Append the title, form, and todo list to the app
     this.app.append(this.title, this.form, this.todoList);
-
-    this._temporaryTodoText = "";
-    this._initLocalListeners();
-  }
-
-  _initLocalListeners() {
-    this.todoList.addEventListener("input", (event) => {
-      if (event.target.className === "editable") {
-        this._temporaryTodoText = event.target.innerText;
-      }
-    });
   }
 
   get _todoText() {
@@ -90,7 +85,7 @@ class View {
     this.input.value = "";
   }
 
-  createElement(tag, className) {
+  createTodoElement(tag, className) {
     const element = document.createElement(tag);
     if (className) {
       element.classList.add(className);
@@ -98,51 +93,54 @@ class View {
     return element;
   }
 
-  getElement(selector) {
+  getTodoElement(selector) {
     const element = document.querySelector(selector);
     return element;
   }
 
   displayTodos(todos) {
-    // delete all node
+    console.log(todos);
+    // delete all node and render new todo list
     while (this.todoList.firstChild) {
       this.todoList.removeChild(this.todoList.firstChild);
     }
-    if (this.todoList.length === 0) {
-      const p = this.createElement("p");
+    if (todos.length === 0) {
+      const p = this.createTodoElement("p");
       p.textContent = "Nothing to do! Add a task?";
       this.todoList.append(p);
     } else {
       // Create todo item nodes for each todo in state
       todos.forEach((todo) => {
-        const li = this.createElement("li");
+        const li = this.createTodoElement("li");
         li.id = todo.id;
 
         // Each todo item will have a checkbox you can toggle
-        const checkbox = this.createElement("input");
+        const checkbox = this.createTodoElement("input");
         checkbox.type = "checkbox";
         checkbox.checked = todo.completed;
 
         // The todo item text will be in a contenteditable span
-        const span = this.createElement("span");
+        const span = this.createTodoElement("span");
         span.contentEditable = true;
         span.classList.add("editable");
 
         // Strike text if completed true
         if (todo.completed) {
-          const strike = this.createElement("s");
+          const strike = this.createTodoElement("s");
           strike.textContent = todo.text;
           span.append(strike);
         } else {
           span.textContent = todo.text;
         }
 
-        // The todos will also have a delete button
-        const deleteBtn = this.createElement("button", "delete");
+        // The todo will also have a delete button
+        const deleteBtn = this.createTodoElement("button", "delete");
         deleteBtn.textContent = "Delete";
 
-        // append item
+        // Todo append item
         li.append(checkbox, span, deleteBtn);
+
+        // Todo list append todo item
         this.todoList.append(li);
       });
     }
@@ -151,6 +149,7 @@ class View {
   bindAddTodo(handler) {
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
+
       if (this._todoText) {
         handler(this._todoText);
         this._resetInput;
@@ -167,9 +166,9 @@ class View {
     });
   }
 
-  bindEditTodo(handler) {
-    this.todoList.addEventListener("focusout", (e) => {});
-  }
+  // bindEditTodo(handler) {
+  //   this.todoList.addEventListener("focusout", (e) => {});
+  // }
 
   bindToggleTodo(handler) {
     this.todoList.addEventListener("change", (e) => {
@@ -184,30 +183,32 @@ class View {
 class Controller {
   constructor(model, view) {
     this.model = model;
-    this.view = View;
+    this.view = view;
+
     // Method
     this.model.bindTodoListChanged(this.onTodoListChanged);
-    this.view.bindAddTodo(this.handleAddTodo);
-    this.view.bindDeleteTodo(this.handleDeleteTodo);
-    this.view.bindToggleTodo(this.handleToggleTodo);
+    this.view.bindAddTodo(this.handlerAddTodo);
+    this.view.bindDeleteTodo(this.handlerDeleteTodo);
+    this.view.bindToggleTodo(this.handlerToggleTodo);
 
     // Display initial todos
     this.onTodoListChanged(this.model.todos);
   }
 
   onTodoListChanged(todos) {
+    console.log(todos)
     this.view.displayTodos(todos);
   }
-  handleAddTodo = (todoText) => {
+
+  handlerAddTodo = (todoText) => {
     this.model.addTodo(todoText);
   };
-  handleEditTodo = (id, textUpdate) => {
-    this.model.editTodo(id, textUpdate);
-  };
-  handleDeleteTodo = (id) => {
+
+  handlerDeleteTodo = (id) => {
     this.model.deleteTodo(id);
   };
-  handleToggleTodo = (id) => {
+
+  handlerToggleTodo = (id) => {
     this.model.toggleTodo(id);
   };
 }
