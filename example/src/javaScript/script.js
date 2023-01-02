@@ -6,22 +6,24 @@ class Model {
     ];
   }
 
-  bindTodoListChanged(callback) {
+  bindTodoListChanged = (callback) => {
+    console.log(this);
     this.onTodoListChanged = callback;
-  }
+  };
 
-  addTodo(todoText) {
+  addTodo = (todoText) => {
     const todo = {
       id: this.todos.length > 0 ? this.todos[this.todos.length - 1].id + 1 : 1,
       text: todoText,
       completed: false,
     };
+    console.log(this);
     this.todos.push(todo);
 
     this.onTodoListChanged(this.todos);
-  }
+  };
 
-  editTodo(id, textUpdate) {
+  editTodo = (id, textUpdate) => {
     this.todos = this.todos.map((todo) =>
       todo.id === id
         ? { id: todo.id, text: textUpdate, completed: todo.completed }
@@ -29,21 +31,21 @@ class Model {
     );
 
     this.onTodoListChanged(this.todos);
-  }
+  };
 
-  deleteTodo(id) {
+  deleteTodo = (id) => {
     this.todos = this.todos.filter((todo) => todo.id !== id);
     this.onTodoListChanged(this.todos);
-  }
+  };
 
-  toggleTodo(id) {
+  toggleTodo = (id) => {
     this.todos = this.todos.map((todo) =>
       todo.id === id
         ? { id: todo.id, text: todo.text, completed: !todo.completed }
         : todo
     );
     this.onTodoListChanged(this.todos);
-  }
+  };
 }
 
 class View {
@@ -81,24 +83,24 @@ class View {
     return this.input.value;
   }
 
-  _resetInput() {
+  _resetInput = () => {
     this.input.value = "";
-  }
+  };
 
-  createTodoElement(tag, className) {
+  createTodoElement = (tag, className) => {
     const element = document.createElement(tag);
     if (className) {
       element.classList.add(className);
     }
     return element;
-  }
+  };
 
-  getTodoElement(selector) {
+  getTodoElement = (selector) => {
     const element = document.querySelector(selector);
     return element;
-  }
+  };
 
-  displayTodos(todos) {
+  displayTodos = (todos) => {
     console.log(todos);
     // delete all node and render new todo list
     while (this.todoList.firstChild) {
@@ -144,9 +146,9 @@ class View {
         this.todoList.append(li);
       });
     }
-  }
+  };
 
-  bindAddTodo(handler) {
+  bindAddTodo = (handler) => {
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
 
@@ -155,29 +157,25 @@ class View {
         this._resetInput;
       }
     });
-  }
+  };
 
-  bindDeleteTodo(handler) {
+  bindDeleteTodo = (handler) => {
     this.todoList.addEventListener("click", (e) => {
       if (e.target.className === "delete") {
         const id = parseInt(e.target.parentElement.id);
         handler(id);
       }
     });
-  }
+  };
 
-  // bindEditTodo(handler) {
-  //   this.todoList.addEventListener("focusout", (e) => {});
-  // }
-
-  bindToggleTodo(handler) {
+  bindToggleTodo = (handler) => {
     this.todoList.addEventListener("change", (e) => {
       if (e.target.type === "checkbox") {
         const id = parseInt(e.target.parentElement.id);
         handler(id);
       }
     });
-  }
+  };
 }
 
 class Controller {
@@ -186,21 +184,22 @@ class Controller {
     this.view = view;
 
     // Method
-    this.model.bindTodoListChanged(this.onTodoListChanged);
-    this.view.bindAddTodo(this.handlerAddTodo);
-    this.view.bindDeleteTodo(this.handlerDeleteTodo);
-    this.view.bindToggleTodo(this.handlerToggleTodo);
+    this.model.bindTodoListChanged(this.onTodoListChanged.bind(this));
+    this.view.bindAddTodo(this.handlerAddTodo.bind(this));
+    this.view.bindDeleteTodo(this.handlerDeleteTodo.bind(this));
+    this.view.bindToggleTodo(this.handlerToggleTodo.bind(this));
 
     // Display initial todos
     this.onTodoListChanged(this.model.todos);
   }
 
-  onTodoListChanged(todos) {
-    console.log(todos)
+  onTodoListChanged = (todos) => {
+    console.log(todos);
     this.view.displayTodos(todos);
-  }
+  };
 
   handlerAddTodo = (todoText) => {
+    console.log(this);
     this.model.addTodo(todoText);
   };
 
