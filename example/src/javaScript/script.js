@@ -1,9 +1,11 @@
 class Model {
   constructor() {
-    this.todos = [
-      { id: 1, text: "Do exercise DOM manipulation", completed: false },
-      { id: 2, text: "Do exercise todolist MVC", completed: true },
-    ];
+    this.todos = JSON.parse(localStorage.getItem("todos")) || [];
+  }
+
+  _commit(todos) {
+    this.onTodoListChanged(this.todos);
+    localStorage.setItem("todos", JSON.stringify(todos));
   }
 
   bindTodoListChanged = (callback) => {
@@ -20,7 +22,7 @@ class Model {
     console.log(this);
     this.todos.push(todo);
 
-    this.onTodoListChanged(this.todos);
+    this._commit(this.todos);
   };
 
   editTodo = (id, textUpdate) => {
@@ -30,12 +32,12 @@ class Model {
         : todo
     );
 
-    this.onTodoListChanged(this.todos);
+    this._commit(this.todos);
   };
 
   deleteTodo = (id) => {
     this.todos = this.todos.filter((todo) => todo.id !== id);
-    this.onTodoListChanged(this.todos);
+    this._commit(this.todos);
   };
 
   toggleTodo = (id) => {
@@ -44,7 +46,7 @@ class Model {
         ? { id: todo.id, text: todo.text, completed: !todo.completed }
         : todo
     );
-    this.onTodoListChanged(this.todos);
+    this._commit(this.todos);
   };
 }
 
@@ -77,6 +79,9 @@ class View {
 
     // Append the title, form, and todo list to the app
     this.app.append(this.title, this.form, this.todoList);
+
+    this._temporaryTodoText;
+    this._initialLocalListeners();
   }
 
   get _todoText() {
@@ -148,6 +153,14 @@ class View {
     }
   };
 
+  _initialLocalListeners = () => {
+    this.todoList.addEventListener("input", (e) => {
+      if (e.target.className === "editable") {
+        this._temporaryTodoText = e.target.innerText;
+      }
+    });
+  };
+
   bindAddTodo = (handler) => {
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -164,6 +177,16 @@ class View {
       if (e.target.className === "delete") {
         const id = parseInt(e.target.parentElement.id);
         handler(id);
+      }
+    });
+  };
+
+  bindEditTodo = (handler) => {
+    this.todoList.addEventListener("focusout", (e) => {
+      if (this._temporaryTodoText) {
+        const id = parseInt(e.target.parentElement.id);
+        handler(id, this._temporaryTodoText);
+        this._temporaryTodoText = "";
       }
     });
   };
@@ -187,6 +210,7 @@ class Controller {
     this.model.bindTodoListChanged(this.onTodoListChanged.bind(this));
     this.view.bindAddTodo(this.handlerAddTodo.bind(this));
     this.view.bindDeleteTodo(this.handlerDeleteTodo.bind(this));
+    this.view.bindEditTodo(this.handlerEditTodo.bind(this));
     this.view.bindToggleTodo(this.handlerToggleTodo.bind(this));
 
     // Display initial todos
@@ -205,6 +229,10 @@ class Controller {
 
   handlerDeleteTodo = (id) => {
     this.model.deleteTodo(id);
+  };
+
+  handlerEditTodo = (id) => {
+    this.model.editTodo(id);
   };
 
   handlerToggleTodo = (id) => {
