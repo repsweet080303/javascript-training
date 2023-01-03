@@ -1,13 +1,5 @@
-function Person(name, gender) {
-  this.name = name;
-  this.gender = gender;
+function logger() {
+  Array.prototype.forEach.call(arguments, (item) => console.log(item));
 }
 
-function MyFriend(name, gender, age) {
-  Person.call(this, name, gender);
-  this.age = age;
-}
-
-const Hoang = new MyFriend("Hoang", "male", 22);
-
-console.log(Hoang);
+logger([1, 2, 3, 4]);
