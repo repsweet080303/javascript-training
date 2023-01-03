@@ -1,23 +1,20 @@
-function Figure(name, color, weight) {
-  this.name = name;
-  this.color = color;
-  this.weight = weight;
+this.firstName = "Dan";
+this.lastName = "Thao";
 
-  this.feature = () => {
-    console.log(this.name + " is my toy");
+const myObject = {
+  firstName: "Cam",
+  lastName: "Thao",
+  getFullName() {
+    firstName = "Hung";
+    lastName = "Van";
+    console.log(` ${this.firstName} ${this.lastName}`);
+  },
+};
 
-    function child() {
-      console.log(this);
-    }
-    child();
+myObject.getFullName(); // Cam Thao
 
-    childTwo = () => {
-      console.log(this);
-    };
-    childTwo();
-  };
-}
+const myFunction = myObject.getFullName.bind(this);
 
-const robot = new Figure("King", "red", 202);
-
-robot.feature();
+myFunction(); // Hung Van
+// When not bind(this) => reference object dot it
+// When bind(this) => reference value in scope nearest
