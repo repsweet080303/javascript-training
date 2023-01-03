@@ -1,51 +1,13 @@
-this.firstName = "Dan";
-this.lastName = "Thao";
+function Person(name, gender) {
+  this.name = name;
+  this.gender = gender;
+}
 
-const myObject = {
-  firstName: "Cam",
-  lastName: "Thao",
-  getFullName: () => {
-    firstName = "Hung";
-    lastName = "Van";
-    console.log(` ${this.firstName} ${this.lastName}`);
-  },
-};
+function MyFriend(name, gender, age) {
+  Person.call(this, name, gender);
+  this.age = age;
+}
 
-myObject.getFullName(); // Hung Van
+const Hoang = new MyFriend("Hoang", "male", 22);
 
-const myFunction = myObject.getFullName.bind(this);
-
-myFunction(); //Hung Van
-
-// When bind(this) in arrow function
-// this references value in block
-
-// =============================================
-
-// this.firstName = "Dan";
-// this.lastName = "Thao";
-
-// const myObject = {
-//   firstName: "Cam",
-//   lastName: "Thao",
-//   getFullName: () => {
-//     // firstName = "Hung";
-//     // lastName = "Van";
-//     console.log(` ${this.firstName} ${this.lastName}`);
-//   },
-// };
-
-// myObject.getFullName(); // Dan Thao
-
-// const myFunction = myObject.getFullName.bind(this);
-
-// myFunction(); //Dan Thao
-
-// When bind(this) in arrow function
-// this references global object
-
-// =============================================
-
-
-
-
+console.log(Hoang);
