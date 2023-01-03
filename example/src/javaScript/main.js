@@ -1,5 +1,15 @@
-function logger() {
-  Array.prototype.forEach.call(arguments, (item) => console.log(item));
+function Bird(name, color) {
+  this.name = name;
+  this.color = color;
 }
 
-logger([1, 2, 3, 4]);
+function Pet() {
+  Bird.apply(this, arguments);
+  this.fly = () => {
+    console.log("Flying");
+  };
+}
+
+const myPet = new Pet("parrot", "green");
+console.log(myPet);
+myPet.fly();
