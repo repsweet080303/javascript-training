@@ -1,8 +1,8 @@
 {
-  "name": "bigpractice",
+  "name": "big practice",
   "version": "1.0.0",
   "source": "src/index.html",
-  "description": "bigpractice for javascript",
+  "description": "big practice for javascript",
   "main": "index.js",
   "scripts": {
     "start": "parcel --no-cache",
@@ -21,7 +21,6 @@
     "sass": "^1.57.1"
   },
   "dependencies": {
-    "editorconfig": "^1.0.1",
     "json-server": "^0.17.1",
     "prettier": "^2.8.1"
   }
