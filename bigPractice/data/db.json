@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id":1,
+      "name": "Bui Cong Trung",
+      "email": "trungbc23@gmail.com",
+      "description":"Viettel employee",
+      "status": "true"
+    }
+  ]
+}
