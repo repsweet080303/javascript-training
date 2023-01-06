@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script
-      src="https://kit.fontawesome.com/b31c9c0873.js"
-      crossorigin="anonymous"
-    ></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/main.scss" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/@fortawesome/fontawesome-free/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/@fortawesome/fontawesome-free/js/solid.js"
+    />
+
     <title>User Management</title>
   </head>
   <body>
@@ -16,11 +25,11 @@
       <h1 class="header__title">User Manager</h1>
     </header>
     <main class="container d-flex">
-      <nav class="navbar">
+      <nav class="navbar d-flex">
         <button class="navbar__add btn__new">
           <i class="fa-solid fa-plus"></i>New
         </button>
-        <a href="#" class="navbar__select"
+        <a href="#" class="navbar__select d-flex"
           ><i class="fa-solid fa-user-group"></i>Users</a
         >
       </nav>

@@ -1,19 +1,12 @@
 .navbar {
   width: 212px;
-  height: 100vh;
+  height: 100%;
   background-color: $color-secondary;
-  display: flex;
   flex-direction: column;
 
   &__select {
-    display: flex;
     align-items: center;
     color: $color-light;
     font-family: $font-family-secondary;
-    padding: 12px;
   }
-}
-
-a {
-  text-decoration: none;
 }

@@ -4,9 +4,26 @@
   }
 }
 
-i {
-  padding-right: 6px;
-  padding-bottom: 2px;
+.navbar {
+  &__select {
+    padding: 12px;
+
+    i {
+      padding: 0 6px 2px 0;
+    }
+  }
+}
+
+.btn__new {
+  padding: 8px;
+
+  i {
+    padding: 0 6px 2px 0;
+  }
+}
+
+.table {
+  margin: 12px 12px 0;
 }
 
 .d-flex {
