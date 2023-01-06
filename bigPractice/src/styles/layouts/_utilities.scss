@@ -1,5 +1,4 @@
 .header {
-
   &__title {
     padding: 20px;
   }
@@ -8,4 +7,13 @@
 i {
   padding-right: 6px;
   padding-bottom: 2px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
 }
