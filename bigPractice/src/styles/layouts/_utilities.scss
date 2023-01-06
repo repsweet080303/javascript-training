@@ -24,6 +24,10 @@
 
 .table {
   margin: 12px 12px 0;
+
+  &__title, i {
+    padding: 12px;
+  }
 }
 
 .d-flex {
@@ -33,4 +37,9 @@
 .d-flex-center {
   display: flex;
   justify-content: center;
+}
+
+.d-flex-between {
+  display: flex;
+  justify-content: space-between;
 }
