@@ -15,5 +15,6 @@ $font-family-primary: "Roboto-bold";
 $font-family-secondary: "Roboto";
 
 body {
+  background-color: $color-dark;
   font-family: $font-family-primary;
 }
