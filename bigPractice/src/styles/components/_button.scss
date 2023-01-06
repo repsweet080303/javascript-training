@@ -1,9 +1,13 @@
 .btn__new {
   margin: 17px;
-  padding: 8px;
   background-color: $color-info;
   color: $color-light;
   border: none;
   border-radius: 2px;
   font-family: $font-family-primary;
+}
+
+.btn__search {
+  background-color: $color-light;
+  color: $color-icon;
 }

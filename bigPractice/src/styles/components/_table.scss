@@ -1,0 +1,12 @@
+.table {
+  width: 100%;
+  background-color: $color-light;
+
+  &__title {
+    color: $color-secondary;
+  }
+
+  i {
+    font-size: $font-size-sm;
+  }
+}
