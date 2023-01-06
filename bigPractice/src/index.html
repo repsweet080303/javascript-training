@@ -5,19 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/main.scss" />
-    <link
-      rel="stylesheet"
-      href="../node_modules/@fortawesome/fontawesome-free/css/all.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"
-    />
-    <link
-      rel="stylesheet"
-      href="../node_modules/@fortawesome/fontawesome-free/js/solid.js"
-    />
-
+    <script type="module" src="scripts/modules/index.js"></script>
     <title>User Management</title>
   </head>
   <body>
@@ -27,22 +15,30 @@
     <main class="container d-flex">
       <nav class="navbar d-flex">
         <button class="navbar__add btn__new">
-          <i class="fa-solid fa-plus"></i>New
+          <i class="btn__icon-plus fa-solid fa-plus"></i>New
         </button>
         <a href="#" class="navbar__select d-flex"
-          ><i class="fa-solid fa-user-group"></i>Users</a
+          ><i class="navbar__icon-users fa-solid fa-user-group"></i>Users</a
         >
       </nav>
-      <div class="table">
-        <div class="table__head d-flex-between">
-          <h2 class="table__title">Users</h2>
+      <div class="table-primary">
+        <div class="d-flex-between">
+          <h2 class="table-primary__title">Users</h2>
           <button class="btn__search">
-            <i class="icon__search fas fa-magnifying-glass"></i>
+            <i class="btn__icon-search fa-solid fa-search"> </i>
           </button>
         </div>
-        <div class="table__body"></div>
+        <table class="table-primary__wrapper">
+          <thead>
+            <tr>
+              <th class="table-primary__avatar padding__column"></th>
+              <th class="table-primary__fullname padding__column">Full Name</th>
+              <th class="table-primary__status padding__column">Status</th>
+              <th class="table-primary__email padding__column">Email</th>
+            </tr>
+          </thead>
+        </table>
       </div>
     </main>
-    <script src="scripts/main.js"></script>
   </body>
 </html>

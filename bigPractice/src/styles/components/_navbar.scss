@@ -5,8 +5,13 @@
   flex-direction: column;
 
   &__select {
+    padding: 12px;
     align-items: center;
     color: $color-light;
     font-family: $font-family-secondary;
+
+    &__icon-users {
+      padding: 0 6px 2px 0;
+    }
   }
 }

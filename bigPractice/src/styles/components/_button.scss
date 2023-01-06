@@ -1,13 +1,20 @@
-.btn__new {
-  margin: 17px;
-  background-color: $color-info;
-  color: $color-light;
-  border: none;
-  border-radius: 2px;
-  font-family: $font-family-primary;
-}
+.btn {
+  &__new {
+    margin: 17px;
+    padding: 8px;
+    background-color: $color-info;
+    color: $color-light;
+    border: none;
+    border-radius: 2px;
+    font-family: $font-family-primary;
+  }
 
-.btn__search {
-  background-color: $color-light;
-  color: $color-icon;
+  &__search {
+    background-color: $color-light;
+    color: $color-icon;
+  }
+
+  &__icon-plus {
+    padding: 0 6px 2px 0;
+  }
 }
