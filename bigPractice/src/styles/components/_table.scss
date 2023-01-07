@@ -1,12 +1,36 @@
-.table {
+.table-primary {
   width: 100%;
+  font-size: $font-size-sm;
+  margin: 12px 12px 0;
+  border-collapse: collapse;
   background-color: $color-light;
 
   &__title {
+    font-size: $font-size-xl;
+    padding: 16px;
     color: $color-secondary;
   }
 
-  i {
-    font-size: $font-size-sm;
+  &__wrapper {
+    text-align: left;
+    width: 100%;
+  }
+
+  &__head {
+    padding: 20px 8px;
+    background-color: $color-aliceblue;
+    font-size: $font-size-md;
+  }
+
+  &__avatar {
+    width: 60px;
+  }
+
+  &__fullname {
+    width: 380px;
+  }
+
+  &__status {
+    width: 140px;
   }
 }
