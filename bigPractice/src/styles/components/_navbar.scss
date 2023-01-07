@@ -1,17 +1,18 @@
 .navbar {
-  width: 212px;
+  width: 255px;
   height: 100%;
   background-color: $color-secondary;
   flex-direction: column;
 
   &__select {
-    padding: 12px;
+    padding: 14px;
     align-items: center;
     color: $color-light;
     font-family: $font-family-secondary;
 
-    &__icon-users {
-      padding: 0 6px 2px 0;
-    }
+  }
+
+  &__icon-users {
+    padding: 0 6px 4px 0;
   }
 }

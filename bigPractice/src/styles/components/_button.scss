@@ -1,20 +1,26 @@
 .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $color-info;
+  color: $color-light;
+  border: none;
+  border-radius: 2px;
+  font-family: $font-family-primary;
+
   &__new {
     margin: 17px;
     padding: 8px;
-    background-color: $color-info;
-    color: $color-light;
-    border: none;
-    border-radius: 2px;
-    font-family: $font-family-primary;
   }
 
   &__search {
+    font-size: $font-size-md;
     background-color: $color-light;
     color: $color-icon;
+    padding: 16px;
   }
 
   &__icon-plus {
-    padding: 0 6px 2px 0;
+    padding: 0 8px;
   }
 }
