@@ -2,10 +2,103 @@
   "users": [
     {
       "id":1,
-      "name": "Bui Cong Trung",
-      "email": "trungbc23@gmail.com",
-      "description":"Viettel employee",
-      "status": "true"
+      "avatar":"https://docs.webix.com/usermanager-backend/users/87/avatar/503723673.jpg",
+      "name": "Berni Mayou",
+      "isActive": "true",
+      "email": "bern.mayour@mail.com",
+      "description":"I'm manager",
+      "registered": "Jun 01, 2020 00:40:48",
+      "lastUpdated": "Jun 01, 2020 00:40:48"
+    },
+    {
+      "id":2,
+      "avatar":"https://docs.webix.com/usermanager-backend/users/97/avatar/375515968.jpg",
+      "name": "August Dvorak",
+      "isActive": "true",
+      "email": "dvor.august@gmail.com",
+      "description":"I'm architector",
+      "registered": "Jun 01, 2020 00:40:48",
+      "lastUpdated": "Jun 01, 2020 00:40:48"
+    },
+    {
+      "id":3,
+      "avatar":"https://docs.webix.com/usermanager-backend/users/98/avatar/909471384.jpg",
+      "name": "Elly Soyer",
+      "isActive": "true",
+      "email": "elly.soyer@example",
+      "description":"I'm human resource",
+      "registered": "Jun 01, 2020 00:40:48",
+      "lastUpdated": "Jun 01, 2020 00:40:48"
+    },
+    {
+      "id":4,
+      "avatar":"https://docs.webix.com/usermanager-backend/users/101/avatar/092352563.jpg",
+      "name": "Patrick Roland",
+      "isActive": "true",
+      "email": "roll.and@gmail.com",
+      "description":"I'm desginer",
+      "registered": "Jun 01, 2020 00:40:48",
+      "lastUpdated": "Jun 01, 2020 00:40:48"
+    },
+    {
+      "id":5,
+      "avatar":"https://docs.webix.com/usermanager-backend/users/102/avatar/898151818.jpg",
+      "name": "Petyr Baelish",
+      "isActive": "true",
+      "email": "big.finger@gmail.com",
+      "description":"I'm hunter",
+      "registered": "Jun 01, 2020 00:40:48",
+      "lastUpdated": "Jun 01, 2020 00:40:48"
+    },
+    {
+      "id":6,
+      "avatar":"https://docs.webix.com/usermanager-backend/users/104/avatar/005471511.jpg",
+      "name": "Lord Varys",
+      "isActive": "true",
+      "email": "little.birds@gmail.com",
+      "description":"I'm chucher",
+      "registered": "Jun 01, 2020 00:40:48",
+      "lastUpdated": "Jun 01, 2020 00:40:48"
+    },
+    {
+      "id":7,
+      "avatar":"https://docs.webix.com/usermanager-backend/users/105/avatar/096793420.jpg",
+      "name": "Daenerys Stormborn Targaryen",
+      "isActive": "false",
+      "email": "breaker.of.chains@gm.com",
+      "description":"I'm braver",
+      "registered": "Jun 01, 2020 00:40:48",
+      "lastUpdated": "Jun 01, 2020 00:40:48"
+    },
+    {
+      "id":8,
+      "avatar":"https://docs.webix.com/usermanager-backend/users/107/avatar/268122171.jpg",
+      "name": "Jon Snow",
+      "isActive": "false",
+      "email": "lord.crow@wall.com",
+      "description":"I'm homeless",
+      "registered": "Jun 01, 2020 00:40:48",
+      "lastUpdated": "Jun 01, 2020 00:40:48"
+    },
+    {
+      "id":9,
+      "avatar":"https://docs.webix.com/usermanager-backend/users/103/avatar/491902305.jpg",
+      "name": "Ned Stark",
+      "isActive": "true",
+      "email": "winterhell@gmail.com",
+      "description":"I'm king",
+      "registered": "Jun 01, 2020 00:40:48",
+      "lastUpdated": "Jun 01, 2020 00:40:48"
+    },
+    {
+      "id":10,
+      "avatar":"https://docs.webix.com/usermanager-backend/users/108/avatar/932427870.jpg",
+      "name": "Tyrion Lannister",
+      "isActive": "false",
+      "email": "80yoinbed@casterly",
+      "description":"I'm magic",
+      "registered": "Jun 01, 2020 00:40:48",
+      "lastUpdated": "Jun 01, 2020 00:40:48"
     }
   ]
 }
