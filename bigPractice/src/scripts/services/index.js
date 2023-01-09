@@ -2,7 +2,7 @@ import { axiosConfig } from '../helpers/axiosConfig';
 
 /**
  * function getUsers get data from Json server
- * @returns Array
+ * @returns {Array}
  */
 export const getUsers = async () => {
   try {
@@ -15,7 +15,7 @@ export const getUsers = async () => {
 
 /**
  * function getUser get data from Json server
- * @returns String
+ * @returns {String}
  */
 export const getUser = async (id) => {
   const response = await axiosConfig.get(`/users/${id}`);
