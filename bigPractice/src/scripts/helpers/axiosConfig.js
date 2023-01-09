@@ -9,11 +9,11 @@ export const axiosConfig = axios.create({
  * @param {string} selectElement
  * @returns {Element} first element of DOM
  */
-export const $ = (selectElement) => document.querySelector(selectElement);
+export const querySelectorElement = (selectElement) => document.querySelector(selectElement);
 
 /**
  * Select list element
  * @param {string} selectElement
- * @returns {Element} note list
+ * @returns {Element} nodelist
  */
-export const $$ = (selectElement) => document.querySelectorAll(selectElement);
+export const querySelectorAllElement = (selectElement) => document.querySelectorAll(selectElement);
