@@ -142,6 +142,6 @@ dist
 .svelte-kit
 
 # Json local file
-data/
+json-server/
 
 # End of https://www.toptal.com/developers/gitignore/api/node
