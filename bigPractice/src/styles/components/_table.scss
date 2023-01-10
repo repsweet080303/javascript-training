@@ -23,23 +23,21 @@
   }
 
   &__head {
+
+    &__row {
+      background-color: $color-aliceblue;
+    }
+
     &__avatar {
       width: 60px;
-      background-color: $color-aliceblue;
     }
 
     &__fullname {
       width: 380px;
-      background-color: $color-aliceblue;
     }
 
     &__status {
       width: 140px;
-      background-color: $color-aliceblue;
-    }
-
-    &__email {
-      background-color: $color-aliceblue;
     }
   }
 
@@ -51,55 +49,23 @@
       family: $font-family-secondary;
     }
 
-    &__spacing {
+    &__row {
       padding: 8px;
       border-bottom: 1px solid $color-silver;
+      background-color: $color-light;
     }
 
     &__avatar {
       @extend .table-primary__head__avatar;
-      background-color: $color-light;
     }
 
     &__fullname {
       @extend .table-primary__head__fullname;
-      background-color: $color-light;
     }
 
     &__status {
       @extend .table-primary__head__status;
-      background-color: $color-light;
-    }
-
-    &__email {
-      background-color: $color-light;
     }
   }
 }
 
-.avatar-user {
-  width: 45px;
-  border-radius: $border-radius-lg;
-
-  &__none {
-    height: 45px;
-  }
-}
-
-.status-item {
-  width: 73px;
-  font-family: $font-family-primary;
-  background-color: $color-salmon;
-  color: $color-danger;
-  padding: 6px 10px;
-  border-radius: $border-radius-md;
-}
-
-.status-item--active {
-  width: 45px;
-  font-family: $font-family-primary;
-  background-color: $color-green;
-  color: $color-success;
-  padding: 6px 10px;
-  border-radius: $border-radius-md;
-}

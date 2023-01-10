@@ -24,15 +24,15 @@ export default class Template {
     this.labelStatus = data.isActive ? 'Active' : 'Not Active';
     return `
   <tr data-id= ${data.id}>
-    <td class="table-primary__body__avatar table-primary__body__spacing">${data.avatar
+    <td class="table-primary__body__avatar table-primary__body__row">${data.avatar
     ? `<img class='avatar-user' src=${data.avatar} alt="Avatar ${data.name}"></img>`
     : `<div class='avatar-user__none' 
     ></div>`}
     </td>
-    <td class="table-primary__body__fullname table-primary__body__spacing">${data.name}</td>
-    <td class="table-primary__body__status table-primary__body__spacing">
+    <td class="table-primary__body__fullname table-primary__body__row">${data.name}</td>
+    <td class="table-primary__body__status table-primary__body__row">
       <div class="status-item ${this.active}">${this.labelStatus}</div></td>
-    <td class="table-primary__body__email table-primary__body__spacing">${data.email}</td>
+    <td class="table-primary__body__email table-primary__body__row">${data.email}</td>
   </tr>
   `;
   }

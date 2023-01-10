@@ -1,0 +1,8 @@
+.avatar-user {
+  width: 45px;
+  border-radius: $border-radius-lg;
+
+  &__none {
+    height: 45px;
+  }
+}
