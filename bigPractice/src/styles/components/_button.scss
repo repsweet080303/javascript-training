@@ -2,10 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $color-info;
+  background-color: $color-blue;
   color: $color-light;
   border: none;
-  border-radius: 2px;
+  border-radius: $border-radius-sm;
   font-family: $font-family-primary;
 
   &__new {
