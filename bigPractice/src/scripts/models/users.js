@@ -1,4 +1,4 @@
-import { getUsers } from '../services/index';
+import { getUsers } from '../services/users';
 
 export default class Users {
   constructor() {
