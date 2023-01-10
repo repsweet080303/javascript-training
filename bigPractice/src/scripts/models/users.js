@@ -12,7 +12,7 @@ export default class Users {
   */
   async getAllUser() {
     const response = await getUsers();
-    this.users = response;
-    return response;
+    this.users = response.data;
+    return this.users;
   }
 }

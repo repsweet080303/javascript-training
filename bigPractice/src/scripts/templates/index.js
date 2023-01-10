@@ -9,7 +9,6 @@ export default class Template {
    * @param {data} is Array
    * @returns {String}
    */
-
   renderTableData(data) {
     const tableUsers = data.map((user) => this.renderUser(user));
     return tableUsers.join(' ');

@@ -1,4 +1,4 @@
-import Controller from './controllers';
+import Controller from './controllers/users';
 import Template from './templates';
 import View from './views';
 import Users from './models/users';

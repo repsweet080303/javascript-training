@@ -2,14 +2,21 @@ import { axiosConfig } from '../helpers/axiosConfig';
 
 /**
  * function getUsers get data from Json server
- * @returns {Array}
+ * @returns {Object}
  */
 export const getUsers = async () => {
   try {
     const response = await axiosConfig.get('/users');
-    return response.data;
+
+    return {
+      data: response.data,
+      error: null,
+    };
   } catch (error) {
-    return error;
+    return {
+      data: null,
+      error,
+    };
   }
 };
 
