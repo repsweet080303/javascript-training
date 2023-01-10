@@ -1,6 +1,6 @@
-import Controller from './controllers/users';
-import Template from './templates';
-import View from './views';
+import Controller from './controller/user';
+import Template from './template/user';
+import View from './view/users';
 import Users from './models/users';
 
 const template = new Template();

@@ -1,3 +1,5 @@
+import API_ERROR_MESSAGES from '../constants/notifications';
+
 export default class Controller {
   constructor(users, view) {
     this.users = users;
@@ -5,12 +7,16 @@ export default class Controller {
   }
 
   /**
- * function handleRenderView get data from model users
- * assigne param data from model users to view
- * through function renderTable
- */
+   * function handleRenderView get data from model users
+   * assigne param data from model users to view
+   * through function renderTable
+   */
   async handleRenderView() {
     const response = await this.users.getAllUser();
-    this.view.renderTable(response.data);
+    if (response.error) {
+      alert(API_ERROR_MESSAGES.GET_API);
+    } else {
+      this.view.renderTable(response.data);
+    }
   }
 }
