@@ -9,4 +9,5 @@ const users = new Users();
 const controller = new Controller(users, view);
 
 const renderView = controller.handleRenderView();
-renderView();
+
+window.addEventListener('load', () => renderView);

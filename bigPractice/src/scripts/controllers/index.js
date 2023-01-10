@@ -8,7 +8,6 @@ export default class Controller {
  * function handleRenderView get data from model users
  * assigne param data from model users to view
  * through function renderTable
- * @returns {Array}
  */
   async handleRenderView() {
     const data = await this.users.getAllUser();

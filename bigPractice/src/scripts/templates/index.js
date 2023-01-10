@@ -27,8 +27,8 @@ export default class Template {
   <tr data-id= ${data.id}>
     <td class="table-primary__body__avatar table-primary__body__spacing">${data.avatar
     ? `<img class='avatar-user' src=${data.avatar} alt="Avatar ${data.name}"></img>`
-    : `<img class='avatar-user' 
-    src="https://docs.webix.com/usermanager-backend/users/87/avatar/503723673.jpg">`}
+    : `<div class='avatar-user__none' 
+    ></div>`}
     </td>
     <td class="table-primary__body__fullname table-primary__body__spacing">${data.name}</td>
     <td class="table-primary__body__status table-primary__body__spacing">
