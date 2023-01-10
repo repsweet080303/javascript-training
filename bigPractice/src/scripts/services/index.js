@@ -7,7 +7,6 @@ import { axiosConfig } from '../helpers/axiosConfig';
 export const getUsers = async () => {
   try {
     const response = await axiosConfig.get('/users');
-
     return {
       data: response.data,
       error: null,

@@ -10,7 +10,7 @@ export default class Controller {
  * through function renderTable
  */
   async handleRenderView() {
-    const data = await this.users.getAllUser();
-    this.view.renderTable(data);
+    const response = await this.users.getAllUser();
+    this.view.renderTable(response.data);
   }
 }

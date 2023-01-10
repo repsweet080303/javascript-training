@@ -23,7 +23,6 @@
   }
 
   &__head {
-
     &__row {
       background-color: $color-aliceblue;
     }
@@ -32,7 +31,7 @@
       width: 60px;
     }
 
-    &__fullname {
+    &__full-name {
       width: 380px;
     }
 
@@ -50,22 +49,9 @@
     }
 
     &__row {
-      padding: 8px;
+      padding: 8px 8px 8px 16px;
       border-bottom: 1px solid $color-silver;
       background-color: $color-light;
     }
-
-    &__avatar {
-      @extend .table-primary__head__avatar;
-    }
-
-    &__fullname {
-      @extend .table-primary__head__fullname;
-    }
-
-    &__status {
-      @extend .table-primary__head__status;
-    }
   }
 }
-

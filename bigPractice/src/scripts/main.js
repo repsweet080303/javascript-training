@@ -8,6 +8,4 @@ const view = new View(template);
 const users = new Users();
 const controller = new Controller(users, view);
 
-const renderView = controller.handleRenderView();
-
-window.addEventListener('load', () => renderView);
+window.addEventListener('load', () => controller.handleRenderView());
