@@ -13,6 +13,11 @@
     padding: 8px;
   }
 
+  &__save {
+    margin-left: 12px;
+    width: 100px;
+  }
+
   &__search {
     font-size: $font-size-md;
     background-color: $color-light;
