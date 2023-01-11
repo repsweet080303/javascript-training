@@ -10,8 +10,10 @@ $color-success: #55cd97;
 $color-danger: #ff6455;
 $color-light: #fff;
 $color-blue: #1ca1c1;
+$color-moonblue: #ccd7e6;
 $color-silver: #ebedf0;
 $color-aliceblue: #f4f5f9;
+$color-cornsilk:#c1c1c1;
 $color-salmon: #ffdedb;
 $color-green: #d4ede5;
 $color-icon: #94a1b3;
@@ -20,3 +22,6 @@ $color-icon: #94a1b3;
 $border-radius-lg: 30px;
 $border-radius-md: 8px;
 $border-radius-sm: 2px;
+
+// box-shadow
+$modal-box-shadow: 0px 3px 22px -5px $color-cornsilk; ;
