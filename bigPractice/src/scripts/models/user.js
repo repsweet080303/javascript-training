@@ -3,22 +3,26 @@ import { createUser } from '../services/user';
 export default class User {
   constructor() {
     this.avatar = '';
+    this.isActive = false;
     this.email = '';
     this.description = '';
   }
 
+  /**
+ * function addUser post new user with username
+ * and objact user to function createUser
+ * @returns {Object}
+ */
   async addUser(username) {
     try {
-      this.avatar = '';
-
       const user = {
-        avatar: '',
+        avatar: this.avatar,
         name: username,
-        isActive: false,
-        email: '',
-        description: '',
-        registered: new Date().getTime / 1000,
-        lastUpdated: new Date().getTime / 1000,
+        isActive: this.isActive,
+        email: this.email,
+        description: this.description,
+        registered: new Date().toISOString(),
+        lastUpdated: new Date().toISOString(),
       };
       const response = await createUser(user);
       return {
