@@ -6,6 +6,12 @@ export default class View {
 
     // select table body
     this.table = querySelectorElement('.table-primary__body');
+
+    // popup add user
+    this.popupAdd = querySelectorElement('.modal-add-user');
+    this.btnClose = querySelectorElement('.modal-add-user__icon--close');
+    this.inputValue = querySelectorElement('.form__input');
+    this.btnSave = querySelectorElement('.btn__save');
   }
 
   /**
