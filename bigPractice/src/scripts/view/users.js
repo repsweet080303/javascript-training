@@ -45,11 +45,32 @@ export default class View {
     });
   }
 
+  bindOpenModal() {
+    this.option.addEventListener('click', (event) => {
+      event.stopPropagation();
+
+      this.option.classList.add('d-hidden');
+      this.popupAdd.classList.remove('d-hidden');
+    });
+  }
+
+  bindCloseModal() {
+    this.iconClose.addEventListener('click', (event) => {
+      event.stopPropagation();
+
+      this.input.value = '';
+      this.popupAdd.classList.add('d-hidden');
+    });
+  }
+
   bindAddUser(handleData) {
     this.btnSave.addEventListener('click', async (event) => {
       event.stopPropagation();
+      console.log('success');
 
       await handleData(this.input.value);
+      this.input.value = '';
+      this.popupAdd.classList.add('d-hidden');
     });
   }
 }

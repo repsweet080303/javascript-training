@@ -10,6 +10,10 @@ export default class Controller {
     this.view.bindOpenOption();
     this.view.bindCloseOption();
 
+    // toggle popup input user name
+    this.view.bindOpenModal();
+    this.view.bindCloseModal();
+
     // handle add new user
     this.view.bindAddUser(this.handleAddUser.bind(this));
   }
