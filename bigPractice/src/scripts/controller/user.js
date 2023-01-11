@@ -9,6 +9,9 @@ export default class Controller {
     // toggle option add new user
     this.view.bindOpenOption();
     this.view.bindCloseOption();
+
+    // handle add new user
+    this.view.bindAddUser(this.handleAddUser.bind(this));
   }
 
   /**

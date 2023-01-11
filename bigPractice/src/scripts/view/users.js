@@ -17,7 +17,7 @@ export default class View {
     // select popup add user
     this.popupAdd = querySelectorElement('.modal-add-user');
     this.iconClose = querySelectorElement('.modal-add-user__icon--close');
-    this.inputValue = querySelectorElement('.form__input');
+    this.input = querySelectorElement('.form__input');
   }
 
   /**
@@ -42,6 +42,14 @@ export default class View {
       event.stopPropagation();
 
       this.option.classList.add('d-hidden');
+    });
+  }
+
+  bindAddUser(handleData) {
+    this.btnSave.addEventListener('click', async (event) => {
+      event.stopPropagation();
+
+      await handleData(this.input.value);
     });
   }
 }
