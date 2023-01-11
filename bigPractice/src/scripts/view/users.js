@@ -7,11 +7,17 @@ export default class View {
     // select table body
     this.table = querySelectorElement('.table-primary__body');
 
-    // popup add user
-    this.popupAdd = querySelectorElement('.modal-add-user');
-    this.btnClose = querySelectorElement('.modal-add-user__icon--close');
-    this.inputValue = querySelectorElement('.form__input');
+    // select option
+    this.option = querySelectorElement('.navbar__option');
+
+    // select button
+    this.btnNew = querySelectorElement('.btn__new');
     this.btnSave = querySelectorElement('.btn__save');
+
+    // select popup add user
+    this.popupAdd = querySelectorElement('.modal-add-user');
+    this.iconClose = querySelectorElement('.modal-add-user__icon--close');
+    this.inputValue = querySelectorElement('.form__input');
   }
 
   /**
@@ -22,5 +28,20 @@ export default class View {
  */
   async renderTable(data) {
     this.table.innerHTML = this.template.renderTableData(data);
+  }
+
+  bindOpenOption() {
+    this.btnNew.addEventListener('click', (event) => {
+      event.stopPropagation();
+      this.option.classList.remove('d-hidden');
+    });
+  }
+
+  bindCloseOption() {
+    window.addEventListener('click', (event) => {
+      event.stopPropagation();
+
+      this.option.classList.add('d-hidden');
+    });
   }
 }

@@ -5,6 +5,10 @@ export default class Controller {
     this.users = users;
     this.user = user;
     this.view = view;
+
+    // toggle option add new user
+    this.view.bindOpenOption();
+    this.view.bindCloseOption();
   }
 
   /**
