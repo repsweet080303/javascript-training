@@ -28,4 +28,9 @@
   &__icon-plus {
     padding: 0 8px;
   }
+
+  &__edit {
+    background-color: $color-light;
+    color: $color-icon;
+  }
 }
