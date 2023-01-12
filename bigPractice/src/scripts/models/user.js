@@ -22,8 +22,8 @@ export default class User {
         isActive: this.isActive,
         email: this.email,
         description: this.description,
-        registered: new Date().toISOString(),
-        lastUpdated: new Date().toISOString(),
+        registered: new Date().toLocaleString(),
+        lastUpdated: new Date().toLocaleString(),
       };
       const response = await createUser(user);
       return {

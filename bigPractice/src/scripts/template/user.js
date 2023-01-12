@@ -27,7 +27,7 @@ export default class Template {
     <td class="table-primary__col__avatar table-primary__body__row">${data.avatar
     ? `<img class='avatar-user' src=${data.avatar} alt="Avatar ${data.name}"></img>`
     : `<div class='avatar-user__none' 
-    ></div>`}
+    >${data.name.toUpperCase().charAt(0)}</div>`}
     </td>
     <td class="table-primary__col__full-name table-primary__body__row">${data.name}</td>
     <td class="table-primary__col__status table-primary__body__row">
