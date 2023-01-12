@@ -5,9 +5,10 @@ export default class Template {
   }
 
   /**
+   * function render table
    * assigns data to the template
-   * @param {data} is Array
-   * @returns {String}
+   * @param {Array} data - data transmission from API
+   * @returns {String} template string
    */
   renderTableData(data) {
     const tableUsers = data.map((user) => this.renderUser(user));
@@ -15,9 +16,9 @@ export default class Template {
   }
 
   /**
-   * render row table with user
+   * render user
    * @param {data} is Object
-   * @returns {String}
+   * @returns {String} template string
    */
   renderUser(data) {
     this.active = data.isActive ? 'status-item--active' : '';

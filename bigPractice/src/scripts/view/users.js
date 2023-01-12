@@ -79,14 +79,16 @@ export default class View {
  * function bindAddUser get parameter is
  * handler function and call back function
  * with input value
- * @param {Function} handleAddUser
+ * @callback handlefunction
  */
   bindAddUser(handlefunction) {
     this.btnSave.addEventListener('click', async () => {
       const response = await handlefunction(this.input.value);
       const newElement = this.template.renderUser(response.data);
+
       this.input.value = '';
       this.popupAdd.classList.add('d-hidden');
+
       const newRow = `${this.table.innerHTML} ${newElement}`;
       this.table.innerHTML = newRow;
     });

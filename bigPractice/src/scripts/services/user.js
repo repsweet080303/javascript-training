@@ -2,11 +2,13 @@ import { axiosConfig } from '../helpers/axiosConfig';
 
 /**
  * function getUser get data from Json server
- * @returns {Object}
+ * @param {Number} id - id of the user
+ * @returns {Object} data - transmission data
  */
 export const getUser = async (id) => {
   try {
     const response = await axiosConfig.get(`/users/${id}`);
+
     return {
       data: response.data,
       error: null,
@@ -20,14 +22,15 @@ export const getUser = async (id) => {
 };
 
 /**
- * function createUser  use method POST new user
- * to data
+ * function createUser  use method POST
+ * new user to data
  * @param {Object} user with more information
- * @returns {Object}
+ * @returns {Object} data - transmission data
  */
 export const createUser = async (data) => {
   try {
     const response = await axiosConfig.post('/users', data);
+
     return {
       data: response.data,
       error: null,

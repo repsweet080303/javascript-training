@@ -9,10 +9,8 @@ export default class User {
   }
 
   /**
- * function addUser post new user with username
- * and objact user to function createUser
- * @param {String}
- * @returns {Object}
+ * @param {String} username - input value
+ * @returns {Object} user - object information user
  */
   async addUser(username) {
     try {
@@ -22,10 +20,12 @@ export default class User {
         isActive: this.isActive,
         email: this.email,
         description: this.description,
-        registered: new Date().toLocaleString(),
-        lastUpdated: new Date().toLocaleString(),
+        registered: new Date().toISOString(),
+        lastUpdated: new Date().toISOString(),
       };
+
       const response = await createUser(user);
+
       return {
         data: response.data,
         error: null,

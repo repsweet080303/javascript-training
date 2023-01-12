@@ -1,27 +1,33 @@
 import API_ERROR_MESSAGES from '../constants/notifications';
 
 export default class Controller {
+  /**
+   * @param {users} users A users instance
+   * @param {user} user A user instance
+   * @param {view} view A view instance}
+   */
   constructor(users, user, view) {
     this.users = users;
     this.user = user;
     this.view = view;
 
-    // toggle option add new user
+    // bind event toggle option add new user
     this.view.bindOpenOption();
     this.view.bindCloseOption();
 
-    // toggle popup input user name
+    // bind event toggle modal input user name
     this.view.bindOpenModal();
     this.view.bindCloseModal();
 
-    // handle add new user
+    /**
+     * bind event add user
+     * @callback handleAddUser
+     */
     this.view.bindAddUser(this.handleAddUser.bind(this));
   }
 
   /**
-   * function handleRenderView get data from model users
-   * assigne param data from model users to view
-   * through function renderTable
+   * handle event render view
    */
   async handleRenderView() {
     const response = await this.users.getAllUser();
@@ -33,17 +39,18 @@ export default class Controller {
   }
 
   /**
-   * function handleAddUser call function addUser
-   * from model user and assign result to response
-   * if response.error === true will alert message
-   * @param {string} input value
+   * handle event add user
+   * @param {string} username - input value
+   * @returns {Object} data - transmission data
    */
   async handleAddUser(username) {
     try {
       const response = await this.user.addUser(username);
+
       if (response.error) {
         alert(API_ERROR_MESSAGES.ADD_USER);
       }
+
       return {
         data: response.data,
         error: null,
