@@ -1,5 +1,6 @@
 .navbar {
   width: 255px;
+  position: relative;
   background-color: $color-secondary;
   flex-direction: column;
 
@@ -9,6 +10,22 @@
     color: $color-light;
     font-family: $font-family-secondary;
 
+  }
+
+  &__option {
+    position: absolute;
+    color: $color-light;
+    background-color: $color-secondary;
+    box-shadow: $option-box-shadow;
+    font-family: $font-family-secondary;
+    top: 53px;
+    left: 18px;
+    width: 153px;
+    padding: 12px;
+
+    &:hover {
+      background-color: $color-primary;
+    }
   }
 
   &__icon-users {
