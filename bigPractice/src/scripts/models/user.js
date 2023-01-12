@@ -11,6 +11,7 @@ export default class User {
   /**
  * function addUser post new user with username
  * and objact user to function createUser
+ * @param {String}
  * @returns {Object}
  */
   async addUser(username) {

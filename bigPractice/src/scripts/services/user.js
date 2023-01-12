@@ -20,7 +20,9 @@ export const getUser = async (id) => {
 };
 
 /**
- * function createUser post new user to data
+ * function createUser  use method POST new user
+ * to data
+ * @param {Object} user with more information
  * @returns {Object}
  */
 export const createUser = async (data) => {

@@ -36,11 +36,23 @@ export default class Controller {
    * function handleAddUser call function addUser
    * from model user and assign result to response
    * if response.error === true will alert message
+   * @param {string} input value
    */
   async handleAddUser(username) {
-    const response = await this.user.addUser(username);
-    if (response.error) {
-      alert(API_ERROR_MESSAGES.ADD_USER);
+    try {
+      const response = await this.user.addUser(username);
+      if (response.error) {
+        alert(API_ERROR_MESSAGES.ADD_USER);
+      }
+      return {
+        data: response.data,
+        error: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        error,
+      };
     }
   }
 }
