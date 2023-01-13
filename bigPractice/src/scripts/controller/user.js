@@ -15,6 +15,12 @@ export default class Controller {
     this.view.bindOpenOption();
     this.view.bindCloseOption();
 
+    // bind event select navbar
+    this.view.bindSelectNav();
+
+    // // bind event select user
+    this.view.bindSelectUser();
+
     // bind event toggle modal input user name
     this.view.bindOpenModal();
     this.view.bindCloseModal();

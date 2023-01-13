@@ -5,10 +5,23 @@ export default class View {
     this.template = template;
 
     // select table body
-    this.table = querySelectorElement('.table-primary__body');
+    this.tableBody = querySelectorElement('.table-primary__body');
+    this.table = querySelectorElement('.table-primary');
 
     // select option
     this.option = querySelectorElement('.navbar__option');
+
+    // select navbar
+    this.navbarSelect = querySelectorElement('.navbar__select');
+
+    // select information user
+    this.info = querySelectorElement('.info');
+
+    // select user
+    this.userSelect = querySelectorElement('.table-primary__user');
+
+    // select modal
+    this.modalInfo = querySelectorElement('.modal-add-user');
 
     // select button
     this.btnNew = querySelectorElement('.btn__new');
@@ -27,7 +40,7 @@ export default class View {
  * @returns {String}
  */
   async renderTable(data) {
-    this.table.innerHTML = this.template.renderTableData(data);
+    this.tableBody.innerHTML = this.template.renderTableData(data);
   }
 
   /**
@@ -76,6 +89,34 @@ export default class View {
   }
 
   /**
+   * function bindSelectNav when click
+   * select, navbar change color
+   */
+  bindSelectNav() {
+    this.navbarSelect.addEventListener('click', () => {
+      this.navbarSelect.classList.add('navbar__active');
+    });
+  }
+
+  /**
+ * function bindSelectUser get parameter is
+ * handler function and call back function
+ * with parameter id user
+ * @callback handlefunction
+ */
+  bindSelectUser(handlefunction) {
+    this.tableBody.addEventListener('click', async (event) => {
+      event.stopPropagation();
+
+      this.rowUser = event.target.closest('.table-primary__user');
+      this.idUser = this.rowUser.getAttribute('data-id');
+
+      await handlefunction(this.idUser);
+      this.info.classList.remove('d-hidden');
+    });
+  }
+
+  /**
  * function bindAddUser get parameter is
  * handler function and call back function
  * with input value
@@ -89,8 +130,8 @@ export default class View {
       this.input.value = '';
       this.popupAdd.classList.add('d-hidden');
 
-      const newRow = `${this.table.innerHTML} ${newElement}`;
-      this.table.innerHTML = newRow;
+      const newRow = `${this.tableBody.innerHTML} ${newElement}`;
+      this.tableBoy.innerHTML = newRow;
     });
   }
 }

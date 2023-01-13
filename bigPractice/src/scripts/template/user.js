@@ -24,7 +24,7 @@ export default class Template {
     this.active = data.isActive ? 'status-item--active' : '';
     this.labelStatus = data.isActive ? 'Active' : 'Not Active';
     return `
-  <tr data-id= ${data.id}>
+  <tr class='table-primary__user' data-id= ${data.id}>
     <td class="table-primary__col__avatar table-primary__body__row">${data.avatar
     ? `<img class='avatar-user' src=${data.avatar} alt="Avatar ${data.name}"></img>`
     : `<div class='avatar-user__none' 

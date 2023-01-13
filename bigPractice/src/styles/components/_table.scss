@@ -7,10 +7,6 @@
   border-collapse: collapse;
   background-color: $color-light;
 
-  &--shrink {
-    width: 686px;
-  }
-
   &__title {
     font-size: $font-size-xl;
     padding: 16px;
@@ -26,7 +22,8 @@
   }
 
   &__spacing {
-    padding: 20px 8px;
+    text-align: start;
+    padding: 20px 15px;
     background-color: $color-aliceblue;
     font-size: $font-size-md;
     border-bottom: 1px solid $color-blue;
