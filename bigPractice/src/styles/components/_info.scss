@@ -11,10 +11,11 @@
 
   &__title {
     color: $color-secondary;
-    padding: 7px 22px 7px 0;
+    padding: 7px 22px 7px 10px;
   }
 
   &__body {
+
     &__wrapper {
       display: flex;
       align-items: center;
@@ -36,10 +37,12 @@
     }
 
     &__detail {
+      padding-left: 50px;
       font-family: $font-family-secondary;
     }
 
     &__title {
+      padding: 7px 22px 7px 10px;
       font-family: $font-family-secondary;
     }
 
