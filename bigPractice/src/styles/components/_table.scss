@@ -7,6 +7,10 @@
   border-collapse: collapse;
   background-color: $color-light;
 
+  &--shrink {
+    width: 686px;
+  }
+
   &__title {
     font-size: $font-size-xl;
     padding: 16px;
@@ -14,7 +18,8 @@
   }
 
   &__wrapper {
-    
+    display: flex;
+    justify-content: space-between;
     border-bottom: 1px solid $color-cornsilk;
     text-align: left;
     width: 100%;
@@ -27,7 +32,15 @@
     border-bottom: 1px solid $color-blue;
   }
 
+  &__col {
+
+    &__wrapper {
+      width: 100%;
+    }
+  }
+
   &__head {
+
     &__row {
       background-color: $color-aliceblue;
     }
@@ -48,6 +61,7 @@
   &__body {
     width: 100%;
     color: $color-primary;
+    
     font: {
       size: $font-size-md;
       family: $font-family-secondary;
@@ -69,8 +83,4 @@
     border-radius: 5px;
     background-color: $color-cornsilk;
   }
-}
-
-.table-primary--shrink {
-  width: 686px;
 }
