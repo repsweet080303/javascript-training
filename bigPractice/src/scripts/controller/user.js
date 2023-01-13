@@ -19,7 +19,7 @@ export default class Controller {
     this.view.bindSelectNav();
 
     // // bind event select user
-    this.view.bindSelectUser();
+    this.view.bindSelectUser(this.handleUserInfo.bind(this));
 
     // bind event toggle modal input user name
     this.view.bindOpenModal();
@@ -67,5 +67,22 @@ export default class Controller {
         error,
       };
     }
+  }
+
+  /**
+   * handle event add user
+   * @param {Number} id - id of the user
+   * @returns {Object} data - transmission data
+   */
+  async handleUserInfo(id) {
+    const response = await this.user.getUserInfo(id);
+
+    if (response.error) {
+      alert(API_ERROR_MESSAGES.GET_USER_INFO);
+    }
+    return {
+      data: response.data,
+      error: null,
+    };
   }
 }

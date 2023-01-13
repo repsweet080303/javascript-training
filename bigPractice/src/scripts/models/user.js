@@ -1,4 +1,4 @@
-import { createUser } from '../services/user';
+import { createUser, getUserById } from '../services/user';
 
 export default class User {
   constructor() {
@@ -25,6 +25,28 @@ export default class User {
       };
 
       const response = await createUser(user);
+
+      return {
+        data: response.data,
+        error: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        error,
+      };
+    }
+  }
+
+  /**
+ * @param {Number} id - id user
+ * @returns {Object} user - object by id
+ */
+
+  // eslint-disable-next-line class-methods-use-this
+  async getUserInfo(id) {
+    try {
+      const response = await getUserById(id);
 
       return {
         data: response.data,

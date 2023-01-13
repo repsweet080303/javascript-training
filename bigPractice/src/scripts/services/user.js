@@ -42,3 +42,24 @@ export const createUser = async (data) => {
     };
   }
 };
+
+/**
+ * function getUserById with method GET
+ * @param {Number} id - id of user
+ * @returns {Object} data - transmission data
+ */
+export const getUserById = async (id) => {
+  try {
+    const response = await axiosConfig.get(`/users/${id}`);
+
+    return {
+      data: response.data,
+      error: null,
+    };
+  } catch (error) {
+    return {
+      data: null,
+      error,
+    };
+  }
+};
