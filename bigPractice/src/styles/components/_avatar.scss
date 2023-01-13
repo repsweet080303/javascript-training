@@ -10,4 +10,11 @@
     text-align: center;
     padding: 15px 0;
   }
+
+  &__large {
+    width: 200px;
+    height: 165px;
+    border-radius: 5px;
+    font-size: 145px;
+  }
 }

@@ -116,6 +116,10 @@ export default class View {
     });
   }
 
+  renderUserInfo(data) {
+    this.info.innerHTML = this.template.renderUserDetail(data);
+  }
+
   /**
  * function bindAddUser get parameter is
  * handler function and call back function

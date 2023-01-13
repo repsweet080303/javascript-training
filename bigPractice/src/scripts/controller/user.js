@@ -77,6 +77,7 @@ export default class Controller {
   async handleUserInfo(id) {
     const response = await this.user.getUserInfo(id);
 
+    this.view.renderUserInfo(response.data);
     if (response.error) {
       alert(API_ERROR_MESSAGES.GET_USER_INFO);
     }
