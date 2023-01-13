@@ -7,12 +7,13 @@
     padding: 9px 14px;
     align-items: center;
     border-bottom: 1px solid $color-cornsilk;
+    
+    &__title {
+      color: $color-secondary;
+      padding: 7px 22px 7px 10px;
+    }
   }
 
-  &__title {
-    color: $color-secondary;
-    padding: 7px 22px 7px 10px;
-  }
 
   &__body {
 
@@ -39,15 +40,12 @@
     &__detail {
       padding-left: 50px;
       font-family: $font-family-secondary;
+      color: $color-secondary;
     }
 
     &__title {
       padding: 7px 22px 7px 10px;
       font-family: $font-family-secondary;
-    }
-
-    &__detail {
-      color: $color-secondary;
     }
   }
 }
