@@ -1,6 +1,6 @@
 .info {
   background-color: $color-light;
-  width: 430px;
+  width: 700px;
   margin: 13px 13px 0 0;
 
   &__head {
@@ -11,6 +11,10 @@
     &__title {
       color: $color-secondary;
       padding: 7px 22px 7px 10px;
+    }
+
+    &__wrapper {
+      padding-top: 6px;
     }
   }
 
