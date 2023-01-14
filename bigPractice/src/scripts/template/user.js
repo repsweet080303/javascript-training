@@ -71,7 +71,7 @@ export default class Template {
             <p class="info__body__title">Last visited:</p>
           </div>
           <div class="info__body__detail info__body__spacing">
-            ${data.lastUpdated.toLocaleString()}
+            ${new Date(data.lastUpdated).toLocaleString()}
           </div>
         </div>
     `;

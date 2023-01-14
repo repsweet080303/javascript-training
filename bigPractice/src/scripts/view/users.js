@@ -12,6 +12,7 @@ export default class View {
     this.option = querySelectorElement('.navbar__option');
 
     // select navbar
+    this.navbar = querySelectorElement('.navbar');
     this.navbarSelect = querySelectorElement('.navbar__select');
 
     // select information user
@@ -113,6 +114,7 @@ export default class View {
 
       await handlefunction(this.idUser);
       this.info.classList.remove('d-hidden');
+      this.navbar.classList.add('navbar__expand');
     });
   }
 
@@ -135,7 +137,7 @@ export default class View {
       this.popupAdd.classList.add('d-hidden');
 
       const newRow = `${this.tableBody.innerHTML} ${newElement}`;
-      this.tableBoy.innerHTML = newRow;
+      this.tableBody.innerHTML = newRow;
     });
   }
 }

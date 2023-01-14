@@ -1,8 +1,12 @@
 .navbar {
-  width: 255px;
+  width: 248px;
   position: relative;
   background-color: $color-secondary;
   flex-direction: column;
+
+&__expand {
+  width: 376px;
+}
 
   &__select {
     padding: 14px;
