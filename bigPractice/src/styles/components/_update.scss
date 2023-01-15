@@ -21,12 +21,12 @@
   }
 
   &__body {
-    padding: 24px 24 0 44px;
+    padding: 24px 24px 24px 44px;
     height: 520px;
     overflow: scroll;
 
     &__label {
-      width: 62px;
+      width: 84px;
       text-align: right;
       padding-right: 18px;
     }
@@ -44,6 +44,16 @@
     &__upload {
       color: $color-blue;
       padding: 90px 0 0 24px;
+    }
+
+    &__day-time {
+      font-family: $font-family-secondary;
+      font-size: $font-size-md;
+      color: $color-secondary;
+    }
+
+    &__details {
+    border: 1px solid $color-moonblue;
     }
   }
 }

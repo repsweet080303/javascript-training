@@ -37,6 +37,7 @@
   &__arrow {
     background-color: $color-light;
     color: $color-icon;
+    width: 40px;
   }
 
   &__group {
@@ -67,6 +68,18 @@
     width: 60px;
     height: 29px;
 
+    input {
+      opacity: 0;
+    }
+    
+    input:checked + .btn__toggle__slider:before {
+      transform: translateX(26px);
+    }
+    
+    input:checked + .btn__toggle__slider {
+      background-color: $color-success;
+    }
+
     &__slider {
       position: absolute;
       cursor: pointer;
@@ -93,14 +106,3 @@
   }
 }
 
-input {
-  opacity: 0;
-}
-
-input:checked + .btn__toggle__slider:before {
-  transform: translateX(26px);
-}
-
-input:checked + .btn__toggle__slider {
-  background-color: $color-success;
-}
