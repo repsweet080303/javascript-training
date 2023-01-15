@@ -114,7 +114,6 @@ export default class View {
 
       await handlefunction(this.idUser);
       this.info.classList.remove('d-hidden');
-      this.navbar.classList.add('navbar__expand');
     });
   }
 
