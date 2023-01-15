@@ -4,7 +4,7 @@
   margin-top: 12px;
 
   &__header {
-    border-bottom: 1px solid $color-cornsilk;
+    border-bottom: $border-cornsilk;
 
     &__title {
       display: flex;
@@ -34,7 +34,7 @@
     &__input {
       width: 300px;
       height: 26px;
-      border: 1px solid $color-cornsilk;
+      border: $border-cornsilk;
     }
 
     &__img {
@@ -46,14 +46,14 @@
       padding: 90px 0 0 24px;
     }
 
-    &__day-time {
+    &__time {
       font-family: $font-family-secondary;
       font-size: $font-size-md;
       color: $color-secondary;
     }
 
     &__details {
-    border: 1px solid $color-moonblue;
+      border: 1px solid $color-moonblue;
     }
   }
 }

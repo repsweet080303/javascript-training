@@ -6,8 +6,8 @@
   &__head {
     padding: 9px 14px;
     align-items: center;
-    border-bottom: 1px solid $color-cornsilk;
-    
+    border-bottom: $border-cornsilk;
+
     &__title {
       color: $color-secondary;
       padding: 7px 22px 7px 10px;
@@ -18,9 +18,7 @@
     }
   }
 
-
   &__body {
-
     &__wrapper {
       display: flex;
       align-items: center;
