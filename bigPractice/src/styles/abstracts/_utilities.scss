@@ -12,6 +12,15 @@
   justify-content: space-between;
 }
 
+.d-flex-align {
+  display: flex;
+  align-items: center;
+}
+
 .d-hidden {
   display: none;
+}
+
+.margin-tb {
+  margin: 26px 0 ;
 }

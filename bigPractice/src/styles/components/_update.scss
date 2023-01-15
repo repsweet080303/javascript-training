@@ -1,3 +1,49 @@
 .update-user {
   min-width: 520px;
+  background-color: $color-light;
+  margin-top: 12px;
+
+  &__header {
+    border-bottom: 1px solid $color-cornsilk;
+
+    &__title {
+      display: flex;
+      width: 120px;
+      padding: 15px;
+      border-bottom: 3px solid $color-blue;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__select {
+      color: $color-blue;
+    }
+  }
+
+  &__body {
+    padding: 24px 24 0 44px;
+    height: 520px;
+    overflow: scroll;
+
+    &__label {
+      width: 62px;
+      text-align: right;
+      padding-right: 18px;
+    }
+
+    &__input {
+      width: 300px;
+      height: 26px;
+      border: 1px solid $color-cornsilk;
+    }
+
+    &__img {
+      width: 105px;
+    }
+
+    &__upload {
+      color: $color-blue;
+      padding: 90px 0 0 24px;
+    }
+  }
 }
