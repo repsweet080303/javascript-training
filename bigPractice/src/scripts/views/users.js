@@ -125,11 +125,11 @@ export default class View {
  * function bindAddUser get parameter is
  * handler function and call back function
  * with input value
- * @callback handlefunction
+ * @callback handler
  */
-  bindAddUser(handlefunction) {
+  bindAddUser(handler) {
     this.btnSave.addEventListener('click', async () => {
-      const response = await handlefunction(this.input.value);
+      const response = await handler(this.input.value);
       const newElement = this.template.renderUser(response.data);
 
       this.input.value = '';

@@ -1,6 +1,6 @@
-import Controller from './controller/user';
-import Template from './template/user';
-import View from './view/users';
+import Controller from './controllers/user';
+import Template from './templates/user';
+import View from './views/users';
 import Users from './models/users';
 import User from './models/user';
 

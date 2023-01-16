@@ -21,6 +21,7 @@
     left: 18px;
     width: 153px;
     padding: 12px;
+    z-index: 1;
 
     &:hover {
       background-color: $color-primary;
