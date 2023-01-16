@@ -4,32 +4,34 @@ export default class Controller {
   /**
    * @param {users} users A users instance
    * @param {user} user A user instance
-   * @param {view} view A view instance}
+   * @param {userView} userView A userView instance
+   * @param {usersView} usersView A userView instance
    */
-  constructor(users, user, view) {
+  constructor(users, user, userView, usersView) {
     this.users = users;
     this.user = user;
-    this.view = view;
+    this.userView = userView;
+    this.usersView = usersView;
 
     // bind event toggle option add new user
-    this.view.bindOpenOption();
-    this.view.bindCloseOption();
+    this.userView.bindOpenOption();
+    this.userView.bindCloseOption();
 
     // bind event select navbar
-    this.view.bindSelectNav();
+    this.userView.bindSelectNav();
 
     // bind event select user
-    this.view.bindSelectUser(this.handleViewUserDetail.bind(this));
+    this.userView.bindSelectUser(this.handleViewUserDetail.bind(this));
 
     // bind event toggle modal input user name
-    this.view.bindOpenModal();
-    this.view.bindCloseModal();
+    this.userView.bindOpenModal();
+    this.userView.bindCloseModal();
 
     /**
      * bind event add user
      * @callback handleAddUser
      */
-    this.view.bindAddUser(this.handleAddUser.bind(this));
+    this.userView.bindAddUser(this.handleAddUser.bind(this));
   }
 
   /**
@@ -40,7 +42,7 @@ export default class Controller {
     if (response.error) {
       alert(API_ERROR_MESSAGES.GET_API);
     } else {
-      this.view.renderTable(response.data);
+      this.usersView.renderTable(response.data);
     }
   }
 
@@ -81,6 +83,6 @@ export default class Controller {
       return;
     }
 
-    this.view.renderUserInfo(response.data);
+    this.userView.renderUserInfo(response.data);
   }
 }
