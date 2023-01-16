@@ -12,4 +12,10 @@
   &__upload {
     padding-right: 10px;
   }
+
+  &__error {
+    margin-left: 8px;
+    color: $color-danger;
+    font-size: $font-size-xl;
+  }
 }
