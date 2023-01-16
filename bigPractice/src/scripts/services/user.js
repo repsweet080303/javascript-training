@@ -42,3 +42,26 @@ export const getUserById = async (id) => {
     };
   }
 };
+
+/**
+ * function updateUser use PATCH method
+ * to update user to data
+ * @param {Number} id - id of user
+ * @param {Object} data - object to update information user
+ * @returns {Object} data - transmission data
+ */
+export const updateUserById = async (id, data) => {
+  try {
+    const response = await axiosConfig.patch(`/users/${id}`, data);
+
+    return {
+      data: response.data,
+      error: null,
+    };
+  } catch (error) {
+    return {
+      data: null,
+      error,
+    };
+  }
+};

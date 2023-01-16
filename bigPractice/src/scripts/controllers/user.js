@@ -72,7 +72,7 @@ export default class Controller {
   }
 
   /**
-   * handle event add user
+   * handle event view detail user
    * @param {Number} id - id of the user
    */
   async handleViewUserDetail(id) {
