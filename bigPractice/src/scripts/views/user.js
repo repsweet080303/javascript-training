@@ -1,6 +1,6 @@
 import { querySelectorElement } from '../helpers/axiosConfig';
 
-export default class View {
+export default class {
   constructor(template) {
     this.template = template;
 
@@ -32,16 +32,6 @@ export default class View {
     this.popupAdd = querySelectorElement('.modal-add-user');
     this.iconClose = querySelectorElement('.modal-add-user__icon--close');
     this.input = querySelectorElement('.form__input');
-  }
-
-  /**
- * function renderTable in view, assigne data
- * and call function renderTableData from class template
- * then assign in table selector
- * @returns {String}
- */
-  async renderTable(data) {
-    this.tableBody.innerHTML = this.template.renderTableData(data);
   }
 
   /**
@@ -125,11 +115,11 @@ export default class View {
  * function bindAddUser get parameter is
  * handler function and call back function
  * with input value
- * @callback handlefunction
+ * @callback handler
  */
-  bindAddUser(handlefunction) {
+  bindAddUser(handler) {
     this.btnSave.addEventListener('click', async () => {
-      const response = await handlefunction(this.input.value);
+      const response = await handler(this.input.value);
       const newElement = this.template.renderUser(response.data);
 
       this.input.value = '';

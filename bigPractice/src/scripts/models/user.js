@@ -43,8 +43,7 @@ export default class User {
  * @returns {Object} user - object by id
  */
 
-  // eslint-disable-next-line class-methods-use-this
-  async getUserInfo(id) {
+  static async getUserInfo(id) {
     try {
       const response = await getUserById(id);
 
