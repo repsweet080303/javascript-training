@@ -34,7 +34,7 @@ export default class {
     this.input = querySelectorElement('.form__input');
 
     // updated form
-    this.isUpdate = false;
+    this.isUpdate = true;
 
     // form update user
     this.formUpdate = querySelectorElement('.update-user');
@@ -116,12 +116,39 @@ export default class {
     if (this.isUpdate) {
       this.info.classList.remove('d-hidden');
       this.info.innerHTML = this.template.renderUserDetail(data);
-      // this.bindAfterUpdate(data, handle, handleHide);
+      this.bindOpenUpdateForm(data);
     } else {
       this.info.classList.add('d-hidden');
       this.formUpdate.classList.remove('d-hidden');
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
     }
+  }
+
+  bindOpenUpdateForm(data) {
+    this.btnArrow = querySelectorElement('.btn__edit');
+
+    this.btnArrow.addEventListener('click', () => {
+      this.isUpdate = false;
+
+      this.info.classList.add('d-hidden');
+      this.formUpdate.classList.remove('d-hidden');
+      this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
+
+      this.bindCloseUpdateForm(data);
+    });
+  }
+
+  bindCloseUpdateForm(data) {
+    this.btnBack = querySelectorElement('.btn__arrow');
+
+    this.btnBack.addEventListener('click', () => {
+      this.isUpdate = true;
+
+      this.formUpdate.classList.add('d-hidden');
+      this.info.classList.remove('d-hidden');
+      this.info.innerHTML = this.template.renderUserDetail(data);
+      this.bindOpenUpdateForm(data);
+    });
   }
 
   /**
