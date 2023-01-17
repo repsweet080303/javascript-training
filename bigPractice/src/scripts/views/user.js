@@ -32,6 +32,12 @@ export default class {
     this.popupAdd = querySelectorElement('.modal-add-user');
     this.iconClose = querySelectorElement('.modal-add-user__icon--close');
     this.input = querySelectorElement('.form__input');
+
+    // updated form
+    this.isUpdate = false;
+
+    // form update user
+    this.formUpdate = querySelectorElement('.update-user');
   }
 
   /**
@@ -103,12 +109,19 @@ export default class {
       this.idUser = this.rowUser.getAttribute('data-id');
 
       await handlefunction(this.idUser);
-      this.info.classList.remove('d-hidden');
     });
   }
 
-  renderUserInfo(data) {
-    this.info.innerHTML = this.template.renderUserDetail(data);
+  renderUserInfoDetail(data) {
+    if (this.isUpdate) {
+      this.info.classList.remove('d-hidden');
+      this.info.innerHTML = this.template.renderUserDetail(data);
+      // this.bindAfterUpdate(data, handle, handleHide);
+    } else {
+      this.info.classList.add('d-hidden');
+      this.formUpdate.classList.remove('d-hidden');
+      this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
+    }
   }
 
   /**

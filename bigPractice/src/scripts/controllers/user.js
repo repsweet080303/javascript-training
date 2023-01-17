@@ -83,6 +83,6 @@ export default class Controller {
       return;
     }
 
-    this.userView.renderUserInfo(response.data);
+    this.userView.renderUserInfoDetail(response.data);
   }
 }

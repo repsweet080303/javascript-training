@@ -54,5 +54,11 @@
     &__details {
       border: 1px solid $color-moonblue;
     }
+
+    &__msg {
+      margin-left: 8px;
+      color: $color-danger;
+      font-size: $font-size-xl;
+    }
   }
 }

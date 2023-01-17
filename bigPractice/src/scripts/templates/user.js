@@ -76,4 +76,82 @@ export default class Template {
         </div>
     `;
   }
+
+  renderUpdateDetail(data) {
+    this.registerDate = new Date(data.registered);
+    this.updateDate = new Date(data.lastUpdate);
+    this.activeUser = data.isActive ? 'status-item--active' : '';
+    this.badgeStatus = data.isActive ? 'Active' : 'Not Active';
+    this.isChecked = data.isActive ? 'checked' : '';
+
+    return `
+    <div class="update-user__header d-flex">
+          <button class="btn__arrow">
+            <i class="fa-sharp fa-solid fa-arrow-left"></i>
+          </button>
+          <div class="update-user__header__title">
+            <a href="#" class="update-user__header__select"> General </a>
+          </div>
+        </div>
+        <div class="update-user__body">
+          <div class="btn__group data-id="${data.id}">
+            <button class="btn btn__delete">Delete</button>
+            <button class="btn btn__save-info">Save</button>
+          </div>
+          <div class="d-flex-align margin-tb">
+            <p class="update-user__body__label">Fullname</p>
+            <input type="text" class="update-user__body__input" value="${data.name}" />
+            <p
+              class="update-user__body__msg name--error d-hidden"
+            >Invalid</p>
+          </div>
+          <div class="d-flex-align margin-tb">
+            <p class="update-user__body__label">Email</p>
+            <input type="text" class="update-user__body__input" value="${data.email}" />
+            <p
+              class="update-user__body__msg email--error d-hidden"
+            >Invalid</p>
+          </div>
+          <div class="d-flex margin-tb">
+            <p class="update-user__body__label">Avatar</p>
+            ${data.avatar ? `<img class="info__body__image"
+          src= ${data.avatar}
+          alt= ${data.name}/>` : `<div class='avatar-user__none avatar-user__large'>${data.name.toUpperCase().charAt(0)}</div>`}
+            <div class="update-user__body__upload d-flex-align">
+              <button class="btn__upload">
+                <i
+                  class="icon__upload fa-sharp fa-solid fa-arrow-up-from-bracket"
+                ></i>
+              </button>
+              <p class="update-user__body__text">Upload new photo</p>
+            </div>
+          </div>
+          <div class="d-flex-align margin-tb">
+            <p class="update-user__body__label">Status</p>
+            <label class="btn__toggle">
+              <input class='btn__toggle__check' type="checkbox" ${this.isChecked}/>
+              <span class="btn__toggle__slider"></span>
+            </label>
+            <p class="status-item ${this.activeUser}">${this.badgeStatus}</p>
+          </div>
+          <div class="d-flex margin-tb">
+            <p class="update-user__body__label">Registered</p>
+            <p class="update-user__body__time">${data.registered.toLocaleString()}</p>
+          </div>
+          <div class="d-flex margin-tb">
+            <p class="update-user__body__label">Lasted visit</p>
+            <p class="update-user__body__time">${data.lastUpdated.toLocaleString()}</p>
+          </div>
+          <div class="d-flex">
+            <p class="update-user__body__label">Detail</p>
+            <textarea
+              class="update-user__body__details"
+              name="desc"
+              cols="40"
+              rows="7"
+            >${data.description}</textarea>
+          </div>
+        </div>
+    `;
+  }
 }
