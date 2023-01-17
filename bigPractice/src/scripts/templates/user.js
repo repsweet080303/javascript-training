@@ -114,9 +114,9 @@ export default class Template {
           </div>
           <div class="d-flex margin-tb">
             <p class="update-user__body__label">Avatar</p>
-            ${data.avatar ? `<img class="info__body__image"
+            ${data.avatar ? `<img class="update-user__body__img"
           src= ${data.avatar}
-          alt= ${data.name}/>` : `<div class='avatar-user__none avatar-user__large'>${data.name.toUpperCase().charAt(0)}</div>`}
+          alt= ${data.name}/>` : `<div class='avatar-user__none avatar-user__medium'>${data.name.toUpperCase().charAt(0)}</div>`}
             <div class="update-user__body__upload d-flex-align">
               <button class="btn__upload">
                 <i
@@ -132,15 +132,15 @@ export default class Template {
               <input class='btn__toggle__check' type="checkbox" ${this.isChecked}/>
               <span class="btn__toggle__slider"></span>
             </label>
-            <p class="status-item ${this.activeUser}">${this.badgeStatus}</p>
+            <p class="status-item status-item--update ${this.activeUser}">${this.badgeStatus}</p>
           </div>
           <div class="d-flex margin-tb">
             <p class="update-user__body__label">Registered</p>
-            <p class="update-user__body__time">${data.registered.toLocaleString()}</p>
+            <p class="update-user__body__time">${new Date(data.registered).toLocaleString()}</p>
           </div>
           <div class="d-flex margin-tb">
             <p class="update-user__body__label">Lasted visit</p>
-            <p class="update-user__body__time">${data.lastUpdated.toLocaleString()}</p>
+            <p class="update-user__body__time">${new Date(data.lastUpdated).toLocaleString()}</p>
           </div>
           <div class="d-flex">
             <p class="update-user__body__label">Detail</p>

@@ -121,6 +121,8 @@ export default class {
       this.info.classList.add('d-hidden');
       this.formUpdate.classList.remove('d-hidden');
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
+      this.bindCloseUpdateForm(data);
+      this.bindChangeStatus();
     }
   }
 
@@ -135,6 +137,7 @@ export default class {
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
 
       this.bindCloseUpdateForm(data);
+      this.bindChangeStatus();
     });
   }
 
@@ -148,6 +151,19 @@ export default class {
       this.info.classList.remove('d-hidden');
       this.info.innerHTML = this.template.renderUserDetail(data);
       this.bindOpenUpdateForm(data);
+    });
+  }
+
+  bindChangeStatus() {
+    this.btnSwitch = querySelectorElement('.btn__toggle__check');
+    this.statusLabel = querySelectorElement('.status-item--update');
+
+    this.btnSwitch.addEventListener('click', () => {
+      const isChecked = this.btnSwitch.checked ? 'Active' : 'Not active';
+      const action = this.btnSwitch.checked ? 'add' : 'remove';
+
+      this.statusLabel.classList[action]('status-item--active');
+      this.statusLabel.innerHTML = isChecked;
     });
   }
 
