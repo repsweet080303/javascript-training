@@ -116,13 +116,15 @@ export default class {
     if (this.isUpdate) {
       this.info.classList.remove('d-hidden');
       this.info.innerHTML = this.template.renderUserDetail(data);
+
       this.bindOpenUpdateForm(data);
     } else {
       this.info.classList.add('d-hidden');
+
       this.formUpdate.classList.remove('d-hidden');
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
-      this.bindCloseUpdateForm(data);
-      this.bindChangeStatus();
+
+      this.bindActiveUpdate(data);
     }
   }
 
@@ -136,15 +138,24 @@ export default class {
       this.formUpdate.classList.remove('d-hidden');
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
 
-      this.bindCloseUpdateForm(data);
-      this.bindChangeStatus();
+      this.bindActiveUpdate(data);
     });
   }
 
-  bindCloseUpdateForm(data) {
+  bindActiveUpdate(data) {
+    // button back
     this.btnBack = querySelectorElement('.btn__arrow');
 
-    this.btnBack.addEventListener('click', () => {
+    // avatar element
+    this.fileUpload = document.querySelectorAll('.update-user__image');
+
+    this.bindCloseUpdateForm(data, this.btnBack);
+    this.bindChangeStatus(this.statusLabel, this.btnSwitch);
+    this.bindUpdateAvatar(this.fileUpload);
+  }
+
+  bindCloseUpdateForm(data, btnBack) {
+    btnBack.addEventListener('click', () => {
       this.isUpdate = true;
 
       this.formUpdate.classList.add('d-hidden');
@@ -164,6 +175,22 @@ export default class {
 
       this.statusLabel.classList[action]('status-item--active');
       this.statusLabel.innerHTML = isChecked;
+    });
+  }
+
+  bindUpdateAvatar(fileUpload) {
+    this.avatarUser = querySelectorElement('.update-user__body__wrapper');
+
+    fileUpload.forEach((element) => {
+      element.addEventListener('change', (e) => {
+        const file = e.target.files[0].name;
+        const avatar = document.createElement('img');
+        avatar.src = file;
+        avatar.classList.add('update-user__body__img');
+        this.avatarUser.innerHTML = '';
+        console.log(this.avatarUser);
+        this.avatarUser.appendChild(avatar);
+      });
     });
   }
 

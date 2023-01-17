@@ -112,17 +112,20 @@ export default class Template {
               class="update-user__body__msg email--error d-hidden"
             >Invalid</p>
           </div>
-          <div class="d-flex margin-tb">
+          <div class="update-user__body__avatar d-flex margin-tb">
             <p class="update-user__body__label">Avatar</p>
+            <div class="update-user__body__wrapper">
             ${data.avatar ? `<img class="update-user__body__img"
           src= ${data.avatar}
           alt= ${data.name}/>` : `<div class='avatar-user__none avatar-user__medium'>${data.name.toUpperCase().charAt(0)}</div>`}
+            </div>
             <div class="update-user__body__upload d-flex-align">
-              <button class="btn__upload">
-                <i
-                  class="icon__upload fa-sharp fa-solid fa-arrow-up-from-bracket"
+              <label class="label__upload" for="upload-file">
+                <i 
+                  class="icon__upload update-user__image fa-sharp fa-solid fa-arrow-up-from-bracket"
                 ></i>
-              </button>
+                <input type="file" class="update-user__image update-user__input" id="upload-file">
+              </label>
               <p class="update-user__body__text">Upload new photo</p>
             </div>
           </div>

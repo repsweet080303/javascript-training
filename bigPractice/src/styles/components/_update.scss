@@ -3,6 +3,12 @@
   background-color: $color-light;
   margin-top: 12px;
 
+  &__input {
+    position: absolute;
+    left: -1px;
+    visibility: hidden;
+  }
+
   &__header {
     border-bottom: $border-cornsilk;
 
