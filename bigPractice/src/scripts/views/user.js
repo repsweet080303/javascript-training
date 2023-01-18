@@ -1,4 +1,5 @@
 import { querySelectorElement } from '../helpers/axiosConfig';
+import { validateEmailRegex, validateNameEmpty, validateEmailEmpty } from '../helpers/validate';
 
 export default class {
   constructor(template) {
@@ -152,6 +153,7 @@ export default class {
     this.bindCloseUpdateForm(data, this.btnBack);
     this.bindChangeStatus();
     this.bindUpdateAvatar(this.fileUpload);
+    this.bindUpdateUser(data);
   }
 
   bindCloseUpdateForm(data, btnBack) {
@@ -200,6 +202,32 @@ export default class {
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
       reader.onerror = () => reject((reader.error));
+    });
+  }
+
+  bindUpdateUser() {
+    this.inputName = querySelectorElement('#input__name');
+    this.inputEmail = querySelectorElement('#input__email');
+    this.statusActive = querySelectorElement('.btn__toggle__check');
+    this.btnSave = querySelectorElement('.btn__save-info');
+
+    this.btnSave.addEventListener('click', () => {
+      const avatar = querySelectorElement('.update-user__body__img');
+      const msgName = querySelectorElement('.name--error');
+      const msgEmail = querySelectorElement('.email--error');
+
+      if (validateNameEmpty(this.inputName.value)) {
+        msgName.classList.remove('d-hidden');
+      } else if (validateEmailRegex(this.inputEmail.value)) {
+        msgEmail.classList.remove('d-hidden');
+      } else if (validateEmailEmpty(this.inputEmail.value)) {
+        msgEmail.classList.remove('d-hidden');
+      } else {
+        console.log(this.inputName.value);
+        console.log(this.inputEmail.value);
+        console.log(this.statusActive.checked);
+        console.log(avatar.src);
+      }
     });
   }
 

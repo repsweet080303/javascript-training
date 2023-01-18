@@ -100,14 +100,14 @@ export default class Template {
           </div>
           <div class="d-flex-align margin-tb">
             <p class="update-user__body__label">Fullname</p>
-            <input type="text" class="update-user__body__input" value="${data.name}" />
+            <input type="text" class="update-user__body__input" id="input__name" value="${data.name}" />
             <p
               class="update-user__body__msg name--error d-hidden"
             >Invalid</p>
           </div>
           <div class="d-flex-align margin-tb">
             <p class="update-user__body__label">Email</p>
-            <input type="text" class="update-user__body__input" value="${data.email}" />
+            <input type="text" class="update-user__body__input" id="input__email" value="${data.email}" />
             <p
               class="update-user__body__msg email--error d-hidden"
             >Invalid</p>
