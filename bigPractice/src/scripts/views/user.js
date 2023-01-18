@@ -34,7 +34,7 @@ export default class {
     this.input = querySelectorElement('.form__input');
 
     // updated form
-    this.isUpdate = true;
+    this.isUpdate = false;
 
     // form update user
     this.formUpdate = querySelectorElement('.update-user');
@@ -114,17 +114,17 @@ export default class {
 
   renderUserInfoDetail(data) {
     if (this.isUpdate) {
-      this.info.classList.remove('d-hidden');
-      this.info.innerHTML = this.template.renderUserDetail(data);
-
-      this.bindOpenUpdateForm(data);
-    } else {
       this.info.classList.add('d-hidden');
 
       this.formUpdate.classList.remove('d-hidden');
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
 
       this.bindActiveUpdate(data);
+    } else {
+      this.info.classList.remove('d-hidden');
+      this.info.innerHTML = this.template.renderUserDetail(data);
+
+      this.bindOpenUpdateForm(data);
     }
   }
 
@@ -132,7 +132,7 @@ export default class {
     this.btnArrow = querySelectorElement('.btn__edit');
 
     this.btnArrow.addEventListener('click', () => {
-      this.isUpdate = false;
+      this.isUpdate = true;
 
       this.info.classList.add('d-hidden');
       this.formUpdate.classList.remove('d-hidden');
@@ -150,7 +150,7 @@ export default class {
     this.fileUpload = document.querySelectorAll('.update-user__image');
 
     this.bindCloseUpdateForm(data, this.btnBack);
-    this.bindChangeStatus(this.statusLabel, this.btnSwitch);
+    this.bindChangeStatus();
     this.bindUpdateAvatar(this.fileUpload);
   }
 
@@ -182,15 +182,24 @@ export default class {
     this.avatarUser = querySelectorElement('.update-user__body__wrapper');
 
     fileUpload.forEach((element) => {
-      element.addEventListener('change', (e) => {
-        const file = e.target.files[0].name;
+      element.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
         const avatar = document.createElement('img');
-        avatar.src = file;
+        avatar.src = await this.constructor.changeBase64(file);
         avatar.classList.add('update-user__body__img');
+
         this.avatarUser.innerHTML = '';
-        console.log(this.avatarUser);
         this.avatarUser.appendChild(avatar);
       });
+    });
+  }
+
+  static changeBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject((reader.error));
     });
   }
 
