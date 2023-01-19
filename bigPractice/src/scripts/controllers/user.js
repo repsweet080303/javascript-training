@@ -71,6 +71,18 @@ export default class Controller {
     }
   }
 
+  async handleUpdateUser(id, data) {
+    const response = await this.user.constructor.updateUser(id, data);
+
+    if (response.error) {
+      alert(API_ERROR_MESSAGES.UPDATE_USER);
+    } else {
+      const dataAllUser = await this.users.getAllUser();
+
+      this.usersView.renderTableUpdate(dataAllUser);
+    }
+  }
+
   /**
    * handle event view detail user
    * @param {Number} id - id of the user
@@ -83,6 +95,6 @@ export default class Controller {
       return;
     }
 
-    this.userView.renderUserInfoDetail(response.data);
+    this.userView.renderUserInfoDetail(response.data, this.handleUpdateUser.bind(this));
   }
 }

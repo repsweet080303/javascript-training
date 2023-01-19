@@ -18,4 +18,8 @@ export default class {
   async renderTable(data) {
     this.tableBody.innerHTML = this.template.renderTableData(data);
   }
+
+  async renderTableUpdate(data) {
+    this.tableBody.innerHTML = this.template.renderTableDataUpdate(data);
+  }
 }

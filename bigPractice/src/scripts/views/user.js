@@ -1,5 +1,5 @@
 import { querySelectorElement } from '../helpers/axiosConfig';
-import { validateEmailRegex, validateNameEmpty, validateEmailEmpty } from '../helpers/validate';
+import { validateEmailRegex, validateNameEmpty } from '../helpers/validate';
 
 export default class {
   constructor(template) {
@@ -45,7 +45,6 @@ export default class {
    * function bindOpenOption when button new
    * click, option add new user show
    */
-
   bindOpenOption() {
     this.btnNew.addEventListener('click', (event) => {
       event.stopPropagation();
@@ -113,23 +112,23 @@ export default class {
     });
   }
 
-  renderUserInfoDetail(data) {
+  renderUserInfoDetail(data, handleUpdate) {
     if (this.isUpdate) {
       this.info.classList.add('d-hidden');
 
       this.formUpdate.classList.remove('d-hidden');
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
 
-      this.bindActiveUpdate(data);
+      this.bindActiveUpdate(data, handleUpdate);
     } else {
       this.info.classList.remove('d-hidden');
       this.info.innerHTML = this.template.renderUserDetail(data);
 
-      this.bindOpenUpdateForm(data);
+      this.bindOpenUpdateForm(data, handleUpdate);
     }
   }
 
-  bindOpenUpdateForm(data) {
+  bindOpenUpdateForm(data, handleUpdate) {
     this.btnArrow = querySelectorElement('.btn__edit');
 
     this.btnArrow.addEventListener('click', () => {
@@ -139,11 +138,11 @@ export default class {
       this.formUpdate.classList.remove('d-hidden');
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
 
-      this.bindActiveUpdate(data);
+      this.bindActiveUpdate(data, handleUpdate);
     });
   }
 
-  bindActiveUpdate(data) {
+  bindActiveUpdate(data, handleUpdate) {
     // button back
     this.btnBack = querySelectorElement('.btn__arrow');
 
@@ -153,7 +152,7 @@ export default class {
     this.bindCloseUpdateForm(data, this.btnBack);
     this.bindChangeStatus();
     this.bindUpdateAvatar(this.fileUpload);
-    this.bindUpdateUser(data);
+    this.bindUpdateUser(data, handleUpdate);
   }
 
   bindCloseUpdateForm(data, btnBack) {
@@ -205,11 +204,12 @@ export default class {
     });
   }
 
-  bindUpdateUser() {
+  bindUpdateUser(data, handleUpdate) {
+    this.btnSave = querySelectorElement('.btn__save-info');
     this.inputName = querySelectorElement('#input__name');
     this.inputEmail = querySelectorElement('#input__email');
     this.statusActive = querySelectorElement('.btn__toggle__check');
-    this.btnSave = querySelectorElement('.btn__save-info');
+    this.bio = querySelectorElement('.update-user__body__details');
 
     this.btnSave.addEventListener('click', () => {
       const avatar = querySelectorElement('.update-user__body__img');
@@ -219,14 +219,19 @@ export default class {
       if (validateNameEmpty(this.inputName.value)) {
         msgName.classList.remove('d-hidden');
       } else if (validateEmailRegex(this.inputEmail.value)) {
-        msgEmail.classList.remove('d-hidden');
-      } else if (validateEmailEmpty(this.inputEmail.value)) {
+        msgName.classList.add('d-hidden');
         msgEmail.classList.remove('d-hidden');
       } else {
-        console.log(this.inputName.value);
-        console.log(this.inputEmail.value);
-        console.log(this.statusActive.checked);
-        console.log(avatar.src);
+        msgName.classList.add('d-hidden');
+        msgEmail.classList.add('d-hidden');
+
+        handleUpdate(data.id, {
+          avatar: avatar.src,
+          name: this.inputName.value,
+          isActive: this.statusActive.checked,
+          email: this.inputEmail.value,
+          description: this.bio.value,
+        });
       }
     });
   }
