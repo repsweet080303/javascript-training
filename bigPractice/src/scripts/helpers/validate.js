@@ -1,3 +1,8 @@
+/**
+ * function validateNameEmpty
+ * @param {string} value - value name input
+ * @returns {Boolean} return true if value is empty
+ */
 const validateNameEmpty = (value) => {
   if (value === '') {
     return true;
@@ -5,6 +10,11 @@ const validateNameEmpty = (value) => {
   return false;
 };
 
+/**
+ * function validateEmailRegex
+ * @param {string} value - value email
+ * @returns {Boolean} return true if value not match regex pattern
+ */
 const validateEmailRegex = (value) => {
   const validRegex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/;
 

@@ -45,6 +45,11 @@ export default class Template {
   `;
   }
 
+  /**
+   * render renderUserDetail
+   * @param {data} is Object
+   * @returns {String} template string
+   */
   renderUserDetail(data) {
     this.activeUser = data.isActive ? 'status-item--active' : '';
     this.badgeStatus = data.isActive ? 'Active' : 'Not Active';
@@ -82,6 +87,11 @@ export default class Template {
     `;
   }
 
+  /**
+   * render renderUpdateDetail
+   * @param {data} is Object
+   * @returns {String} template string
+   */
   renderUpdateDetail(data) {
     this.registerDate = new Date(data.registered);
     this.updateDate = new Date(data.lastUpdate);

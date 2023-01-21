@@ -21,7 +21,7 @@ export default class Controller {
     this.userView.bindSelectNav();
 
     // bind event select user
-    this.userView.bindSelectUser(this.handleViewUserDetail.bind(this));
+    this.userView.bindSelectUser(this.handleViewUser.bind(this));
 
     // bind event toggle modal input user name
     this.userView.bindOpenModal();
@@ -71,6 +71,12 @@ export default class Controller {
     }
   }
 
+  /**
+   * handle event update user
+   * @param {string} id - id of user selected
+   * @param {Object} data - value of user updated
+   * @returns {Object} data - transmission data
+   */
   async handleUpdateUser(id, data) {
     const response = await this.user.constructor.updateUser(id, data);
 
@@ -78,8 +84,7 @@ export default class Controller {
       alert(API_ERROR_MESSAGES.UPDATE_USER);
     } else {
       const dataAllUser = await this.users.getAllUser();
-
-      this.usersView.renderTableUpdate(dataAllUser);
+      this.usersView.renderTable(dataAllUser.data);
     }
   }
 
@@ -87,14 +92,13 @@ export default class Controller {
    * handle event view detail user
    * @param {Number} id - id of the user
    */
-  async handleViewUserDetail(id) {
+  async handleViewUser(id) {
     const response = await this.user.constructor.getUserInfo(id);
 
     if (response.error) {
       alert(API_ERROR_MESSAGES.GET_USER_INFO);
       return;
     }
-
     this.userView.renderUserInfoDetail(response.data, this.handleUpdateUser.bind(this));
   }
 }

@@ -1,4 +1,4 @@
-import { querySelectorElement } from '../helpers/axiosConfig';
+import { querySelectorElement } from '../helpers/selectors';
 import { validateEmailRegex, validateNameEmpty } from '../helpers/validate';
 
 export default class {
@@ -76,7 +76,7 @@ export default class {
 
   /**
    * function bindCloseModel when icon close
-   * click, popup add new user hidden
+   * clicked, popup add new user hidden
    */
   bindCloseModal() {
     this.iconClose.addEventListener('click', () => {
@@ -99,19 +99,24 @@ export default class {
  * function bindSelectUser get parameter is
  * handler function and call back function
  * with parameter id user
- * @callback handlefunction
+ * @callback handler
  */
-  bindSelectUser(handlefunction) {
+  bindSelectUser(handler) {
     this.tableBody.addEventListener('click', async (event) => {
       event.stopPropagation();
 
       this.rowUser = event.target.closest('.table-primary__user');
       this.idUser = this.rowUser.getAttribute('data-id');
 
-      await handlefunction(this.idUser);
+      await handler(this.idUser);
     });
   }
 
+  /**
+   * function renderUserInfoDetail
+   * @param {Object} data - information of user
+   * @param {Function} handleUpdate - callback handler for update
+   */
   renderUserInfoDetail(data, handleUpdate) {
     if (this.isUpdate) {
       this.info.classList.add('d-hidden');
@@ -128,6 +133,11 @@ export default class {
     }
   }
 
+  /**
+   * function bindOpenUpdateForm
+   * @param {Object} data - information of user
+   * @param {Function} handleUpdate - callback handler for update
+   */
   bindOpenUpdateForm(data, handleUpdate) {
     this.btnArrow = querySelectorElement('.btn__edit');
 
@@ -142,6 +152,11 @@ export default class {
     });
   }
 
+  /**
+   * function bindActiveUpdate
+   * @param {Object} data - information of user
+   * @param {Function} handleUpdate - callback handler for update
+   */
   bindActiveUpdate(data, handleUpdate) {
     // button back
     this.btnBack = querySelectorElement('.btn__arrow');
@@ -155,6 +170,11 @@ export default class {
     this.bindUpdateUser(data, handleUpdate);
   }
 
+  /**
+   * function bindCloseUpdateForm
+   * @param {Object} data - information of user
+   * @param {Element} btnBack - button arrow back
+   */
   bindCloseUpdateForm(data, btnBack) {
     btnBack.addEventListener('click', () => {
       this.isUpdate = true;
@@ -166,6 +186,9 @@ export default class {
     });
   }
 
+  /**
+   * function bindCloseUpdateForm
+   */
   bindChangeStatus() {
     this.btnSwitch = querySelectorElement('.btn__toggle__check');
     this.statusLabel = querySelectorElement('.status-item--update');
@@ -179,6 +202,10 @@ export default class {
     });
   }
 
+  /**
+   * function bindUpdateAvatar
+   * @param {Element} fileUpload - file image upload
+   */
   bindUpdateAvatar(fileUpload) {
     this.avatarUser = querySelectorElement('.update-user__body__wrapper');
 
@@ -195,15 +222,25 @@ export default class {
     });
   }
 
+  /**
+   * function changeBase64
+   * @param {Element} file - file user uploaded
+   * @return {Object} Promise - return resolve or reject
+   */
   static changeBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => resolve(reader.result);
-      reader.onerror = () => reject((reader.error));
+      reader.onerror = () => reject(reader.error);
     });
   }
 
+  /**
+   * function bindUpdateUser
+   * @param {Object} data - information of user
+   * @param {Function} handleUpdate - function handle update
+   */
   bindUpdateUser(data, handleUpdate) {
     this.btnSave = querySelectorElement('.btn__save-info');
     this.inputName = querySelectorElement('#input__name');
@@ -237,10 +274,8 @@ export default class {
   }
 
   /**
- * function bindAddUser get parameter is
- * handler function and call back function
- * with input value
- * @callback handler
+ * function bindAddUser
+  * @param {Function} handler - handler function add user
  */
   bindAddUser(handler) {
     this.btnSave.addEventListener('click', async () => {

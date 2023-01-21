@@ -1,4 +1,4 @@
-import { axiosConfig } from '../helpers/axiosConfig';
+import axiosConfig from '../helpers/axiosConfig';
 
 /**
  * function createUser  use method POST
