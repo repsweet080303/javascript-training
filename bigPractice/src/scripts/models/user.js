@@ -1,4 +1,4 @@
-import { createUser, getUserById } from '../services/user';
+import { createUser, getUserById, updateUserById } from '../services/user';
 
 export default class User {
   constructor() {
@@ -47,6 +47,31 @@ export default class User {
     try {
       const response = await getUserById(id);
 
+      return {
+        data: response.data,
+        error: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        error,
+      };
+    }
+  }
+
+  /**
+  * @param {Number} id - id user
+  * @returns {Object} user - object by id
+  */
+
+  static async updateUser(id, data) {
+    try {
+      const updatedUser = {
+        ...data,
+        lastUpdated: new Date(data.lastUpdated).toString(),
+      };
+
+      const response = await updateUserById(id, updatedUser);
       return {
         data: response.data,
         error: null,

@@ -17,6 +17,11 @@ export default class Template {
     return tableUsers.join(' ');
   }
 
+  renderTableDataUpdate(dataUpdate) {
+    const tableUsers = dataUpdate.data.map((user) => this.renderUser(user));
+    return tableUsers.join(' ');
+  }
+
   /**
    * render user
    * @param {data} is Object
@@ -40,6 +45,11 @@ export default class Template {
   `;
   }
 
+  /**
+   * render renderUserDetail
+   * @param {data} is Object
+   * @returns {String} template string
+   */
   renderUserDetail(data) {
     this.activeUser = data.isActive ? 'status-item--active' : '';
     this.badgeStatus = data.isActive ? 'Active' : 'Not Active';
@@ -72,6 +82,92 @@ export default class Template {
           </div>
           <div class="info__body__detail info__body__spacing">
             ${new Date(data.lastUpdated).toLocaleString()}
+          </div>
+        </div>
+    `;
+  }
+
+  /**
+   * render renderUpdateDetail
+   * @param {data} is Object
+   * @returns {String} template string
+   */
+  renderUpdateDetail(data) {
+    this.registerDate = new Date(data.registered);
+    this.updateDate = new Date(data.lastUpdate);
+    this.activeUser = data.isActive ? 'status-item--active' : '';
+    this.badgeStatus = data.isActive ? 'Active' : 'Not Active';
+    this.isChecked = data.isActive ? 'checked' : '';
+
+    return `
+    <div class="update-user__header d-flex">
+          <button class="btn__arrow">
+            <i class="fa-sharp fa-solid fa-arrow-left"></i>
+          </button>
+          <div class="update-user__header__title">
+            <a href="#" class="update-user__header__select"> General </a>
+          </div>
+        </div>
+        <div class="update-user__body">
+          <div class="btn__group data-id="${data.id}">
+            <button class="btn btn__delete">Delete</button>
+            <button class="btn btn__save-info">Save</button>
+          </div>
+          <div class="d-flex-align margin-tb">
+            <p class="update-user__body__label">Fullname</p>
+            <input type="text" class="update-user__body__input" id="input__name" value="${data.name}" />
+            <p
+              class="update-user__body__msg name--error d-hidden"
+            >Invalid</p>
+          </div>
+          <div class="d-flex-align margin-tb">
+            <p class="update-user__body__label">Email</p>
+            <input type="text" class="update-user__body__input" id="input__email" value="${data.email}" />
+            <p
+              class="update-user__body__msg email--error d-hidden"
+            >Invalid</p>
+          </div>
+          <div class="update-user__body__avatar d-flex margin-tb">
+            <p class="update-user__body__label">Avatar</p>
+            <div class="update-user__body__wrapper">
+            ${data.avatar ? `<img class="update-user__body__img"
+          src= ${data.avatar}
+          alt= ${data.name}/>` : `<div class='avatar-user__none avatar-user__medium'>${data.name.toUpperCase().charAt(0)}</div>`}
+            </div>
+            <div class="update-user__body__upload d-flex-align">
+              <label class="label__upload" for="upload-file">
+                <i 
+                  class="icon__upload update-user__image fa-sharp fa-solid fa-arrow-up-from-bracket"
+                ></i>
+                <input type="file" class="update-user__image update-user__input" id="upload-file">
+              </label>
+              <p class="update-user__body__text">Upload new photo</p>
+            </div>
+          </div>
+          <div class="d-flex-align margin-tb">
+            <p class="update-user__body__label">Status</p>
+            <label class="btn__toggle">
+              <input class='btn__toggle__check' type="checkbox" ${this.isChecked}/>
+              <span class="btn__toggle__slider"></span>
+            </label>
+            <p class="status-item status-item--update ${this.activeUser}">${this.badgeStatus}</p>
+          </div>
+          <div class="d-flex margin-tb">
+            <p class="update-user__body__label">Registered</p>
+            <p class="update-user__body__time">${new Date(data.registered).toLocaleString()}</p>
+          </div>
+          <div class="d-flex margin-tb">
+            <p class="update-user__body__label">Lasted visit</p>
+            <p class="update-user__body__time">${new Date(data.lastUpdated).toLocaleString()}</p>
+          </div>
+          <div class="d-flex">
+            <p class="update-user__body__label">Detail</p>
+            <textarea
+              class="update-user__body__details"
+              name="desc"
+              cols="40"
+              rows="7"
+            >${data.description}</textarea>
           </div>
         </div>
     `;

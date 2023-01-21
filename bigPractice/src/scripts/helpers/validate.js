@@ -1,17 +1,27 @@
-const validateName = (value) => {
-  if (value === '' && value === null) {
-    return false;
-  }
-  return true;
-};
-
-const validateEmail = (value) => {
-  const validRegex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/;
-
-  if (value.match(validRegex)) {
+/**
+ * function validateNameEmpty
+ * @param {string} value - value name input
+ * @returns {Boolean} return true if value is empty
+ */
+const validateNameEmpty = (value) => {
+  if (value === '') {
     return true;
   }
   return false;
 };
 
-export { validateEmail, validateName };
+/**
+ * function validateEmailRegex
+ * @param {string} value - value email
+ * @returns {Boolean} return true if value not match regex pattern
+ */
+const validateEmailRegex = (value) => {
+  const validRegex = /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/;
+
+  if (value.match(validRegex)) {
+    return false;
+  }
+  return true;
+};
+
+export { validateEmailRegex, validateNameEmpty };

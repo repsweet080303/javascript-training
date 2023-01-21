@@ -1,4 +1,4 @@
-import { querySelectorElement } from '../helpers/axiosConfig';
+import { querySelectorElement } from '../helpers/selectors';
 
 export default class {
   constructor(template) {
@@ -13,7 +13,7 @@ export default class {
  * function renderTable in view, assigne data
  * and call function renderTableData from class template
  * then assign in table selector
- * @returns {String}
+ * @param {Object} data - data of the user
  */
   async renderTable(data) {
     this.tableBody.innerHTML = this.template.renderTableData(data);
