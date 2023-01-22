@@ -110,8 +110,8 @@ export default class Template {
         </div>
         <div class="update-user__body">
           <div class="btn__group data-id="${data.id}">
-            <button class="btn btn__delete">Delete</button>
-            <button class="btn btn__save-info">Save</button>
+            <button class="btn btn__primary btn__delete">Delete</button>
+            <button class="btn btn__secondary btn__save-info">Save</button>
           </div>
           <div class="d-flex-align margin-tb">
             <p class="update-user__body__label">Fullname</p>

@@ -60,6 +60,8 @@
 
     &__details {
       border: 1px solid $color-moonblue;
+      font-family: $font-family-secondary;
+      color: $color-secondary;
     }
 
     &__msg {
