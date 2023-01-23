@@ -65,3 +65,19 @@ export const updateUserById = async (id, data) => {
     };
   }
 };
+
+export const deleteUserById = async (id) => {
+  try {
+    const response = await axiosConfig.delete(`/users/${id}`);
+
+    return {
+      data: response.data,
+      error: null,
+    };
+  } catch (error) {
+    return {
+      data: null,
+      error,
+    };
+  }
+};
