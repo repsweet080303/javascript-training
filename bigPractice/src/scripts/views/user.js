@@ -28,11 +28,15 @@ export default class {
     // select button
     this.btnNew = querySelectorElement('.btn__new');
     this.btnSave = querySelectorElement('.btn__save');
+    this.btnCancel = querySelectorElement('.btn__cancel');
 
     // select popup add user
     this.popupAdd = querySelectorElement('.modal-add-user');
     this.iconClose = querySelectorElement('.modal-add-user__icon--close');
     this.input = querySelectorElement('.form__input');
+
+    // select popup delete user
+    this.popupDelete = querySelectorElement('.modal-delete-user');
 
     // updated form
     this.isUpdate = false;
@@ -161,6 +165,9 @@ export default class {
     // button back
     this.btnBack = querySelectorElement('.btn__arrow');
 
+    // button delete
+    this.btnDelete = querySelectorElement('.btn__delete');
+
     // avatar element
     this.fileUpload = document.querySelectorAll('.update-user__image');
 
@@ -168,6 +175,8 @@ export default class {
     this.bindChangeStatus();
     this.bindUpdateAvatar(this.fileUpload);
     this.bindUpdateUser(data, handleUpdate);
+    this.bindOpenPopupDelete(this.btnDelete);
+    this.bindClosePopupDelete();
   }
 
   /**
@@ -287,6 +296,18 @@ export default class {
 
       const newRow = `${this.tableBody.innerHTML} ${newElement}`;
       this.tableBody.innerHTML = newRow;
+    });
+  }
+
+  bindOpenPopupDelete(btnDelete) {
+    btnDelete.addEventListener('click', () => {
+      this.popupDelete.classList.remove('d-hidden');
+    });
+  }
+
+  bindClosePopupDelete() {
+    this.btnCancel.addEventListener('click', () => {
+      this.popupDelete.classList.add('d-hidden');
     });
   }
 }
