@@ -14,7 +14,7 @@
     </header>
     <main class="container d-flex">
       <nav class="navbar d-flex">
-        <button class="btn btn__new">
+        <button class="btn btn__primary btn__new">
           <i class="btn__icon-plus fa-solid fa-plus"></i>New
         </button>
         <div class="navbar__option d-hidden">Add new user</div>
@@ -63,6 +63,20 @@
         <div class="form">
           <input type="input" class="form__input" />
           <button class="btn btn__save">Save</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-delete-user d-flex-center d-hidden">
+      <div class="d-flex-align">
+        <div class="modal-delete-user__wrapper">
+          <h3 class="modal-delete-user__header">Delete</h3>
+          <p class="modal-delete-user__paragraph">
+            Are you sure to delete this user?
+          </p>
+          <div class="btn__group d-flex-between">
+            <button class="btn btn__cancel btn__secondary">Cancel</button>
+            <button class="btn btn__delete btn__primary">Delete</button>
+          </div>
         </div>
       </div>
     </div>
