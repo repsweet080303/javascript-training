@@ -70,7 +70,7 @@ export default class User {
     try {
       const updatedUser = {
         ...data,
-        lastUpdated: new Date(data.lastUpdated).toString(),
+        lastUpdated: new Date().toString(),
       };
 
       const response = await updateUserById(id, updatedUser);

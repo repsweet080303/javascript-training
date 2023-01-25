@@ -30,9 +30,6 @@ export default class {
     this.btnSave = querySelectorElement('.btn__save');
     this.btnCancel = querySelectorElement('.btn__cancel');
 
-    // avatar element
-    this.fileUpload = document.querySelectorAll('.update-user__image');
-
     // select popup add user
     this.popupAdd = querySelectorElement('.modal-add-user');
     this.iconClose = querySelectorElement('.modal-add-user__icon--close');
@@ -165,6 +162,9 @@ export default class {
    * @param {Function} handleUpdate - callback handler for update
    */
   bindActiveUpdate(data, handleUpdate, handleDelete) {
+    // avatar element
+    this.fileUpload = document.querySelectorAll('.update-user__image');
+
     this.bindCloseUpdateForm(data);
     this.bindChangeStatus();
     this.bindUpdateAvatar(this.fileUpload);
@@ -183,7 +183,6 @@ export default class {
 
     this.btnBack.addEventListener('click', () => {
       this.isUpdate = true;
-
       this.formUpdate.classList.add('d-hidden');
       this.info.classList.remove('d-hidden');
       this.info.innerHTML = this.template.renderUserDetail(data);
@@ -210,10 +209,10 @@ export default class {
   /**
    * function bindUpdateAvatar
    */
-  bindUpdateAvatar() {
+  bindUpdateAvatar(fileUpload) {
     this.avatarUser = querySelectorElement('.update-user__body__wrapper');
 
-    this.fileUpload.forEach((element) => {
+    fileUpload.forEach((element) => {
       element.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         const avatar = document.createElement('img');
