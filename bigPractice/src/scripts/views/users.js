@@ -15,6 +15,9 @@ export default class {
     // select search component
     this.headerSearch = querySelectorElement('.search__header');
     this.wrapperSearch = querySelectorElement('.search__wrapper');
+
+    // select search input
+    this.searchInput = querySelectorElement('.search__input');
   }
 
   /**
@@ -38,6 +41,12 @@ export default class {
     this.btnClose.addEventListener('click', () => {
       this.headerSearch.classList.remove('d-hidden');
       this.wrapperSearch.classList.add('d-hidden');
+    });
+  }
+
+  bindSearchUsers(handle) {
+    this.searchInput.addEventListener('keyup', (e) => {
+      handle(e.target.value.toLowerCase());
     });
   }
 }
