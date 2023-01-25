@@ -23,11 +23,19 @@
         >
       </nav>
       <div class="table-primary">
-        <div class="table-primary__wrapper">
-          <h2 class="table-primary__title">Users</h2>
-          <button class="btn__search">
-            <i class="btn__icon-search fa-solid fa-search"> </i>
-          </button>
+        <div class="table-primary__search">
+          <div class="search__header">
+            <label class="search__title">Users</label>
+            <button class="btn__search">
+              <i class="fa-solid fa-search"> </i>
+            </button>
+          </div>
+          <div class="search__wrapper d-hidden">
+            <input type="text" class="search__input" placeholder="Search" />
+            <button class="btn__close">
+              <i class="fas fa-xmark"></i>
+            </button>
+          </div>
         </div>
         <table class="table-primary__col__wrapper">
           <thead>
@@ -75,7 +83,9 @@
           </p>
           <div class="btn__group d-flex-between">
             <button class="btn btn__secondary btn__cancel">Cancel</button>
-            <button class="btn btn__primary btn__delete btn__remove">Delete</button>
+            <button class="btn btn__primary btn__delete btn__remove">
+              Delete
+            </button>
           </div>
         </div>
       </div>
