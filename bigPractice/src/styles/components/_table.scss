@@ -7,15 +7,7 @@
   border-collapse: collapse;
   background-color: $color-light;
 
-  &__title {
-    font-size: $font-size-xl;
-    padding: 16px;
-    color: $color-secondary;
-  }
-
-  &__wrapper {
-    display: flex;
-    justify-content: space-between;
+  &__search {
     border-bottom: $border-cornsilk;
     text-align: left;
     width: 100%;

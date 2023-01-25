@@ -33,6 +33,11 @@
     padding: 16px;
   }
 
+  &__close {
+    @extend .btn__search;
+    font-size: $font-size-xl;
+  }
+
   &__icon-plus {
     padding: 0 8px;
   }
