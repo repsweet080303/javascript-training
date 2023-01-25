@@ -1,4 +1,6 @@
-import { createUser, getUserById, updateUserById } from '../services/user';
+import {
+  createUser, getUserById, updateUserById, deleteUserById,
+} from '../services/user';
 
 export default class User {
   constructor() {
@@ -68,10 +70,26 @@ export default class User {
     try {
       const updatedUser = {
         ...data,
-        lastUpdated: new Date(data.lastUpdated).toString(),
+        lastUpdated: new Date().toString(),
       };
 
       const response = await updateUserById(id, updatedUser);
+      return {
+        data: response.data,
+        error: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        error,
+      };
+    }
+  }
+
+  static async deleteUser(id) {
+    try {
+      const response = await deleteUserById(id);
+
       return {
         data: response.data,
         error: null,

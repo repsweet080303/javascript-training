@@ -88,6 +88,17 @@ export default class Controller {
     }
   }
 
+  async handleDeleteUser(id) {
+    const response = await this.user.constructor.deleteUser(id);
+
+    if (response.error) {
+      alert(API_ERROR_MESSAGES.DELETE_USER);
+    } else {
+      const dataAllUser = await this.users.getAllUser();
+      this.usersView.renderTable(dataAllUser.data);
+    }
+  }
+
   /**
    * handle event view detail user
    * @param {Number} id - id of the user
@@ -99,6 +110,10 @@ export default class Controller {
       alert(API_ERROR_MESSAGES.GET_USER_INFO);
       return;
     }
-    this.userView.renderUserInfoDetail(response.data, this.handleUpdateUser.bind(this));
+    this.userView.renderUserInfoDetail(
+      response.data,
+      this.handleUpdateUser.bind(this),
+      this.handleDeleteUser.bind(this),
+    );
   }
 }

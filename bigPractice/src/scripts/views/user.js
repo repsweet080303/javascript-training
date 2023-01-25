@@ -28,11 +28,15 @@ export default class {
     // select button
     this.btnNew = querySelectorElement('.btn__new');
     this.btnSave = querySelectorElement('.btn__save');
+    this.btnCancel = querySelectorElement('.btn__cancel');
 
     // select popup add user
     this.popupAdd = querySelectorElement('.modal-add-user');
     this.iconClose = querySelectorElement('.modal-add-user__icon--close');
     this.input = querySelectorElement('.form__input');
+
+    // select popup delete user
+    this.popupDelete = querySelectorElement('.modal-delete-user');
 
     // updated form
     this.isUpdate = false;
@@ -96,11 +100,11 @@ export default class {
   }
 
   /**
- * function bindSelectUser get parameter is
- * handler function and call back function
- * with parameter id user
- * @callback handler
- */
+  * function bindSelectUser get parameter is
+  * handler function and call back function
+  * with parameter id user
+  * @callback handler
+  */
   bindSelectUser(handler) {
     this.tableBody.addEventListener('click', async (event) => {
       event.stopPropagation();
@@ -117,19 +121,19 @@ export default class {
    * @param {Object} data - information of user
    * @param {Function} handleUpdate - callback handler for update
    */
-  renderUserInfoDetail(data, handleUpdate) {
+  renderUserInfoDetail(data, handleUpdate, handleDelete) {
     if (this.isUpdate) {
       this.info.classList.add('d-hidden');
 
       this.formUpdate.classList.remove('d-hidden');
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
 
-      this.bindActiveUpdate(data, handleUpdate);
+      this.bindActiveUpdate(data, handleUpdate, handleDelete);
     } else {
       this.info.classList.remove('d-hidden');
       this.info.innerHTML = this.template.renderUserDetail(data);
 
-      this.bindOpenUpdateForm(data, handleUpdate);
+      this.bindOpenUpdateForm(data, handleUpdate, handleDelete);
     }
   }
 
@@ -138,7 +142,7 @@ export default class {
    * @param {Object} data - information of user
    * @param {Function} handleUpdate - callback handler for update
    */
-  bindOpenUpdateForm(data, handleUpdate) {
+  bindOpenUpdateForm(data, handleUpdate, handleDelete) {
     this.btnArrow = querySelectorElement('.btn__edit');
 
     this.btnArrow.addEventListener('click', () => {
@@ -148,7 +152,7 @@ export default class {
       this.formUpdate.classList.remove('d-hidden');
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
 
-      this.bindActiveUpdate(data, handleUpdate);
+      this.bindActiveUpdate(data, handleUpdate, handleDelete);
     });
   }
 
@@ -157,28 +161,28 @@ export default class {
    * @param {Object} data - information of user
    * @param {Function} handleUpdate - callback handler for update
    */
-  bindActiveUpdate(data, handleUpdate) {
-    // button back
-    this.btnBack = querySelectorElement('.btn__arrow');
-
+  bindActiveUpdate(data, handleUpdate, handleDelete) {
     // avatar element
     this.fileUpload = document.querySelectorAll('.update-user__image');
 
-    this.bindCloseUpdateForm(data, this.btnBack);
+    this.bindCloseUpdateForm(data);
     this.bindChangeStatus();
     this.bindUpdateAvatar(this.fileUpload);
     this.bindUpdateUser(data, handleUpdate);
+    this.bindOpenPopupDelete();
+    this.bindDeleteUser(data, handleDelete);
+    this.bindClosePopupDelete();
   }
 
   /**
    * function bindCloseUpdateForm
    * @param {Object} data - information of user
-   * @param {Element} btnBack - button arrow back
    */
-  bindCloseUpdateForm(data, btnBack) {
-    btnBack.addEventListener('click', () => {
-      this.isUpdate = true;
+  bindCloseUpdateForm(data) {
+    this.btnBack = querySelectorElement('.btn__arrow');
 
+    this.btnBack.addEventListener('click', () => {
+      this.isUpdate = true;
       this.formUpdate.classList.add('d-hidden');
       this.info.classList.remove('d-hidden');
       this.info.innerHTML = this.template.renderUserDetail(data);
@@ -204,7 +208,6 @@ export default class {
 
   /**
    * function bindUpdateAvatar
-   * @param {Element} fileUpload - file image upload
    */
   bindUpdateAvatar(fileUpload) {
     this.avatarUser = querySelectorElement('.update-user__body__wrapper');
@@ -274,9 +277,9 @@ export default class {
   }
 
   /**
- * function bindAddUser
+  * function bindAddUser
   * @param {Function} handler - handler function add user
- */
+  */
   bindAddUser(handler) {
     this.btnSave.addEventListener('click', async () => {
       const response = await handler(this.input.value);
@@ -287,6 +290,40 @@ export default class {
 
       const newRow = `${this.tableBody.innerHTML} ${newElement}`;
       this.tableBody.innerHTML = newRow;
+    });
+  }
+
+  /**
+   * function bindOpenPopupDelete
+   */
+  bindOpenPopupDelete() {
+    this.btnDelete = querySelectorElement('.btn__delete');
+    this.btnDelete.addEventListener('click', () => {
+      this.popupDelete.classList.remove('d-hidden');
+    });
+  }
+
+  /**
+   * function bindClosePopupDelete
+   */
+  bindClosePopupDelete() {
+    this.btnCancel.addEventListener('click', () => {
+      this.popupDelete.classList.add('d-hidden');
+    });
+  }
+
+  /**
+   * function bindDeleteUser
+   * @param {Object} data - information of user
+   * @param {Function} handleDelete - callback function
+   */
+  bindDeleteUser(data, handleDelete) {
+    this.btnRemove = querySelectorElement('.btn__remove');
+
+    this.btnRemove.addEventListener('click', () => {
+      handleDelete(data.id);
+      this.popupDelete.classList.add('d-hidden');
+      this.formUpdate.classList.add('d-hidden');
     });
   }
 }
