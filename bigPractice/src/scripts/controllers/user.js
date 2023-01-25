@@ -17,6 +17,10 @@ export default class Controller {
     this.userView.bindOpenOption();
     this.userView.bindCloseOption();
 
+    // bind event toggle search input
+    this.usersView.bindOpenSearch();
+    this.usersView.bindCloseSearch();
+
     // bind event select navbar
     this.userView.bindSelectNav();
 

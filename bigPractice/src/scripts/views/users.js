@@ -7,6 +7,14 @@ export default class {
     // select table body
     this.tableBody = querySelectorElement('.table-primary__body');
     this.table = querySelectorElement('.table-primary');
+
+    // select button search
+    this.btnSearch = querySelectorElement('.btn__search');
+    this.btnClose = querySelectorElement('.btn__close');
+
+    // select search component
+    this.headerSearch = querySelectorElement('.search__header');
+    this.wrapperSearch = querySelectorElement('.search__wrapper');
   }
 
   /**
@@ -15,7 +23,21 @@ export default class {
  * then assign in table selector
  * @param {Object} data - data of the user
  */
-  async renderTable(data) {
+  renderTable(data) {
     this.tableBody.innerHTML = this.template.renderTableData(data);
+  }
+
+  bindOpenSearch() {
+    this.btnSearch.addEventListener('click', () => {
+      this.headerSearch.classList.add('d-hidden');
+      this.wrapperSearch.classList.remove('d-hidden');
+    });
+  }
+
+  bindCloseSearch() {
+    this.btnClose.addEventListener('click', () => {
+      this.headerSearch.classList.remove('d-hidden');
+      this.wrapperSearch.classList.add('d-hidden');
+    });
   }
 }
