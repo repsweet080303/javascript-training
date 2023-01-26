@@ -43,6 +43,9 @@ export default class {
 
     // form update user
     this.formUpdate = querySelectorElement('.update-user');
+
+    // input search
+    this.searchTitle = querySelectorElement('.search__title');
   }
 
   /**
@@ -130,6 +133,8 @@ export default class {
 
       this.bindActiveUpdate(data, handleUpdate, handleDelete);
     } else {
+      this.searchTitle.style.paddingRight = '600px';
+
       this.info.classList.remove('d-hidden');
       this.info.innerHTML = this.template.renderUserDetail(data);
 
@@ -143,9 +148,10 @@ export default class {
    * @param {Function} handleUpdate - callback handler for update
    */
   bindOpenUpdateForm(data, handleUpdate, handleDelete) {
-    this.btnArrow = querySelectorElement('.btn__edit');
+    this.btnPencil = querySelectorElement('.btn__edit');
 
-    this.btnArrow.addEventListener('click', () => {
+    this.btnPencil.addEventListener('click', () => {
+      this.searchTitle.style.paddingRight = '495px';
       this.isUpdate = true;
 
       this.info.classList.add('d-hidden');
