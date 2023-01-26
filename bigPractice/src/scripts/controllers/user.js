@@ -17,6 +17,13 @@ export default class Controller {
     this.userView.bindOpenOption();
     this.userView.bindCloseOption();
 
+    // bind event toggle search input
+    this.usersView.bindOpenSearch();
+    this.usersView.bindCloseSearch();
+
+    // bind event search user
+    this.usersView.bindSearchUsers(this.handleSearchUsers.bind(this));
+
     // bind event select navbar
     this.userView.bindSelectNav();
 
@@ -115,5 +122,11 @@ export default class Controller {
       this.handleUpdateUser.bind(this),
       this.handleDeleteUser.bind(this),
     );
+  }
+
+  handleSearchUsers(data) {
+    const response = this.users.searchUsers(data);
+
+    this.usersView.renderTable(response.data);
   }
 }

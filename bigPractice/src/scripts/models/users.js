@@ -26,4 +26,19 @@ export default class Users {
       };
     }
   }
+
+  searchUsers(data) {
+    try {
+      const response = this.users.filter((user) => user.name.toLowerCase().includes(data));
+      return {
+        data: response,
+        error: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        error,
+      };
+    }
+  }
 }
