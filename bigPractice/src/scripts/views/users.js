@@ -30,6 +30,12 @@ export default class {
     this.tableBody.innerHTML = this.template.renderTableData(data);
   }
 
+  /**
+   * bindOpenSearch
+   * when click icon search in header search
+   * show search input
+   */
+
   bindOpenSearch() {
     this.btnSearch.addEventListener('click', () => {
       this.headerSearch.classList.add('d-hidden');
@@ -37,6 +43,11 @@ export default class {
     });
   }
 
+  /**
+   * bindCloseSearch
+   * when click icon close in wrapper search
+   * hide search input
+   */
   bindCloseSearch() {
     this.btnClose.addEventListener('click', () => {
       this.headerSearch.classList.remove('d-hidden');
@@ -44,6 +55,9 @@ export default class {
     });
   }
 
+  /**
+   * bindSearchUsers
+   */
   bindSearchUsers(handle) {
     this.searchInput.addEventListener('keyup', (e) => {
       handle(e.target.value.toLowerCase());
