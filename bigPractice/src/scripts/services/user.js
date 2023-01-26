@@ -66,6 +66,11 @@ export const updateUserById = async (id, data) => {
   }
 };
 
+/**
+ * function deleteUserById
+ * @param {String} id - id of user
+ * @returns {Object} data - transmission data
+ */
 export const deleteUserById = async (id) => {
   try {
     const response = await axiosConfig.delete(`/users/${id}`);
