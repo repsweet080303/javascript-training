@@ -98,11 +98,6 @@ export default class Controller {
         }
 
         this.usersView.renderTable(dataAllUser.data);
-
-        return {
-          data: dataAllUser.data,
-          error: null,
-        };
       }
 
       return {
@@ -136,11 +131,6 @@ export default class Controller {
         }
 
         this.usersView.renderTable(dataAllUser.data);
-
-        return {
-          data: dataAllUser.data,
-          erorr: null,
-        };
       }
 
       return {
@@ -158,7 +148,6 @@ export default class Controller {
   /**
    * handle event view detail user
    * @param {Number} id - id of the user
-   * @returns {Object} data transmission
    */
   async handleViewUser(id) {
     const response = await this.user.constructor.getUserInfo(id);
@@ -178,7 +167,6 @@ export default class Controller {
   /**
    * handle event search user
    * @param {String} data - value of input search
-   * @returns {Object} data transmission
    */
   handleSearchUsers(data) {
     const response = this.users.searchUsers(data);

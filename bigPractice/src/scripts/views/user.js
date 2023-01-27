@@ -127,7 +127,6 @@ export default class {
   renderUserInfoDetail(data, handleUpdate, handleDelete) {
     if (this.isUpdate) {
       this.info.classList.add('d-hidden');
-
       this.formUpdate.classList.remove('d-hidden');
       this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
 
