@@ -35,7 +35,6 @@ export default class Users {
   searchUsers(data) {
     try {
       const response = this.users.filter((user) => user.name.toLowerCase().includes(data));
-      console.log(response);
       return {
         data: response,
         error: null,
