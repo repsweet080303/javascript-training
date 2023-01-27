@@ -11,9 +11,10 @@ export default class User {
   }
 
   /**
- * @param {String} username - input value
- * @returns {Object} user - object information user
- */
+   * function addUser
+   * @param {String} username - input value
+   * @returns {Object} user - object information user
+  */
   async addUser(username) {
     try {
       const user = {
@@ -41,9 +42,10 @@ export default class User {
   }
 
   /**
- * @param {Number} id - id user
- * @returns {Object} user - object by id
- */
+   * function getUserInfo
+   * @param {Number} id - id user
+   * @returns {Object} data - data transmission
+  */
 
   static async getUserInfo(id) {
     try {
@@ -62,8 +64,10 @@ export default class User {
   }
 
   /**
+   * function updateUser
   * @param {Number} id - id user
-  * @returns {Object} user - object by id
+  * @param {Object} data - data update user
+  * @returns {Object} data - data transmission
   */
 
   static async updateUser(id, data) {
@@ -86,6 +90,11 @@ export default class User {
     }
   }
 
+  /**
+   * function deleteUser
+  * @param {Number} id - id user
+  * @returns {Object} data - data transmission
+  */
   static async deleteUser(id) {
     try {
       const response = await deleteUserById(id);

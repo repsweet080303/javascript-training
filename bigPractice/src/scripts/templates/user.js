@@ -17,11 +17,6 @@ export default class Template {
     return tableUsers.join(' ');
   }
 
-  renderTableDataUpdate(dataUpdate) {
-    const tableUsers = dataUpdate.data.map((user) => this.renderUser(user));
-    return tableUsers.join(' ');
-  }
-
   /**
    * render user
    * @param {data} is Object

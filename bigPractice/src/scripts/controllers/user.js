@@ -85,24 +85,63 @@ export default class Controller {
    * @returns {Object} data - transmission data
    */
   async handleUpdateUser(id, data) {
-    const response = await this.user.constructor.updateUser(id, data);
+    try {
+      const response = await this.user.constructor.updateUser(id, data);
 
-    if (response.error) {
-      alert(API_ERROR_MESSAGES.UPDATE_USER);
-    } else {
-      const dataAllUser = await this.users.getAllUser();
-      this.usersView.renderTable(dataAllUser.data);
+      if (response.error) {
+        alert(API_ERROR_MESSAGES.UPDATE_USER);
+      } else {
+        const dataAllUser = await this.users.getAllUser();
+
+        if (dataAllUser.error) {
+          alert(API_ERROR_MESSAGES.UPDATE_USER);
+        }
+
+        this.usersView.renderTable(dataAllUser.data);
+      }
+
+      return {
+        data: response.data,
+        error: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        error,
+      };
     }
   }
 
+  /**
+   * handle event delete user
+   * @param {string} id - id of user selected
+   * @returns {Object} data - transmission data
+   */
   async handleDeleteUser(id) {
-    const response = await this.user.constructor.deleteUser(id);
+    try {
+      const response = await this.user.constructor.deleteUser(id);
 
-    if (response.error) {
-      alert(API_ERROR_MESSAGES.DELETE_USER);
-    } else {
-      const dataAllUser = await this.users.getAllUser();
-      this.usersView.renderTable(dataAllUser.data);
+      if (response.error) {
+        alert(API_ERROR_MESSAGES.DELETE_USER);
+      } else {
+        const dataAllUser = await this.users.getAllUser();
+
+        if (dataAllUser.error) {
+          alert(API_ERROR_MESSAGES.DELETE_USER);
+        }
+
+        this.usersView.renderTable(dataAllUser.data);
+      }
+
+      return {
+        data: response.data,
+        erorr: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        error,
+      };
     }
   }
 
@@ -117,6 +156,7 @@ export default class Controller {
       alert(API_ERROR_MESSAGES.GET_USER_INFO);
       return;
     }
+
     this.userView.renderUserInfoDetail(
       response.data,
       this.handleUpdateUser.bind(this),
@@ -124,6 +164,10 @@ export default class Controller {
     );
   }
 
+  /**
+   * handle event search user
+   * @param {String} data - value of input search
+   */
   handleSearchUsers(data) {
     const response = this.users.searchUsers(data);
 

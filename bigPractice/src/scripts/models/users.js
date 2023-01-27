@@ -27,6 +27,11 @@ export default class Users {
     }
   }
 
+  /**
+   * function searchUsers
+   * @param {String} data - value input search
+   * @returns {Array} response - list transmission data
+   */
   searchUsers(data) {
     try {
       const response = this.users.filter((user) => user.name.toLowerCase().includes(data));
