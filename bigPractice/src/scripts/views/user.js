@@ -331,4 +331,17 @@ export default class {
       this.formUpdate.classList.add('d-hidden');
     });
   }
+
+  bindTogglePopup(message) {
+    this.popupError = querySelectorElement('.popup');
+    this.popupMsg = querySelectorElement('.popup__message');
+    this.btnBack = querySelectorElement('.btn__back');
+
+    this.popupError.classList.remove('d-hidden');
+    this.popupMsg.innerHTML = message;
+
+    this.btnBack.addEventListener('click', () => {
+      this.popupError.classList.add('d-hidden');
+    });
+  }
 }

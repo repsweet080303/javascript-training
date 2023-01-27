@@ -47,7 +47,7 @@ export default class Controller {
   async handleRenderView() {
     const response = await this.users.getAllUser();
     if (response.error) {
-      alert(API_ERROR_MESSAGES.GET_API);
+      this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
     } else {
       this.usersView.renderTable(response.data);
     }
@@ -63,7 +63,7 @@ export default class Controller {
       const response = await this.user.addUser(username);
 
       if (response.error) {
-        alert(API_ERROR_MESSAGES.ADD_USER);
+        this.userView.bindTogglePopup(API_ERROR_MESSAGES.ADD_USER);
       }
 
       return {
@@ -88,13 +88,13 @@ export default class Controller {
     try {
       const response = await this.user.constructor.updateUser(id, data);
 
-      if (response.error) {
-        alert(API_ERROR_MESSAGES.UPDATE_USER);
+      if (response.erorr) {
+        this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
       } else {
         const dataAllUser = await this.users.getAllUser();
 
         if (dataAllUser.error) {
-          alert(API_ERROR_MESSAGES.UPDATE_USER);
+          this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
         }
 
         this.usersView.renderTable(dataAllUser.data);
@@ -122,12 +122,12 @@ export default class Controller {
       const response = await this.user.constructor.deleteUser(id);
 
       if (response.error) {
-        alert(API_ERROR_MESSAGES.DELETE_USER);
+        this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
       } else {
         const dataAllUser = await this.users.getAllUser();
 
         if (dataAllUser.error) {
-          alert(API_ERROR_MESSAGES.DELETE_USER);
+          this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
         }
 
         this.usersView.renderTable(dataAllUser.data);
@@ -153,7 +153,7 @@ export default class Controller {
     const response = await this.user.constructor.getUserInfo(id);
 
     if (response.error) {
-      alert(API_ERROR_MESSAGES.GET_USER_INFO);
+      this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_USER_INFO);
       return;
     }
 

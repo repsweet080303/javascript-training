@@ -15,4 +15,10 @@
     border: 4px solid $color-blue;
     color: $color-secondary;
   }
+
+  &__message {
+    margin-top: 30px;
+    text-align: center;
+
+  }
 }
