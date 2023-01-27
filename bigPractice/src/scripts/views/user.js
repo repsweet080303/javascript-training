@@ -167,7 +167,6 @@ export default class {
    * @param {Function} handleUpdate - callback handler for update
    */
   bindActiveUpdate(data, handleUpdate, handleDelete) {
-    // avatar element
     this.fileUpload = document.querySelectorAll('.update-user__image');
 
     this.bindCloseUpdateForm(data);
@@ -332,6 +331,10 @@ export default class {
     });
   }
 
+  /**
+   * bindTogglePopup
+   * @param {String} message - message for error
+   */
   bindTogglePopup(message) {
     this.popupError = querySelectorElement('.popup');
     this.popupMsg = querySelectorElement('.popup__message');

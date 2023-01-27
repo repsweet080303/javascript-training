@@ -34,10 +34,7 @@ export default class Controller {
     this.userView.bindOpenModal();
     this.userView.bindCloseModal();
 
-    /**
-     * bind event add user
-     * @callback handleAddUser
-     */
+    // bind event add user
     this.userView.bindAddUser(this.handleAddUser.bind(this));
   }
 
@@ -170,6 +167,10 @@ export default class Controller {
    */
   handleSearchUsers(data) {
     const response = this.users.searchUsers(data);
+
+    if (response.error) {
+      this.userView.bindTogglePopup('Search user error');
+    }
 
     this.usersView.renderTable(response.data);
   }

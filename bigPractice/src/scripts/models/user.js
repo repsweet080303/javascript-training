@@ -64,7 +64,7 @@ export default class User {
   }
 
   /**
-   * function updateUser
+  * function updateUser
   * @param {Number} id - id user
   * @param {Object} data - data update user
   * @returns {Object} data - data transmission
