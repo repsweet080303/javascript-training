@@ -2,13 +2,13 @@ import API_ERROR_MESSAGES from '../constants/notifications';
 
 export default class Controller {
   /**
-   * @param {users} users A users instance
+   * @param {searchUser} users A users instance
    * @param {user} user A user instance
    * @param {userView} userView A userView instance
    * @param {usersView} usersView A userView instance
    */
-  constructor(users, user, userView, usersView) {
-    this.users = users;
+  constructor(searchUser, user, userView, usersView) {
+    this.searchUser = searchUser;
     this.user = user;
     this.userView = userView;
     this.usersView = usersView;
@@ -42,7 +42,7 @@ export default class Controller {
    * handle event render view
    */
   async handleRenderView() {
-    const response = await this.users.getAllUser();
+    const response = await this.user.getAllUser();
     if (response.error) {
       this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
     } else {
@@ -88,7 +88,7 @@ export default class Controller {
       if (response.erorr) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
       } else {
-        const dataAllUser = await this.users.getAllUser();
+        const dataAllUser = await this.user.getAllUser();
 
         if (dataAllUser.error) {
           this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
@@ -121,7 +121,7 @@ export default class Controller {
       if (response.error) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
       } else {
-        const dataAllUser = await this.users.getAllUser();
+        const dataAllUser = await this.user.getAllUser();
 
         if (dataAllUser.error) {
           this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
@@ -165,13 +165,18 @@ export default class Controller {
    * handle event search user
    * @param {String} data - value of input search
    */
-  handleSearchUsers(data) {
-    const response = this.users.searchUsers(data);
+  async handleSearchUsers(data) {
+    const dataAllUser = await this.user.getAllUser();
 
-    if (response.error) {
-      this.userView.bindTogglePopup('Search user error');
+    if (dataAllUser.error) {
+      this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
+    } else {
+      const response = this.searchUser.constructor.searchUsers(data, dataAllUser.data);
+
+      if (response.error) {
+        this.userView.bindTogglePopup('Search user error');
+      }
+      this.usersView.renderTable(response.data);
     }
-
-    this.usersView.renderTable(response.data);
   }
 }
