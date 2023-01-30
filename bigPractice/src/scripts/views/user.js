@@ -54,9 +54,10 @@ export default class {
    * click, option add new user show
    */
   bindOpenOption() {
+    const self = this ;
     this.btnNew.addEventListener('click', (event) => {
       event.stopPropagation();
-      this.option.classList.remove('d-hidden');
+      self.option.classList.remove('d-hidden');
     });
   }
 
@@ -65,8 +66,9 @@ export default class {
    * everywhere option add new user hidden
    */
   bindCloseOption() {
+    const self = this ;
     window.addEventListener('click', () => {
-      this.option.classList.add('d-hidden');
+      self.option.classList.add('d-hidden');
     });
   }
 
@@ -76,9 +78,10 @@ export default class {
    * popup add new user show
    */
   bindOpenModal() {
+    const self = this ;
     this.option.addEventListener('click', () => {
-      this.option.classList.add('d-hidden');
-      this.popupAdd.classList.remove('d-hidden');
+      self.option.classList.add('d-hidden');
+      self.popupAdd.classList.remove('d-hidden');
     });
   }
 
@@ -87,9 +90,10 @@ export default class {
    * clicked, popup add new user hidden
    */
   bindCloseModal() {
+    const self = this ;
     this.iconClose.addEventListener('click', () => {
-      this.input.value = '';
-      this.popupAdd.classList.add('d-hidden');
+      self.input.value = '';
+      self.popupAdd.classList.add('d-hidden');
     });
   }
 
@@ -98,8 +102,9 @@ export default class {
    * select, navbar change color
    */
   bindSelectNav() {
+    const self = this ;
     this.navbarSelect.addEventListener('click', () => {
-      this.navbarSelect.classList.add('navbar__active');
+      self.navbarSelect.classList.add('navbar__active');
     });
   }
 
@@ -110,13 +115,14 @@ export default class {
   * @param {Function} handle - callback handler for select user
   */
   bindSelectUser(handler) {
+    const self = this ;
     this.tableBody.addEventListener('click', async (event) => {
       event.stopPropagation();
 
-      this.rowUser = event.target.closest('.table-primary__user');
-      this.idUser = this.rowUser.getAttribute('data-id');
+      self.rowUser = event.target.closest('.table-primary__user');
+      self.idUser = self.rowUser.getAttribute('data-id');
 
-      await handler(this.idUser);
+      await handler(self.idUser);
     });
   }
 
@@ -148,17 +154,18 @@ export default class {
    * @param {Function} handleUpdate - callback handler for update
    */
   bindOpenUpdateForm(data, handleUpdate, handleDelete) {
+    const self = this ;
+
     this.btnPencil = querySelectorElement('.btn__edit');
-
     this.btnPencil.addEventListener('click', () => {
-      this.searchTitle.style.paddingRight = '495px';
-      this.isUpdate = true;
+      self.searchTitle.style.paddingRight = '495px';
+      self.isUpdate = true;
 
-      this.info.classList.add('d-hidden');
-      this.formUpdate.classList.remove('d-hidden');
-      this.formUpdate.innerHTML = this.template.renderUpdateDetail(data);
+      self.info.classList.add('d-hidden');
+      self.formUpdate.classList.remove('d-hidden');
+      self.formUpdate.innerHTML = self.template.renderUpdateDetail(data);
 
-      this.bindActiveUpdate(data, handleUpdate, handleDelete);
+      self.bindActiveUpdate(data, handleUpdate, handleDelete);
     });
   }
 
@@ -184,14 +191,15 @@ export default class {
    * @param {Object} data - information of user
    */
   bindCloseUpdateForm(data) {
-    this.btnBack = querySelectorElement('.btn__arrow');
+    const self = this ;
 
+    this.btnBack = querySelectorElement('.btn__arrow');
     this.btnBack.addEventListener('click', () => {
-      this.isUpdate = true;
-      this.formUpdate.classList.add('d-hidden');
-      this.info.classList.remove('d-hidden');
-      this.info.innerHTML = this.template.renderUserDetail(data);
-      this.bindOpenUpdateForm(data);
+      self.isUpdate = true;
+      self.formUpdate.classList.add('d-hidden');
+      self.info.classList.remove('d-hidden');
+      self.info.innerHTML = self.template.renderUserDetail(data);
+      self.bindOpenUpdateForm(data);
     });
   }
 
@@ -199,15 +207,16 @@ export default class {
    * function bindCloseUpdateForm
    */
   bindChangeStatus() {
+    const self = this ;
     this.btnSwitch = querySelectorElement('.btn__toggle__check');
     this.statusLabel = querySelectorElement('.status-item--update');
 
     this.btnSwitch.addEventListener('click', () => {
-      const isChecked = this.btnSwitch.checked ? 'Active' : 'Not active';
-      const action = this.btnSwitch.checked ? 'add' : 'remove';
+      const isChecked = self.btnSwitch.checked ? 'Active' : 'Not active';
+      const action = self.btnSwitch.checked ? 'add' : 'remove';
 
-      this.statusLabel.classList[action]('status-item--active');
-      this.statusLabel.innerHTML = isChecked;
+      self.statusLabel.classList[action]('status-item--active');
+      self.statusLabel.innerHTML = isChecked;
     });
   }
 
@@ -216,6 +225,8 @@ export default class {
    * @param {Object} fileUpload - file image upload for user
    */
   bindUpdateAvatar(fileUpload) {
+    const self = this ;
+
     this.avatarUser = querySelectorElement('.update-user__body__wrapper');
 
     fileUpload.forEach((element) => {
@@ -225,8 +236,8 @@ export default class {
         avatar.src = await changeBase64(file);
         avatar.classList.add('update-user__body__img');
 
-        this.avatarUser.innerHTML = '';
-        this.avatarUser.appendChild(avatar);
+        self.avatarUser.innerHTML = '';
+        self.avatarUser.appendChild(avatar);
       });
     });
   }
@@ -237,6 +248,8 @@ export default class {
    * @param {Function} handleUpdate - function handle update
    */
   bindUpdateUser(data, handleUpdate) {
+    const self = this ;
+
     this.btnSave = querySelectorElement('.btn__save-info');
     this.inputName = querySelectorElement('#input__name');
     this.inputEmail = querySelectorElement('#input__email');
@@ -248,9 +261,9 @@ export default class {
       const msgName = querySelectorElement('.name--error');
       const msgEmail = querySelectorElement('.email--error');
 
-      if (validateNameEmpty(this.inputName.value)) {
+      if (validateNameEmpty(self.inputName.value)) {
         msgName.classList.remove('d-hidden');
-      } else if (validateEmailRegex(this.inputEmail.value)) {
+      } else if (validateEmailRegex(self.inputEmail.value)) {
         msgName.classList.add('d-hidden');
         msgEmail.classList.remove('d-hidden');
       } else {
@@ -259,10 +272,10 @@ export default class {
 
         handleUpdate(data.id, {
           avatar: avatar.src,
-          name: this.inputName.value,
-          isActive: this.statusActive.checked,
-          email: this.inputEmail.value,
-          description: this.bio.value,
+          name: self.inputName.value,
+          isActive: self.statusActive.checked,
+          email: self.inputEmail.value,
+          description: self.bio.value,
         });
       }
     });
@@ -273,15 +286,17 @@ export default class {
   * @param {Function} handler - handler function add user
   */
   bindAddUser(handler) {
+    const self = this ;
+
     this.btnSave.addEventListener('click', async () => {
-      const response = await handler(this.input.value);
-      const newElement = this.template.renderUser(response.data);
+      const response = await handler(self.input.value);
+      const newElement = self.template.renderUser(response.data);
 
-      this.input.value = '';
-      this.popupAdd.classList.add('d-hidden');
+      self.input.value = '';
+      self.popupAdd.classList.add('d-hidden');
 
-      const newRow = `${this.tableBody.innerHTML} ${newElement}`;
-      this.tableBody.innerHTML = newRow;
+      const newRow = `${self.tableBody.innerHTML} ${newElement}`;
+      self.tableBody.innerHTML = newRow;
     });
   }
 
@@ -289,9 +304,11 @@ export default class {
    * function bindOpenPopupDelete
    */
   bindOpenPopupDelete() {
+    const self = this ;
+
     this.btnDelete = querySelectorElement('.btn__delete');
     this.btnDelete.addEventListener('click', () => {
-      this.popupDelete.classList.remove('d-hidden');
+      self.popupDelete.classList.remove('d-hidden');
     });
   }
 
@@ -299,8 +316,10 @@ export default class {
    * function bindClosePopupDelete
    */
   bindClosePopupDelete() {
+    const self = this ;
+
     this.btnCancel.addEventListener('click', () => {
-      this.popupDelete.classList.add('d-hidden');
+      self.popupDelete.classList.add('d-hidden');
     });
   }
 
@@ -310,12 +329,13 @@ export default class {
    * @param {Function} handleDelete - callback function
    */
   bindDeleteUser(data, handleDelete) {
-    this.btnRemove = querySelectorElement('.btn__remove');
+    const self = this ;
 
+    this.btnRemove = querySelectorElement('.btn__remove');
     this.btnRemove.addEventListener('click', () => {
       handleDelete(data.id);
-      this.popupDelete.classList.add('d-hidden');
-      this.formUpdate.classList.add('d-hidden');
+      self.popupDelete.classList.add('d-hidden');
+      self.formUpdate.classList.add('d-hidden');
     });
   }
 
@@ -324,6 +344,8 @@ export default class {
    * @param {String} message - message for error
    */
   bindTogglePopup(message) {
+    const self = this ;
+
     this.popupError = querySelectorElement('.popup');
     this.popupMsg = querySelectorElement('.popup__message');
     this.btnBack = querySelectorElement('.btn__back');
@@ -332,7 +354,7 @@ export default class {
     this.popupMsg.innerHTML = message;
 
     this.btnBack.addEventListener('click', () => {
-      this.popupError.classList.add('d-hidden');
+      self.popupError.classList.add('d-hidden');
     });
   }
 }
