@@ -1,14 +1,12 @@
 /**
  * Select one element
- * @param {string} selectElement
- * @returns {Element} first element of DOM
+ * @param {String} selectElement - The name class of the element to select
  */
 const querySelectorElement = (selectElement) => document.querySelector(selectElement);
 
 /**
  * Select list element
- * @param {string} selectElement
- * @returns {Element} nodelist
+ * @param {String} selectElement - The name class of the element to select
  */
 const querySelectorAllElement = (selectElement) => document.querySelectorAll(selectElement);
 

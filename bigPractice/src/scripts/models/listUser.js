@@ -5,7 +5,7 @@ export default class {
     this.users = [];
   }
 
-   /**
+  /**
   * function getAllUser get Array users
   * by getUsers and assign them to users
   * @returns {Object} data - transmission data

@@ -19,7 +19,7 @@ export default class Template {
 
   /**
    * render user
-   * @param {data} is Object
+   * @param {Array} data - data transmission from API
    * @returns {String} template string
    */
   renderUser(data) {
@@ -42,7 +42,7 @@ export default class Template {
 
   /**
    * render renderUserDetail
-   * @param {data} is Object
+   * @param {Array} data - data transmission from API
    * @returns {String} template string
    */
   renderUserDetail(data) {
@@ -84,7 +84,7 @@ export default class Template {
 
   /**
    * render renderUpdateDetail
-   * @param {data} is Object
+   * @param {Array} data - data transmission from API
    * @returns {String} template string
    */
   renderUpdateDetail(data) {

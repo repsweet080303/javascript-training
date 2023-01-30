@@ -106,7 +106,7 @@ export default class {
   * function bindSelectUser get parameter is
   * handler function and call back function
   * with parameter id user
-  * @callback handler
+  * @param {Function} handle - callback handler for select user
   */
   bindSelectUser(handler) {
     this.tableBody.addEventListener('click', async (event) => {
@@ -212,6 +212,7 @@ export default class {
 
   /**
    * function bindUpdateAvatar
+   * @param {Object} fileUpload - file image upload for user
    */
   bindUpdateAvatar(fileUpload) {
     this.avatarUser = querySelectorElement('.update-user__body__wrapper');
