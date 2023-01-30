@@ -2,6 +2,7 @@
   min-width: 248px;
   position: relative;
   background-color: $color-secondary;
+  display: flex;
   flex-direction: column;
 
   &__select {
