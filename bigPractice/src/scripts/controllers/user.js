@@ -57,7 +57,7 @@ export default class Controller {
    */
   async handleAddUser(username) {
     try {
-      const response = await this.user.addUser(username);
+      const response = await this.user.add(username);
 
       if (response.error) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.ADD_USER);
@@ -83,7 +83,7 @@ export default class Controller {
    */
   async handleUpdateUser(id, data) {
     try {
-      const response = await this.user.updateUser(id, data);
+      const response = await this.user.update(id, data);
 
       if (response.erorr) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
@@ -116,7 +116,7 @@ export default class Controller {
    */
   async handleDeleteUser(id) {
     try {
-      const response = await this.user.deleteUser(id);
+      const response = await this.user.delete(id);
 
       if (response.error) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);

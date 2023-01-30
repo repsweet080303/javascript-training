@@ -15,7 +15,7 @@ export default class User {
    * @param {String} username - input value
    * @returns {Object} user - object information user
   */
-  async addUser(username) {
+  async add(username) {
     try {
       const user = {
         avatar: this.avatar,
@@ -70,7 +70,7 @@ export default class User {
   * @returns {Object} data - data transmission
   */
 
-   async updateUser(id, data) {
+   async update(id, data) {
     try {
       const updatedUser = {
         ...data,
@@ -95,7 +95,7 @@ export default class User {
   * @param {Number} id - id user
   * @returns {Object} data - data transmission
   */
-   async deleteUser(id) {
+   async delete(id) {
     try {
       const response = await deleteUserById(id);
 
