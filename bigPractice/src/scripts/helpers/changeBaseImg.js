@@ -3,7 +3,7 @@
    * @param {Object} file - file user uploaded
    * @return {Object} Promise - return resolve or reject
    */
- const changeBase64 =  (file) => {
+ function changeBase64 (file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -11,4 +11,4 @@
     reader.onerror = () => reject(reader.error);
   });
 }
-export default changeBase64
+export default changeBase64 ;

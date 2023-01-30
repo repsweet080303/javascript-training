@@ -83,7 +83,7 @@ export default class Controller {
    */
   async handleUpdateUser(id, data) {
     try {
-      const response = await this.user.constructor.updateUser(id, data);
+      const response = await this.user.updateUser(id, data);
 
       if (response.erorr) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
@@ -116,7 +116,7 @@ export default class Controller {
    */
   async handleDeleteUser(id) {
     try {
-      const response = await this.user.constructor.deleteUser(id);
+      const response = await this.user.deleteUser(id);
 
       if (response.error) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
@@ -147,7 +147,7 @@ export default class Controller {
    * @param {Number} id - id of the user
    */
   async handleViewUser(id) {
-    const response = await this.user.constructor.getUserInfo(id);
+    const response = await this.user.getUserInfo(id);
 
     if (response.error) {
       this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_USER_INFO);

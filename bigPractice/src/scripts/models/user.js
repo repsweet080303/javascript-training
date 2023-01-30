@@ -47,7 +47,7 @@ export default class User {
    * @returns {Object} data - data transmission
   */
 
-  static async getUserInfo(id) {
+   async getUserInfo(id) {
     try {
       const response = await getUserById(id);
 
@@ -70,7 +70,7 @@ export default class User {
   * @returns {Object} data - data transmission
   */
 
-  static async updateUser(id, data) {
+   async updateUser(id, data) {
     try {
       const updatedUser = {
         ...data,
@@ -95,7 +95,7 @@ export default class User {
   * @param {Number} id - id user
   * @returns {Object} data - data transmission
   */
-  static async deleteUser(id) {
+   async deleteUser(id) {
     try {
       const response = await deleteUserById(id);
 
