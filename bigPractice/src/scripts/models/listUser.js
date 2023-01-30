@@ -11,7 +11,6 @@ export default class {
   * @returns {Object} data - transmission data
   */
    async getAllUser() {
-    try {
       const response = await getUsers();
       this.users = response.data;
 
@@ -19,12 +18,6 @@ export default class {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 
   /**
@@ -33,17 +26,10 @@ export default class {
    * @returns {Array} response - list transmission data
    */
    searchUsers(data) {
-    try {
       const response = this.users.filter((user) => user.name.toLowerCase().includes(data));
       return {
         data: response,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 }

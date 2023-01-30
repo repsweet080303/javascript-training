@@ -45,9 +45,9 @@ export default class Controller {
     const response = await this.listUser.getAllUser();
     if (response.error) {
       this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
-    } else {
-      this.usersView.renderTable(response.data);
+      return;
     }
+      this.usersView.renderTable(response.data);
   }
 
   /**
@@ -56,23 +56,16 @@ export default class Controller {
    * @returns {Object} data - transmission data
    */
   async handleAddUser(username) {
-    try {
       const response = await this.user.add(username);
 
       if (response.error) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.ADD_USER);
+        return
       }
-
       return {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 
   /**
@@ -82,31 +75,14 @@ export default class Controller {
    * @returns {Object} data - transmission data
    */
   async handleUpdateUser(id, data) {
-    try {
-      const response = await this.user.update(id, data);
+      const resUser = await this.user.update(id, data);
 
-      if (response.erorr) {
+      if (resUser.erorr) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
-      } else {
-        const dataAllUser = await this.listUser.getAllUser();
-
-        if (dataAllUser.error) {
-          this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
-        }
-
-        this.usersView.renderTable(dataAllUser.data);
+        return;
       }
-
-      return {
-        data: response.data,
-        error: null,
-      };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
+        const dataAllUser = await this.listUser.getAllUser();
+        this.usersView.renderTable(dataAllUser.data);
   }
 
   /**
@@ -115,31 +91,14 @@ export default class Controller {
    * @returns {Object} data - transmission data
    */
   async handleDeleteUser(id) {
-    try {
-      const response = await this.user.delete(id);
+      const resUser = await this.user.delete(id);
 
-      if (response.error) {
+      if (resUser.error) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
-      } else {
-        const dataAllUser = await this.listUser.getAllUser();
-
-        if (dataAllUser.error) {
-          this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
-        }
-
-        this.usersView.renderTable(dataAllUser.data);
+        return;
       }
-
-      return {
-        data: response.data,
-        erorr: null,
-      };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
+        const dataAllUser = await this.listUser.getAllUser();
+        this.usersView.renderTable(dataAllUser.data);
   }
 
   /**

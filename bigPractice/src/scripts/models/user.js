@@ -3,12 +3,6 @@ import {
 } from '../services/user';
 
 export default class User {
-  constructor() {
-    this.avatar = '';
-    this.isActive = false;
-    this.email = '';
-    this.description = '';
-  }
 
   /**
    * function addUser
@@ -16,29 +10,21 @@ export default class User {
    * @returns {Object} user - object information user
   */
   async add(username) {
-    try {
       const user = {
-        avatar: this.avatar,
+        avatar: '',
         name: username,
-        isActive: this.isActive,
-        email: this.email,
-        description: this.description,
+        isActive: false,
+        email: '',
+        description: '',
         registered: new Date().toISOString(),
         lastUpdated: new Date().toISOString(),
       };
 
       const response = await createUser(user);
-
       return {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 
   /**
@@ -48,19 +34,12 @@ export default class User {
   */
 
    async getUserInfo(id) {
-    try {
       const response = await getUserById(id);
 
       return {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 
   /**
@@ -71,7 +50,6 @@ export default class User {
   */
 
    async update(id, data) {
-    try {
       const updatedUser = {
         ...data,
         lastUpdated: new Date().toString(),
@@ -82,12 +60,6 @@ export default class User {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 
   /**
@@ -96,18 +68,11 @@ export default class User {
   * @returns {Object} data - data transmission
   */
    async delete(id) {
-    try {
       const response = await deleteUserById(id);
 
       return {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 }
