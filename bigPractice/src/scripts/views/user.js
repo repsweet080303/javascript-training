@@ -167,7 +167,6 @@ export default class {
    * @param {Function} handleUpdate - callback handler for update
    */
   bindActiveUpdate(data, handleUpdate, handleDelete) {
-    // avatar element
     this.fileUpload = document.querySelectorAll('.update-user__image');
 
     this.bindCloseUpdateForm(data);
@@ -329,6 +328,23 @@ export default class {
       handleDelete(data.id);
       this.popupDelete.classList.add('d-hidden');
       this.formUpdate.classList.add('d-hidden');
+    });
+  }
+
+  /**
+   * bindTogglePopup
+   * @param {String} message - message for error
+   */
+  bindTogglePopup(message) {
+    this.popupError = querySelectorElement('.popup');
+    this.popupMsg = querySelectorElement('.popup__message');
+    this.btnBack = querySelectorElement('.btn__back');
+
+    this.popupError.classList.remove('d-hidden');
+    this.popupMsg.innerHTML = message;
+
+    this.btnBack.addEventListener('click', () => {
+      this.popupError.classList.add('d-hidden');
     });
   }
 }

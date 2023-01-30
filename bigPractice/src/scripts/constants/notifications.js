@@ -3,6 +3,7 @@ const API_ERROR_MESSAGES = {
   ADD_USER: 'Add new user failed',
   UPDATE_USER: 'Update user failed',
   DELETE_USER: 'Delete user failed',
+  GET_USER_INFO: 'Get user info failed',
 };
 
-export default { API_ERROR_MESSAGES };
+export default API_ERROR_MESSAGES;

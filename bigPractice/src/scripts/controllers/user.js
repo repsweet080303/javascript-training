@@ -2,13 +2,13 @@ import API_ERROR_MESSAGES from '../constants/notifications';
 
 export default class Controller {
   /**
-   * @param {users} users A users instance
+   * @param {searchUser} users A users instance
    * @param {user} user A user instance
    * @param {userView} userView A userView instance
    * @param {usersView} usersView A userView instance
    */
-  constructor(users, user, userView, usersView) {
-    this.users = users;
+  constructor(searchUser, user, userView, usersView) {
+    this.searchUser = searchUser;
     this.user = user;
     this.userView = userView;
     this.usersView = usersView;
@@ -34,10 +34,7 @@ export default class Controller {
     this.userView.bindOpenModal();
     this.userView.bindCloseModal();
 
-    /**
-     * bind event add user
-     * @callback handleAddUser
-     */
+    // bind event add user
     this.userView.bindAddUser(this.handleAddUser.bind(this));
   }
 
@@ -45,9 +42,9 @@ export default class Controller {
    * handle event render view
    */
   async handleRenderView() {
-    const response = await this.users.getAllUser();
+    const response = await this.user.getAllUser();
     if (response.error) {
-      alert(API_ERROR_MESSAGES.GET_API);
+      this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
     } else {
       this.usersView.renderTable(response.data);
     }
@@ -63,7 +60,7 @@ export default class Controller {
       const response = await this.user.addUser(username);
 
       if (response.error) {
-        alert(API_ERROR_MESSAGES.ADD_USER);
+        this.userView.bindTogglePopup(API_ERROR_MESSAGES.ADD_USER);
       }
 
       return {
@@ -88,13 +85,13 @@ export default class Controller {
     try {
       const response = await this.user.constructor.updateUser(id, data);
 
-      if (response.error) {
-        alert(API_ERROR_MESSAGES.UPDATE_USER);
+      if (response.erorr) {
+        this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
       } else {
-        const dataAllUser = await this.users.getAllUser();
+        const dataAllUser = await this.user.getAllUser();
 
         if (dataAllUser.error) {
-          alert(API_ERROR_MESSAGES.UPDATE_USER);
+          this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
         }
 
         this.usersView.renderTable(dataAllUser.data);
@@ -122,12 +119,12 @@ export default class Controller {
       const response = await this.user.constructor.deleteUser(id);
 
       if (response.error) {
-        alert(API_ERROR_MESSAGES.DELETE_USER);
+        this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
       } else {
-        const dataAllUser = await this.users.getAllUser();
+        const dataAllUser = await this.user.getAllUser();
 
         if (dataAllUser.error) {
-          alert(API_ERROR_MESSAGES.DELETE_USER);
+          this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
         }
 
         this.usersView.renderTable(dataAllUser.data);
@@ -153,7 +150,7 @@ export default class Controller {
     const response = await this.user.constructor.getUserInfo(id);
 
     if (response.error) {
-      alert(API_ERROR_MESSAGES.GET_USER_INFO);
+      this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_USER_INFO);
       return;
     }
 
@@ -168,9 +165,18 @@ export default class Controller {
    * handle event search user
    * @param {String} data - value of input search
    */
-  handleSearchUsers(data) {
-    const response = this.users.searchUsers(data);
+  async handleSearchUsers(data) {
+    const dataAllUser = await this.user.getAllUser();
 
-    this.usersView.renderTable(response.data);
+    if (dataAllUser.error) {
+      this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
+    } else {
+      const response = this.searchUser.constructor.searchUsers(data, dataAllUser.data);
+
+      if (response.error) {
+        this.userView.bindTogglePopup('Search user error');
+      }
+      this.usersView.renderTable(response.data);
+    }
   }
 }

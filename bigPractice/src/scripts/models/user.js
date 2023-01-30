@@ -2,12 +2,36 @@ import {
   createUser, getUserById, updateUserById, deleteUserById,
 } from '../services/user';
 
+import getUsers from '../services/users';
+
 export default class User {
   constructor() {
     this.avatar = '';
     this.isActive = false;
     this.email = '';
     this.description = '';
+  }
+
+  /**
+  * function getAllUser get Array users
+  * by getUsers and assign them to users
+  * @returns {Object} data - transmission data
+  */
+  async getAllUser() {
+    try {
+      const response = await getUsers();
+      this.users = response.data;
+
+      return {
+        data: response.data,
+        error: null,
+      };
+    } catch (error) {
+      return {
+        data: null,
+        error,
+      };
+    }
   }
 
   /**
@@ -64,7 +88,7 @@ export default class User {
   }
 
   /**
-   * function updateUser
+  * function updateUser
   * @param {Number} id - id user
   * @param {Object} data - data update user
   * @returns {Object} data - data transmission
