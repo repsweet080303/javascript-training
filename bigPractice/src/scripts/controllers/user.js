@@ -1,4 +1,4 @@
-import API_ERROR_MESSAGES from '../constants/notifications';
+import API_ERROR_MESSAGES from '../constants/messages';
 
 export default class Controller {
   /**

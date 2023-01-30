@@ -1,5 +1,6 @@
 import { querySelectorElement } from '../helpers/selectors';
 import { validateEmailRegex, validateNameEmpty } from '../helpers/validate';
+import { changeBase64 } from '../helpers/changeBaseImg';
 
 export default class {
   constructor(template) {
@@ -221,26 +222,12 @@ export default class {
       element.addEventListener('change', async (e) => {
         const file = e.target.files[0];
         const avatar = document.createElement('img');
-        avatar.src = await this.constructor.changeBase64(file);
+        avatar.src = await changeBase64(file);
         avatar.classList.add('update-user__body__img');
 
         this.avatarUser.innerHTML = '';
         this.avatarUser.appendChild(avatar);
       });
-    });
-  }
-
-  /**
-   * function changeBase64
-   * @param {Element} file - file user uploaded
-   * @return {Object} Promise - return resolve or reject
-   */
-  static changeBase64(file) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
-      reader.onerror = () => reject(reader.error);
     });
   }
 
