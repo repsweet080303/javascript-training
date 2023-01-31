@@ -10,7 +10,7 @@ export default class {
   * by getUsers and assign them to users
   * @returns {Object} data - transmission data
   */
-   async getAllUser() {
+   async get() {
       const response = await getUsers();
       this.users = response.data;
 
@@ -25,7 +25,7 @@ export default class {
    * @param {String} data - value input search
    * @returns {Array} response - list transmission data
    */
-   searchUsers(data) {
+   search(data) {
       const response = this.users.filter((user) => user.name.toLowerCase().includes(data));
       return {
         data: response,
