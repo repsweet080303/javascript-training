@@ -27,9 +27,7 @@ export default class {
    */
    search(data) {
       const response = this.users.filter((user) => user.name.toLowerCase().includes(data));
-      return {
-        data: response,
-        error: null,
-      };
+
+      return response;
   }
 }

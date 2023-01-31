@@ -125,11 +125,8 @@ export default class Controller {
    * @param {String} data - value of input search
    */
   async handleSearchUsers(data) {
-      const response = this.listUser.search(data);
+      const result = this.listUser.search(data);
 
-      if (response.error) {
-        this.userView.bindTogglePopup('Search user error');
-      }
-      this.listUserView.renderTable(response.data);
+      this.listUserView.renderTable(result);
   }
 }
