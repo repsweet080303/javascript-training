@@ -37,9 +37,11 @@ export default class {
    */
 
   bindOpenSearch() {
-    this.btnSearch.addEventListener('click', () => {
-      this.headerSearch.classList.add('d-hidden');
-      this.wrapperSearch.classList.remove('d-hidden');
+    const self = this ;
+    
+    self.btnSearch.addEventListener('click', () => {
+      self.headerSearch.classList.add('d-hidden');
+      self.wrapperSearch.classList.remove('d-hidden');
     });
   }
 
@@ -49,9 +51,11 @@ export default class {
    * hide search input
    */
   bindCloseSearch() {
-    this.btnClose.addEventListener('click', () => {
-      this.headerSearch.classList.remove('d-hidden');
-      this.wrapperSearch.classList.add('d-hidden');
+    const self = this ;
+
+    self.btnClose.addEventListener('click', () => {
+      self.headerSearch.classList.remove('d-hidden');
+      self.wrapperSearch.classList.add('d-hidden');
     });
   }
 
@@ -59,7 +63,9 @@ export default class {
    * bindSearchUsers
    */
   bindSearchUsers(handle) {
-    this.searchInput.addEventListener('keyup', (e) => {
+    const self = this ;
+
+    self.searchInput.addEventListener('keyup', (e) => {
       handle(e.target.value.toLowerCase());
     });
   }

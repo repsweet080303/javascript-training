@@ -1,6 +1,6 @@
 /**
  * function validateNameEmpty
- * @param {string} value - value name input
+ * @param {String} value - value name input
  * @returns {Boolean} return true if value is empty
  */
 const validateNameEmpty = (value) => {
@@ -12,7 +12,7 @@ const validateNameEmpty = (value) => {
 
 /**
  * function validateEmailRegex
- * @param {string} value - value email
+ * @param {String} value - value email
  * @returns {Boolean} return true if value not match regex pattern
  */
 const validateEmailRegex = (value) => {

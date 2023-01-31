@@ -2,67 +2,29 @@ import {
   createUser, getUserById, updateUserById, deleteUserById,
 } from '../services/user';
 
-import getUsers from '../services/users';
-
 export default class User {
-  constructor() {
-    this.avatar = '';
-    this.isActive = false;
-    this.email = '';
-    this.description = '';
-  }
-
-  /**
-  * function getAllUser get Array users
-  * by getUsers and assign them to users
-  * @returns {Object} data - transmission data
-  */
-  async getAllUser() {
-    try {
-      const response = await getUsers();
-      this.users = response.data;
-
-      return {
-        data: response.data,
-        error: null,
-      };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
-  }
 
   /**
    * function addUser
    * @param {String} username - input value
    * @returns {Object} user - object information user
   */
-  async addUser(username) {
-    try {
+  async add(username) {
       const user = {
-        avatar: this.avatar,
+        avatar: '',
         name: username,
-        isActive: this.isActive,
-        email: this.email,
-        description: this.description,
+        isActive: false,
+        email: '',
+        description: '',
         registered: new Date().toISOString(),
         lastUpdated: new Date().toISOString(),
       };
 
       const response = await createUser(user);
-
       return {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 
   /**
@@ -71,20 +33,13 @@ export default class User {
    * @returns {Object} data - data transmission
   */
 
-  static async getUserInfo(id) {
-    try {
+   async getUserInfo(id) {
       const response = await getUserById(id);
 
       return {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 
   /**
@@ -94,8 +49,7 @@ export default class User {
   * @returns {Object} data - data transmission
   */
 
-  static async updateUser(id, data) {
-    try {
+   async update(id, data) {
       const updatedUser = {
         ...data,
         lastUpdated: new Date().toString(),
@@ -106,12 +60,6 @@ export default class User {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 
   /**
@@ -119,19 +67,12 @@ export default class User {
   * @param {Number} id - id user
   * @returns {Object} data - data transmission
   */
-  static async deleteUser(id) {
-    try {
+   async delete(id) {
       const response = await deleteUserById(id);
 
       return {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 }

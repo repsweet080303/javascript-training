@@ -1,28 +1,28 @@
-import API_ERROR_MESSAGES from '../constants/notifications';
+import API_ERROR_MESSAGES from '../constants/messages';
 
 export default class Controller {
   /**
-   * @param {searchUser} users A users instance
-   * @param {user} user A user instance
-   * @param {userView} userView A userView instance
-   * @param {usersView} usersView A userView instance
+   * @param {Object} listUser - A users instance
+   * @param {Object} user - A user instance
+   * @param {Object} userView - A userView instance
+   * @param {Object} listUserView - A userView instance
    */
-  constructor(searchUser, user, userView, usersView) {
-    this.searchUser = searchUser;
+  constructor(listUser, user, userView, listUserView) {
+    this.listUser = listUser;
     this.user = user;
     this.userView = userView;
-    this.usersView = usersView;
+    this.listUserView = listUserView;
 
     // bind event toggle option add new user
     this.userView.bindOpenOption();
     this.userView.bindCloseOption();
 
     // bind event toggle search input
-    this.usersView.bindOpenSearch();
-    this.usersView.bindCloseSearch();
+    this.listUserView.bindOpenSearch();
+    this.listUserView.bindCloseSearch();
 
     // bind event search user
-    this.usersView.bindSearchUsers(this.handleSearchUsers.bind(this));
+    this.listUserView.bindSearchUsers(this.handleSearchUsers.bind(this));
 
     // bind event select navbar
     this.userView.bindSelectNav();
@@ -42,12 +42,12 @@ export default class Controller {
    * handle event render view
    */
   async handleRenderView() {
-    const response = await this.user.getAllUser();
+    const response = await this.listUser.get();
     if (response.error) {
       this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
-    } else {
-      this.usersView.renderTable(response.data);
+      return;
     }
+      this.listUserView.renderTable(response.data);
   }
 
   /**
@@ -56,23 +56,16 @@ export default class Controller {
    * @returns {Object} data - transmission data
    */
   async handleAddUser(username) {
-    try {
-      const response = await this.user.addUser(username);
+      const response = await this.user.add(username);
 
       if (response.error) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.ADD_USER);
+        return
       }
-
       return {
         data: response.data,
         error: null,
       };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
   }
 
   /**
@@ -82,31 +75,14 @@ export default class Controller {
    * @returns {Object} data - transmission data
    */
   async handleUpdateUser(id, data) {
-    try {
-      const response = await this.user.constructor.updateUser(id, data);
+      const resUser = await this.user.update(id, data);
 
-      if (response.erorr) {
+      if (resUser.erorr) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
-      } else {
-        const dataAllUser = await this.user.getAllUser();
-
-        if (dataAllUser.error) {
-          this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
-        }
-
-        this.usersView.renderTable(dataAllUser.data);
+        return;
       }
-
-      return {
-        data: response.data,
-        error: null,
-      };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
+        const dataAllUser = await this.listUser.get();
+        this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
@@ -115,31 +91,14 @@ export default class Controller {
    * @returns {Object} data - transmission data
    */
   async handleDeleteUser(id) {
-    try {
-      const response = await this.user.constructor.deleteUser(id);
+      const resUser = await this.user.delete(id);
 
-      if (response.error) {
+      if (resUser.error) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
-      } else {
-        const dataAllUser = await this.user.getAllUser();
-
-        if (dataAllUser.error) {
-          this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
-        }
-
-        this.usersView.renderTable(dataAllUser.data);
+        return;
       }
-
-      return {
-        data: response.data,
-        erorr: null,
-      };
-    } catch (error) {
-      return {
-        data: null,
-        error,
-      };
-    }
+        const dataAllUser = await this.listUser.get();
+        this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
@@ -147,7 +106,7 @@ export default class Controller {
    * @param {Number} id - id of the user
    */
   async handleViewUser(id) {
-    const response = await this.user.constructor.getUserInfo(id);
+    const response = await this.user.getUserInfo(id);
 
     if (response.error) {
       this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_USER_INFO);
@@ -166,17 +125,8 @@ export default class Controller {
    * @param {String} data - value of input search
    */
   async handleSearchUsers(data) {
-    const dataAllUser = await this.user.getAllUser();
+      const result = this.listUser.search(data);
 
-    if (dataAllUser.error) {
-      this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
-    } else {
-      const response = this.searchUser.constructor.searchUsers(data, dataAllUser.data);
-
-      if (response.error) {
-        this.userView.bindTogglePopup('Search user error');
-      }
-      this.usersView.renderTable(response.data);
-    }
+      this.listUserView.renderTable(result);
   }
 }
