@@ -62,7 +62,7 @@
 
 **Run data**
 
-* npm run start-db ( yarn start-db )
+* npm run start-server ( yarn start-server )
 
 
 **Run project**
