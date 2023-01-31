@@ -5,24 +5,24 @@ export default class Controller {
    * @param {Object} listUser - A users instance
    * @param {Object} user - A user instance
    * @param {Object} userView - A userView instance
-   * @param {Object} usersView - A userView instance
+   * @param {Object} listUserView - A userView instance
    */
-  constructor(listUser, user, userView, usersView) {
+  constructor(listUser, user, userView, listUserView) {
     this.listUser = listUser;
     this.user = user;
     this.userView = userView;
-    this.usersView = usersView;
+    this.listUserView = listUserView;
 
     // bind event toggle option add new user
     this.userView.bindOpenOption();
     this.userView.bindCloseOption();
 
     // bind event toggle search input
-    this.usersView.bindOpenSearch();
-    this.usersView.bindCloseSearch();
+    this.listUserView.bindOpenSearch();
+    this.listUserView.bindCloseSearch();
 
     // bind event search user
-    this.usersView.bindSearchUsers(this.handleSearchUsers.bind(this));
+    this.listUserView.bindSearchUsers(this.handleSearchUsers.bind(this));
 
     // bind event select navbar
     this.userView.bindSelectNav();
@@ -47,7 +47,7 @@ export default class Controller {
       this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
       return;
     }
-      this.usersView.renderTable(response.data);
+      this.listUserView.renderTable(response.data);
   }
 
   /**
@@ -82,7 +82,7 @@ export default class Controller {
         return;
       }
         const dataAllUser = await this.listUser.getAllUser();
-        this.usersView.renderTable(dataAllUser.data);
+        this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
@@ -98,7 +98,7 @@ export default class Controller {
         return;
       }
         const dataAllUser = await this.listUser.getAllUser();
-        this.usersView.renderTable(dataAllUser.data);
+        this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
@@ -130,6 +130,6 @@ export default class Controller {
       if (response.error) {
         this.userView.bindTogglePopup('Search user error');
       }
-      this.usersView.renderTable(response.data);
+      this.listUserView.renderTable(response.data);
   }
 }
