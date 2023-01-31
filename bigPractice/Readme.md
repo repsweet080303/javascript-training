@@ -21,7 +21,7 @@
 
 ## Timeline
 
-* 8 days working (12 days working)
+* 8 days working (15 days working)
 
 
 ## Teamsize
