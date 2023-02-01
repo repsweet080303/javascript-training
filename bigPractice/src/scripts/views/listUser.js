@@ -42,6 +42,8 @@ export default class {
     self.btnSearch.addEventListener('click', () => {
       self.headerSearch.classList.add('d-hidden');
       self.wrapperSearch.classList.remove('d-hidden');
+      self.wrapperSearch.classList.add('d-flex-between');
+      
     });
   }
 
