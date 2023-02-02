@@ -1,4 +1,7 @@
 import axiosConfig from './axiosConfig';
+import ENDPOINT_API from '../constants/apiEndpoint';
+
+const userURL = ENDPOINT_API.USER_API;
 
 /**
  * function getUsers get data from Json server
@@ -6,7 +9,7 @@ import axiosConfig from './axiosConfig';
  */
 const getUsers = async () => {
   try {
-    const response = await axiosConfig.get('/users');
+    const response = await axiosConfig.get(userURL);
 
     return {
       data: response.data,
