@@ -14,7 +14,7 @@ export default class {
       const response = await getUsers();
       this.users = response.data;
       
-      return response.data
+      return response
       
   }
 

@@ -1,3 +1,5 @@
+import API_ERROR_MESSAGES from '../constants/messages';
+
 export default class Controller {
   /**
    * @param {Object} listUser - A users instance
@@ -41,7 +43,12 @@ export default class Controller {
    */
   async handleRenderView() {
     const response = await this.listUser.get();
-      this.listUserView.renderTable(response);
+
+    if (response.error) {
+      this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
+      return;
+    }
+      this.listUserView.renderTable(response.data);
   }
 
   /**
@@ -51,40 +58,45 @@ export default class Controller {
    */
   async handleAddUser(username) {
       const response = await this.user.add(username);
-      return response;
+ 
+      if (response.error) {
+        this.userView.bindTogglePopup(API_ERROR_MESSAGES.ADD_USER);
+        return
+      }
+      return response.data;
   }
 
   /**
    * handle event update user
    * @param {string} id - id of user selected
    * @param {Object} data - value of user updated
-   * @returns {Object} data - transmission data
    */
   async handleUpdateUser(id, data) {
       const resUser = await this.user.update(id, data);
 
-      if (resUser) {
-
-        const dataAllUser = await this.listUser.get();
-        this.listUserView.renderTable(dataAllUser);
+      if (resUser.error) {
+        this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
         return;
       }
+
+      const dataAllUser = await this.listUser.get();
+      this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
    * handle event delete user
    * @param {string} id - id of user selected
-   * @returns {Object} data - transmission data
    */
   async handleDeleteUser(id) {
       const resUser = await this.user.delete(id);
 
-      if (resUser) {
-        
-        const dataAllUser = await this.listUser.get();
-        this.listUserView.renderTable(dataAllUser);
+      if (resUser.error) {
+        this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
         return;
       }
+
+      const dataAllUser = await this.listUser.get();
+      this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
@@ -94,8 +106,13 @@ export default class Controller {
   async handleEditUser(id) {
     const response = await this.user.getUserInfo(id);
 
+    if (response.error) {
+      this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_USER_INFO);
+      return;
+    }
+
     this.userView.renderUserInfoDetail(
-      response,
+      response.data,
       this.handleUpdateUser.bind(this),
       this.handleDeleteUser.bind(this),
     );
@@ -106,7 +123,7 @@ export default class Controller {
    * @param {String} data - value of input search
    */
   async handleSearchUsers(data) {
-    
+
       const result = this.listUser.search(data);
       this.listUserView.renderTable(result);
   }
