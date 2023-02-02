@@ -79,8 +79,8 @@ export default class Controller {
         return;
       }
 
-      const dataAllUser = await this.listUser.get();
-      this.listUserView.renderTable(dataAllUser.data);
+      // const dataAllUser = await this.listUser.get();
+      // this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
@@ -94,9 +94,6 @@ export default class Controller {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
         return;
       }
-
-      const dataAllUser = await this.listUser.get();
-      this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
