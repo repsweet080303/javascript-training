@@ -13,11 +13,9 @@ export default class {
    async get() {
       const response = await getUsers();
       this.users = response.data;
-
-      return {
-        data: response.data,
-        error: null,
-      };
+      
+      return response.data
+      
   }
 
   /**

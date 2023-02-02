@@ -21,10 +21,7 @@ export default class User {
       };
 
       const response = await createUser(user);
-      return {
-        data: response.data,
-        error: null,
-      };
+      return  response.data;
   }
 
   /**
@@ -36,10 +33,7 @@ export default class User {
    async getUserInfo(id) {
       const response = await getUserById(id);
 
-      return {
-        data: response.data,
-        error: null,
-      };
+      return response.data;
   }
 
   /**
@@ -56,10 +50,8 @@ export default class User {
       };
 
       const response = await updateUserById(id, updatedUser);
-      return {
-        data: response.data,
-        error: null,
-      };
+
+      return response.data;
   }
 
   /**
@@ -69,10 +61,6 @@ export default class User {
   */
    async delete(id) {
       const response = await deleteUserById(id);
-
-      return {
-        data: response.data,
-        error: null,
-      };
+      return response.data;
   }
 }

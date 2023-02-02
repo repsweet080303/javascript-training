@@ -302,7 +302,7 @@ export default class {
 
     self.btnSave.addEventListener('click', async () => {
       const response = await handler(self.input.value);
-      const newElement = self.template.renderUser(response.data);
+      const newElement = self.template.renderUser(response);
 
       self.input.value = '';
       self.popupAdd.classList.add('d-hidden');
