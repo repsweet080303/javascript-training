@@ -28,7 +28,7 @@ export default class Controller {
     this.userView.bindSelectNav();
 
     // bind event select user
-    this.userView.bindSelectUser(this.handleViewUser.bind(this));
+    this.userView.bindSelectUser(this.handleEditUser.bind(this));
 
     // bind event toggle modal input user name
     this.userView.bindOpenModal();
@@ -105,7 +105,7 @@ export default class Controller {
    * handle event view detail user
    * @param {Number} id - id of the user
    */
-  async handleViewUser(id) {
+  async handleEditUser(id) {
     const response = await this.user.getUserInfo(id);
 
     if (response.error) {

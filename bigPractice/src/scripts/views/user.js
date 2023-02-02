@@ -1,6 +1,6 @@
 import { querySelectorElement } from '../helpers/selectors';
 import { validateEmailRegex, validateNameEmpty } from '../helpers/validate';
-import  changeBase64  from '../helpers/changeBaseImg';
+import  changeBase64  from '../helpers/modules';
 
 export default class {
   constructor(template) {
