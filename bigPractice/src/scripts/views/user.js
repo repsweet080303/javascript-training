@@ -380,6 +380,7 @@ export default class {
    * @param {Function} handleDelete - callback function
    */
   bindDeleteUser(id, handleDelete) {
+    const self = this ;
 
     self.headerSearch = querySelectorElement('.search__header')
     self.btnRemove = querySelectorElement('.btn__remove');
