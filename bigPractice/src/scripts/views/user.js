@@ -1,6 +1,6 @@
 import { querySelectorElement } from '../helpers/selectors';
 import { validateEmailRegex, validateNameEmpty } from '../helpers/validate';
-import  changeBase64  from '../helpers/changeBaseImg';
+import  changeBase64  from '../helpers/modules';
 
 export default class {
   constructor(template) {
@@ -126,7 +126,7 @@ export default class {
       event.stopPropagation();
 
       self.rowUser = event.target.closest('.table-primary__user');
-      self.idUser = self.rowUser.getAttribute('data-id');
+      self.idUser = self.rowUser.getAttribute('id');
 
       await handler(self.idUser);
     });
@@ -289,8 +289,40 @@ export default class {
           email: self.inputEmail.value,
           description: self.bio.value,
         });
+
+        self.bindUpdateElement(data, avatar.src, self.inputName.value, self.statusActive.checked, self.inputEmail.value);
       }
     });
+  }
+
+  /**
+  * function bindUpdateElement
+  * @param {Object} data - information of user
+  * @param {Object} avatar - url avatar of user
+  * @param {String} name - new name of user
+  * @param {Boolean} status - status of user
+  * @param {String} email - adress email of user
+  */
+  bindUpdateElement(data, avatar, name, status, email) {
+    const userElement = document.getElementById(`${data.id}`)
+    const avatarElement = userElement.querySelector('.table-primary__col__avatar');
+    const nameElement = userElement.querySelector('.table-primary__col__full-name');
+    const statusElement = userElement.querySelector('.table-primary__col__status');
+    const emailElement = userElement.querySelector('.table-primary__col__email');
+    const avatarUser = avatarElement.querySelector('.avatar-user');
+    const statusUser = statusElement.querySelector('.status-item');
+
+    avatarUser.setAttribute('src', avatar);
+    nameElement.textContent = name;
+    emailElement.textContent = email;
+
+    if(status) {
+      statusUser.textContent = 'Active';
+      statusUser.classList.add('status-item--active');
+    } else {
+      statusUser.textContent = 'Not active';
+      statusUser.classList.remove('status-item--active');
+    }
   }
 
   /**
@@ -302,7 +334,7 @@ export default class {
 
     self.btnSave.addEventListener('click', async () => {
       const response = await handler(self.input.value);
-      const newElement = self.template.renderUser(response.data);
+      const newElement = self.template.renderUser(response);
 
       self.input.value = '';
       self.popupAdd.classList.add('d-hidden');
@@ -342,12 +374,16 @@ export default class {
    */
   bindDeleteUser(data, handleDelete) {
     const self = this ;
+    const userElement = document.getElementById(`${data.id}`)
 
+    self.headerSearch = querySelectorElement('.search__header')
     self.btnRemove = querySelectorElement('.btn__remove');
     self.btnRemove.addEventListener('click', () => {
       handleDelete(data.id);
+
+      userElement.remove();
+      self.headerSearch.classList.add('d-flex-between');
       self.popupDelete.classList.add('d-hidden');
-      self.formUpdate.classList.add('d-hidden');
     });
   }
 

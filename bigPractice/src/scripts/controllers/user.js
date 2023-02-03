@@ -28,7 +28,7 @@ export default class Controller {
     this.userView.bindSelectNav();
 
     // bind event select user
-    this.userView.bindSelectUser(this.handleViewUser.bind(this));
+    this.userView.bindSelectUser(this.handleEditUser.bind(this));
 
     // bind event toggle modal input user name
     this.userView.bindOpenModal();
@@ -43,6 +43,7 @@ export default class Controller {
    */
   async handleRenderView() {
     const response = await this.listUser.get();
+
     if (response.error) {
       this.userView.bindTogglePopup(API_ERROR_MESSAGES.GET_API);
       return;
@@ -57,38 +58,31 @@ export default class Controller {
    */
   async handleAddUser(username) {
       const response = await this.user.add(username);
-
+ 
       if (response.error) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.ADD_USER);
         return
       }
-      return {
-        data: response.data,
-        error: null,
-      };
+      return response.data;
   }
 
   /**
    * handle event update user
    * @param {string} id - id of user selected
    * @param {Object} data - value of user updated
-   * @returns {Object} data - transmission data
    */
   async handleUpdateUser(id, data) {
       const resUser = await this.user.update(id, data);
 
-      if (resUser.erorr) {
+      if (resUser.error) {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
         return;
       }
-        const dataAllUser = await this.listUser.get();
-        this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
    * handle event delete user
    * @param {string} id - id of user selected
-   * @returns {Object} data - transmission data
    */
   async handleDeleteUser(id) {
       const resUser = await this.user.delete(id);
@@ -97,15 +91,13 @@ export default class Controller {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
         return;
       }
-        const dataAllUser = await this.listUser.get();
-        this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
    * handle event view detail user
    * @param {Number} id - id of the user
    */
-  async handleViewUser(id) {
+  async handleEditUser(id) {
     const response = await this.user.getUserInfo(id);
 
     if (response.error) {
@@ -126,7 +118,6 @@ export default class Controller {
    */
   async handleSearchUsers(data) {
       const result = this.listUser.search(data);
-
       this.listUserView.renderTable(result);
   }
 }

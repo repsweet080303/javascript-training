@@ -20,7 +20,7 @@ export default class {
     this.searchInput = querySelectorElement('.search__input');
   }
 
-  /**
+/**
  * function renderTable in view, assigne data
  * and call function renderTableData from class template
  * then assign in table selector
@@ -42,6 +42,8 @@ export default class {
     self.btnSearch.addEventListener('click', () => {
       self.headerSearch.classList.add('d-hidden');
       self.wrapperSearch.classList.remove('d-hidden');
+      self.wrapperSearch.classList.add('d-flex-between');
+      
     });
   }
 

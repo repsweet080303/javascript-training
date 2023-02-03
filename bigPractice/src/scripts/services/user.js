@@ -1,4 +1,7 @@
 import axiosConfig from './axiosConfig';
+import ENDPOINT_API from '../constants/apiEndpoint';
+
+const userURL = ENDPOINT_API.USER_API;
 
 /**
  * function createUser  use method POST
@@ -8,7 +11,7 @@ import axiosConfig from './axiosConfig';
  */
 export const createUser = async (data) => {
   try {
-    const response = await axiosConfig.post('/users', data);
+    const response = await axiosConfig.post(userURL, data);
 
     return {
       data: response.data,
@@ -29,7 +32,7 @@ export const createUser = async (data) => {
  */
 export const getUserById = async (id) => {
   try {
-    const response = await axiosConfig.get(`/users/${id}`);
+    const response = await axiosConfig.get(`${userURL}/${id}`);
 
     return {
       data: response.data,
@@ -52,7 +55,7 @@ export const getUserById = async (id) => {
  */
 export const updateUserById = async (id, data) => {
   try {
-    const response = await axiosConfig.patch(`/users/${id}`, data);
+    const response = await axiosConfig.patch(`${userURL}/${id}`, data);
 
     return {
       data: response.data,
@@ -73,7 +76,7 @@ export const updateUserById = async (id, data) => {
  */
 export const deleteUserById = async (id) => {
   try {
-    const response = await axiosConfig.delete(`/users/${id}`);
+    const response = await axiosConfig.delete(`${userURL}/${id}`);
 
     return {
       data: response.data,

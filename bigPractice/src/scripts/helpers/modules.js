@@ -1,4 +1,4 @@
-/**
+  /**
    * function changeBase64
    * @param {Object} file - file user uploaded
    * @return {Object} Promise - return resolve or reject
@@ -11,4 +11,5 @@
     reader.onerror = () => reject(reader.error);
   });
 }
+
 export default changeBase64 ;
