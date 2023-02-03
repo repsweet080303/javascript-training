@@ -343,9 +343,12 @@ export default class {
   bindDeleteUser(data, handleDelete) {
     const self = this ;
 
+    self.headerSearch = querySelectorElement('.search__header')
     self.btnRemove = querySelectorElement('.btn__remove');
     self.btnRemove.addEventListener('click', () => {
       handleDelete(data.id);
+
+      self.headerSearch.classList.add('d-flex-between');
       self.popupDelete.classList.add('d-hidden');
       self.formUpdate.classList.add('d-hidden');
     });

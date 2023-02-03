@@ -4,7 +4,7 @@
  * @returns {Boolean} return true if value is empty
  */
 const validateNameEmpty = (value) => {
-  if (value === '') {
+  if (!value) {
     return true;
   }
   return false;
