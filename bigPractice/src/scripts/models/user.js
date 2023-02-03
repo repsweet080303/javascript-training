@@ -23,7 +23,7 @@ export default class User {
       return await createUser(user);
   }
 
-   /**
+  /**
    * function getUserInfo
    * @param {Number} id - id user
    * @returns {Object} data - data transmission
@@ -33,7 +33,7 @@ export default class User {
        return await getUserById(id);
   }
 
-  /**
+ /**
   * function updateUser
   * @param {Number} id - id user
   * @param {Object} data - data update user
@@ -49,7 +49,7 @@ export default class User {
       return await updateUserById(id, updatedUser);
   }
 
-  /**
+ /**
   * function deleteUser
   * @param {Number} id - id user
   * @returns {Object} data - data transmission

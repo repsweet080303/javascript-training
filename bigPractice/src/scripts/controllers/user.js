@@ -54,7 +54,6 @@ export default class Controller {
   /**
    * handle event add user
    * @param {string} username - input value
-   * @returns {Object} data - transmission data
    */
   async handleAddUser(username) {
       const response = await this.user.add(username);
