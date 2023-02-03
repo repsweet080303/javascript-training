@@ -26,7 +26,7 @@ export default class Template {
     this.active = data.isActive ? 'status-item--active' : '';
     this.labelStatus = data.isActive ? 'Active' : 'Not Active';
     return `
-  <tr class='table-primary__user' data-id= ${data.id}>
+  <tr class='table-primary__user' id= ${data.id}>
     <td class="table-primary__col__avatar table-primary__body__row">${data.avatar
     ? `<img class='avatar-user' src=${data.avatar} alt="Avatar ${data.name}"></img>`
     : `<div class='avatar-user__none' 
@@ -104,7 +104,7 @@ export default class Template {
           </div>
         </div>
         <div class="update-user__body">
-          <div class="btn__group data-id="${data.id}">
+          <div class="btn__group id="${data.id}">
             <button class="btn btn__primary btn__delete">Delete</button>
             <button class="btn btn__secondary btn__save-info">Save</button>
           </div>

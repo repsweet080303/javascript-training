@@ -63,7 +63,7 @@ export default class Controller {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.ADD_USER);
         return
       }
-      return response.data;
+     this.userView.bindRenderUser(response.data);
   }
 
   /**
@@ -78,6 +78,8 @@ export default class Controller {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
         return;
       }
+
+      this.userView.bindUpdateElement(id, data);
   }
 
   /**
@@ -91,6 +93,7 @@ export default class Controller {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.DELETE_USER);
         return;
       }
+      this.userView.bindDeleteElement(id);
   }
 
   /**

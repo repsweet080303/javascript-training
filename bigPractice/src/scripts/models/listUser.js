@@ -23,8 +23,6 @@ export default class {
    * @returns {Array} response - list transmission data
    */
    search(data) {
-      const response = this.users.filter((user) => user.name.toLowerCase().includes(data));
-
-      return response;
+      return this.users.filter((user) => user.name.toLowerCase().includes(data));
   }
 }
