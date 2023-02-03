@@ -8,7 +8,7 @@ export default class User {
    * function addUser
    * @param {String} username - input value
    * @returns {Object} user - object information user
-  */
+   */
   async add(username) {
       const user = {
         avatar: '',
@@ -19,18 +19,16 @@ export default class User {
         registered: new Date().toISOString(),
         lastUpdated: new Date().toISOString(),
       };
-
       const response = await createUser(user);
       
       return  response;
   }
 
-  /**
+   /**
    * function getUserInfo
    * @param {Number} id - id user
    * @returns {Object} data - data transmission
-  */
-
+   */
    async getUserInfo(id) {
       const response = await getUserById(id);
 
@@ -55,7 +53,7 @@ export default class User {
   }
 
   /**
-   * function deleteUser
+  * function deleteUser
   * @param {Number} id - id user
   * @returns {Object} data - data transmission
   */

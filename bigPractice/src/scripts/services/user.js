@@ -2,6 +2,7 @@ import axiosConfig from './axiosConfig';
 import ENDPOINT_API from '../constants/apiEndpoint';
 
 const userURL = ENDPOINT_API.USER_API;
+
 /**
  * function createUser  use method POST
  * new user to data

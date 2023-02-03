@@ -289,12 +289,20 @@ export default class {
           email: self.inputEmail.value,
           description: self.bio.value,
         });
-        
+
         self.bindUpdateElement(data, avatar.src, self.inputName.value, self.statusActive.checked, self.inputEmail.value);
-    }
+      }
     });
   }
 
+  /**
+  * function bindUpdateElement
+  * @param {Object} data - information of user
+  * @param {Object} avatar - url avatar of user
+  * @param {String} name - new name of user
+  * @param {Boolean} status - status of user
+  * @param {String} email - adress email of user
+  */
   bindUpdateElement(data, avatar, name, status, email) {
     const userElement = document.getElementById(`${data.id}`)
     const avatarElement = userElement.querySelector('.table-primary__col__avatar');
@@ -304,8 +312,8 @@ export default class {
     const avatarUser = avatarElement.querySelector('.avatar-user');
     const statusUser = statusElement.querySelector('.status-item');
 
-    nameElement.textContent = name;
     avatarUser.setAttribute('src', avatar);
+    nameElement.textContent = name;
     emailElement.textContent = email;
 
     if(status) {

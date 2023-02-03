@@ -15,7 +15,6 @@ export default class {
       this.users = response.data;
       
       return response
-      
   }
 
   /**

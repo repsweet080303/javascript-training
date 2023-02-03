@@ -20,7 +20,7 @@ export default class {
     this.searchInput = querySelectorElement('.search__input');
   }
 
-  /**
+/**
  * function renderTable in view, assigne data
  * and call function renderTableData from class template
  * then assign in table selector

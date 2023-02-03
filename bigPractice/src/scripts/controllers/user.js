@@ -78,9 +78,6 @@ export default class Controller {
         this.userView.bindTogglePopup(API_ERROR_MESSAGES.UPDATE_USER);
         return;
       }
-
-      // const dataAllUser = await this.listUser.get();
-      // this.listUserView.renderTable(dataAllUser.data);
   }
 
   /**
@@ -120,7 +117,6 @@ export default class Controller {
    * @param {String} data - value of input search
    */
   async handleSearchUsers(data) {
-
       const result = this.listUser.search(data);
       this.listUserView.renderTable(result);
   }
