@@ -19,9 +19,8 @@ export default class User {
         registered: new Date().toISOString(),
         lastUpdated: new Date().toISOString(),
       };
-      const response = await createUser(user);
       
-      return  response;
+      return await createUser(user);
   }
 
    /**
@@ -30,9 +29,8 @@ export default class User {
    * @returns {Object} data - data transmission
    */
    async getUserInfo(id) {
-      const response = await getUserById(id);
 
-      return response;
+       return await getUserById(id);
   }
 
   /**
@@ -48,8 +46,7 @@ export default class User {
         lastUpdated: new Date().toString(),
       };
 
-      const response = await updateUserById(id, updatedUser);
-      return response;
+      return await updateUserById(id, updatedUser);
   }
 
   /**
@@ -58,8 +55,7 @@ export default class User {
   * @returns {Object} data - data transmission
   */
    async delete(id) {
-      const response = await deleteUserById(id);
 
-      return response;
+    return await deleteUserById(id);
   }
 }

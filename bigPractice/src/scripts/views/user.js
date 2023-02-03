@@ -126,7 +126,7 @@ export default class {
       event.stopPropagation();
 
       self.rowUser = event.target.closest('.table-primary__user');
-      self.idUser = self.rowUser.getAttribute('data-id');
+      self.idUser = self.rowUser.getAttribute('id');
 
       await handler(self.idUser);
     });
@@ -193,7 +193,7 @@ export default class {
     self.bindUpdateAvatar(self.fileUpload);
     self.bindUpdateUser(data, handleUpdate);
     self.bindOpenPopupDelete();
-    self.bindDeleteUser(data, handleDelete);
+    self.bindDeleteUser(data.id, handleDelete);
     self.bindClosePopupDelete();
   }
 
@@ -294,6 +294,36 @@ export default class {
   }
 
   /**
+  * function bindUpdateElement
+  * @param {Object} data - information of user
+  * @param {Object} avatar - url avatar of user
+  * @param {String} name - new name of user
+  * @param {Boolean} status - status of user
+  * @param {String} email - adress email of user
+  */
+  bindUpdateElement(id, data) {
+    const userElement = document.getElementById(`${id}`);
+    const avatarElement = userElement.querySelector('.table-primary__col__avatar');
+    const nameElement = userElement.querySelector('.table-primary__col__full-name');
+    const statusElement = userElement.querySelector('.table-primary__col__status');
+    const emailElement = userElement.querySelector('.table-primary__col__email');
+    const avatarUser = avatarElement.querySelector('.avatar-user');
+    const statusUser = statusElement.querySelector('.status-item');
+
+    avatarUser.setAttribute('src', `${data.avatar}`);
+    nameElement.textContent = `${data.name}`;
+    emailElement.textContent = `${data.email}`;
+
+    if(data.isActive) {
+      statusUser.textContent = 'Active';
+      statusUser.classList.add('status-item--active');
+    } else {
+      statusUser.textContent = 'Not active';
+      statusUser.classList.remove('status-item--active');
+    }
+  }
+
+  /**
   * function bindAddUser
   * @param {Function} handler - handler function add user
   */
@@ -301,15 +331,24 @@ export default class {
     const self = this ;
 
     self.btnSave.addEventListener('click', async () => {
-      const response = await handler(self.input.value);
-      const newElement = self.template.renderUser(response);
-
-      self.input.value = '';
-      self.popupAdd.classList.add('d-hidden');
-
-      const newRow = `${self.tableBody.innerHTML} ${newElement}`;
-      self.tableBody.innerHTML = newRow;
+       handler(self.input.value);
     });
+  }
+
+  /**
+  * function bindAddUser
+  * @param {Object} user - information of user
+  */
+  bindRenderUser (user) {
+    const self = this ;
+
+    const newElement = self.template.renderUser(user);
+
+    self.input.value = '';
+    self.popupAdd.classList.add('d-hidden');
+
+    const newRow = `${self.tableBody.innerHTML} ${newElement}`;
+    self.tableBody.innerHTML = newRow;
   }
 
   /**
@@ -340,13 +379,12 @@ export default class {
    * @param {Object} data - information of user
    * @param {Function} handleDelete - callback function
    */
-  bindDeleteUser(data, handleDelete) {
-    const self = this ;
+  bindDeleteUser(id, handleDelete) {
 
     self.headerSearch = querySelectorElement('.search__header')
     self.btnRemove = querySelectorElement('.btn__remove');
     self.btnRemove.addEventListener('click', () => {
-      handleDelete(data.id);
+      handleDelete(id);
 
       self.headerSearch.classList.add('d-flex-between');
       self.popupDelete.classList.add('d-hidden');
@@ -356,20 +394,27 @@ export default class {
 
   /**
    * bindTogglePopup
+   * @param {Number} id - id of user
+   */
+  bindDeleteElement(id) {
+    const userElement = document.getElementById(`${id}`);
+    userElement.remove();
+  }
+
+  /**
+   * bindTogglePopup
    * @param {String} message - message for error
    */
   bindTogglePopup(message) {
-    const self = this ;
 
-    self.popupError = querySelectorElement('.popup');
-    self.popupMsg = querySelectorElement('.popup__message');
-    self.btnBack = querySelectorElement('.btn__back');
+    const popupError = querySelectorElement('.popup');
+    const popupMsg = querySelectorElement('.popup__message');
+    const btnBack = querySelectorElement('.btn__back');
+    popupError.classList.remove('d-hidden');
+    popupMsg.innerHTML = message;
 
-    self.popupError.classList.remove('d-hidden');
-    self.popupMsg.innerHTML = message;
-
-    self.btnBack.addEventListener('click', () => {
-      self.popupError.classList.add('d-hidden');
+    btnBack.addEventListener('click', () => {
+      popupError.classList.add('d-hidden');
     });
   }
 }
