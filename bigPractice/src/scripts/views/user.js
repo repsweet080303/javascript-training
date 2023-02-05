@@ -293,7 +293,7 @@ export default class {
     });
   }
 
-  /**
+ /**
   * function bindUpdateElement
   * @param {Object} data - information of user
   * @param {Object} avatar - url avatar of user
@@ -323,7 +323,7 @@ export default class {
     }
   }
 
-  /**
+ /**
   * function bindAddUser
   * @param {Function} handler - handler function add user
   */
@@ -335,7 +335,7 @@ export default class {
     });
   }
 
-  /**
+ /**
   * function bindAddUser
   * @param {Object} user - information of user
   */
