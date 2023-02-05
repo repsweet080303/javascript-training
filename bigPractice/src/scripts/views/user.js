@@ -13,27 +13,11 @@ export default class {
     // select option
     this.option = querySelectorElement('.navbar__option');
 
-    // select navbar
-    this.navbar = querySelectorElement('.navbar');
-    this.navbarSelect = querySelectorElement('.navbar__select');
-
     // select information user
     this.info = querySelectorElement('.info');
 
-    // select user
-    this.userSelect = querySelectorElement('.table-primary__user');
-
-    // select modal
-    this.modalInfo = querySelectorElement('.modal-add-user');
-
-    // select button
-    this.btnNew = querySelectorElement('.btn__new');
-    this.btnSave = querySelectorElement('.btn__save');
-    this.btnCancel = querySelectorElement('.btn__cancel');
-
     // select popup add user
     this.popupAdd = querySelectorElement('.modal-add-user');
-    this.iconClose = querySelectorElement('.modal-add-user__icon--close');
     this.input = querySelectorElement('.form__input');
 
     // select popup delete user
@@ -54,9 +38,10 @@ export default class {
    * click, option add new user show
    */
   bindOpenOption() {
-    const self = this ;
+    const self = this;
+    const btnNew = querySelectorElement('.btn__new');
 
-    self.btnNew.addEventListener('click', (event) => {
+    btnNew.addEventListener('click', (event) => {
       event.stopPropagation();
       self.option.classList.remove('d-hidden');
     });
@@ -67,7 +52,7 @@ export default class {
    * everywhere option add new user hidden
    */
   bindCloseOption() {
-    const self = this ;
+    const self = this;
 
     window.addEventListener('click', () => {
       self.option.classList.add('d-hidden');
@@ -80,7 +65,7 @@ export default class {
    * popup add new user show
    */
   bindOpenModal() {
-    const self = this ;
+    const self = this;
 
     self.option.addEventListener('click', () => {
       self.option.classList.add('d-hidden');
@@ -93,9 +78,10 @@ export default class {
    * clicked, popup add new user hidden
    */
   bindCloseModal() {
-    const self = this ;
+    const self = this;
+    const iconClose = querySelectorElement('.modal-add-user__icon--close');
 
-    self.iconClose.addEventListener('click', () => {
+    iconClose.addEventListener('click', () => {
       self.input.value = '';
       self.popupAdd.classList.add('d-hidden');
     });
@@ -106,10 +92,10 @@ export default class {
    * select, navbar change color
    */
   bindSelectNav() {
-    const self = this ;
+    const navbarSelect = querySelectorElement('.navbar__select');
 
-    self.navbarSelect.addEventListener('click', () => {
-      self.navbarSelect.classList.add('navbar__active');
+    navbarSelect.addEventListener('click', () => {
+      navbarSelect.classList.add('navbar__active');
     });
   }
 
@@ -120,7 +106,7 @@ export default class {
   * @param {Function} handle - callback handler for select user
   */
   bindSelectUser(handler) {
-    const self = this ;
+    const self = this;
 
     self.tableBody.addEventListener('click', async (event) => {
       event.stopPropagation();
@@ -138,7 +124,7 @@ export default class {
    * @param {Function} handleUpdate - callback handler for update
    */
   renderUserInfoDetail(data, handleUpdate, handleDelete) {
-    const self = this ;
+    const self = this;
 
     if (self.isUpdate) {
       self.info.classList.add('d-hidden');
@@ -162,7 +148,7 @@ export default class {
    * @param {Function} handleUpdate - callback handler for update
    */
   bindOpenUpdateForm(data, handleUpdate, handleDelete) {
-    const self = this ;
+    const self = this;
 
     self.btnPencil = querySelectorElement('.btn__edit');
 
@@ -184,7 +170,7 @@ export default class {
    * @param {Function} handleUpdate - callback handler for update
    */
   bindActiveUpdate(data, handleUpdate, handleDelete) {
-    const self = this ;
+    const self = this;
 
     self.fileUpload = document.querySelectorAll('.update-user__image');
 
@@ -202,7 +188,7 @@ export default class {
    * @param {Object} data - information of user
    */
   bindCloseUpdateForm(data) {
-    const self = this ;
+    const self = this;
 
     self.btnBack = querySelectorElement('.btn__arrow');
     self.btnBack.addEventListener('click', () => {
@@ -218,7 +204,7 @@ export default class {
    * function bindCloseUpdateForm
    */
   bindChangeStatus() {
-    const self = this ;
+    const self = this;
 
     self.btnSwitch = querySelectorElement('.btn__toggle__check');
     self.statusLabel = querySelectorElement('.status-item--update');
@@ -237,7 +223,7 @@ export default class {
    * @param {Object} fileUpload - file image upload for user
    */
   bindUpdateAvatar(fileUpload) {
-    const self = this ;
+    const self = this;
 
     self.avatarUser = querySelectorElement('.update-user__body__wrapper');
 
@@ -260,22 +246,21 @@ export default class {
    * @param {Function} handleUpdate - function handle update
    */
   bindUpdateUser(data, handleUpdate) {
-    const self = this ;
 
-    self.btnSave = querySelectorElement('.btn__save-info');
-    self.inputName = querySelectorElement('#input__name');
-    self.inputEmail = querySelectorElement('#input__email');
-    self.statusActive = querySelectorElement('.btn__toggle__check');
-    self.bio = querySelectorElement('.update-user__body__details');
+    const btnSave = querySelectorElement('.btn__save-info');
+    const inputName = querySelectorElement('#input__name');
+    const inputEmail = querySelectorElement('#input__email');
+    const statusActive = querySelectorElement('.btn__toggle__check');
+    const bio = querySelectorElement('.update-user__body__details');
 
-    self.btnSave.addEventListener('click', () => {
+    btnSave.addEventListener('click', () => {
       const avatar = querySelectorElement('.update-user__body__img');
       const msgName = querySelectorElement('.name--error');
       const msgEmail = querySelectorElement('.email--error');
 
-      if (validateNameEmpty(self.inputName.value)) {
+      if (validateNameEmpty(inputName.value)) {
         msgName.classList.remove('d-hidden');
-      } else if (validateEmailRegex(self.inputEmail.value)) {
+      } else if (validateEmailRegex(inputEmail.value)) {
         msgName.classList.add('d-hidden');
         msgEmail.classList.remove('d-hidden');
       } else {
@@ -284,10 +269,10 @@ export default class {
 
         handleUpdate(data.id, {
           avatar: avatar.src,
-          name: self.inputName.value,
-          isActive: self.statusActive.checked,
-          email: self.inputEmail.value,
-          description: self.bio.value,
+          name: inputName.value,
+          isActive: statusActive.checked,
+          email: inputEmail.value,
+          description: bio.value,
         });
       }
     });
@@ -328,9 +313,10 @@ export default class {
   * @param {Function} handler - handler function add user
   */
   bindAddUser(handler) {
-    const self = this ;
+    const self = this;
+    const btnSave = querySelectorElement('.btn__save');
 
-    self.btnSave.addEventListener('click', async () => {
+    btnSave.addEventListener('click', async () => {
        handler(self.input.value);
     });
   }
@@ -340,7 +326,7 @@ export default class {
   * @param {Object} user - information of user
   */
   bindRenderUser (user) {
-    const self = this ;
+    const self = this;
 
     const newElement = self.template.renderUser(user);
 
@@ -355,7 +341,7 @@ export default class {
    * function bindOpenPopupDelete
    */
   bindOpenPopupDelete() {
-    const self = this ;
+    const self = this;
 
     self.btnDelete = querySelectorElement('.btn__delete');
     self.btnDelete.addEventListener('click', () => {
@@ -367,9 +353,10 @@ export default class {
    * function bindClosePopupDelete
    */
   bindClosePopupDelete() {
-    const self = this ;
+    const self = this;
+    const btnCancel = querySelectorElement('.btn__cancel');
 
-    self.btnCancel.addEventListener('click', () => {
+    btnCancel.addEventListener('click', () => {
       self.popupDelete.classList.add('d-hidden');
     });
   }
@@ -380,7 +367,7 @@ export default class {
    * @param {Function} handleDelete - callback function
    */
   bindDeleteUser(id, handleDelete) {
-    const self = this ;
+    const self = this;
 
     self.headerSearch = querySelectorElement('.search__header')
     self.btnRemove = querySelectorElement('.btn__remove');

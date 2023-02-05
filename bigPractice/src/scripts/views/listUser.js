@@ -37,7 +37,7 @@ export default class {
    */
 
   bindOpenSearch() {
-    const self = this ;
+    const self = this;
     
     self.btnSearch.addEventListener('click', () => {
       self.headerSearch.classList.add('d-hidden');
@@ -52,7 +52,7 @@ export default class {
    * hide search input
    */
   bindCloseSearch() {
-    const self = this ;
+    const self = this;
 
     self.btnClose.addEventListener('click', () => {
       self.headerSearch.classList.remove('d-hidden');
