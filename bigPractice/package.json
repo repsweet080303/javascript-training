@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "source": "src/index.html",
   "description": "big practice for javascript",
-  "main": "index.js",
   "scripts": {
     "start": "parcel --no-cache",
     "start-server": "json-server --watch json-server/db.json --host 127.0.0.1",
